@@ -1,0 +1,90 @@
+{
+  "info": {
+    "name": "Lost & Found API",
+    "_postman_id": "12345678-abcd-efgh-ijkl-1234567890ab",
+    "description": "Collection for signup and signin endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Signup Student",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"role\": \"student\",\n  \"fullName\": \"Alice Smith\",\n  \"email\": \"alice.smith@example.com\",\n  \"contactNumber\": \"9876543210\",\n  \"enrollmentNumber\": \"ENR20001\",\n  \"semester\": 4,\n  \"year\": 2,\n  \"department\": \"ECE\",\n  \"password\": \"Password@123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/auth/signup",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "auth", "signup"]
+        }
+      }
+    },
+    {
+      "name": "Signup Staff",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"role\": \"staff\",\n  \"fullName\": \"Bob Johnson\",\n  \"email\": \"bob.johnson@example.com\",\n  \"contactNumber\": \"9123456780\",\n  \"staffId\": \"STF20001\",\n  \"department\": \"CSE\",\n  \"password\": \"Password@123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/auth/signup",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "auth", "signup"]
+        }
+      }
+    },
+    {
+      "name": "Signin Student/Staff",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"role\": \"student\",\n  \"email\": \"alice.smith@example.com\",\n  \"password\": \"Password@123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/auth/signin",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "auth", "signin"]
+        }
+      }
+    },
+    {
+      "name": "Signin Admin",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"role\": \"admin\",\n  \"password\": \"Admin@1234\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/auth/signin",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "auth", "signin"]
+        }
+      }
+    }
+  ]
+}
