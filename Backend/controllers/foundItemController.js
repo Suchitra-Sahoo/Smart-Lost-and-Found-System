@@ -36,16 +36,3 @@ exports.reportFoundItem = async (req, res) => {
   }
 };
 
-// Get all found items
-exports.getFoundItems = async (req, res) => {
-  try {
-    const foundItems = await FoundItem.find().sort({ createdAt: -1 });
-    res.status(200).json(foundItems);
-  } catch (error) {
-    console.error("Get Found Items Error:", error);
-    res.status(500).json({
-      message: "Failed to fetch found items",
-      error: error.message
-    });
-  }
-};

@@ -5,7 +5,6 @@ const connectDB = require("./config/db");
 const lostItemRoutes = require("./routes/lostItemRoutes");
 const foundItemRoutes = require("./routes/foundItemRoutes");
 
-
 dotenv.config();
 connectDB();
 

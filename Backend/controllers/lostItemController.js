@@ -39,16 +39,4 @@ exports.reportLostItem = async (req, res) => {
   }
 };
 
-// Get all lost items
-exports.getLostItems = async (req, res) => {
-  try {
-    const lostItems = await LostItem.find().sort({ createdAt: -1 });
-    res.status(200).json(lostItems);
-  } catch (error) {
-    console.error("Get Lost Items Error:", error);
-    res.status(500).json({
-      message: "Failed to fetch lost items",
-      error: error.message
-    });
-  }
-};
+
