@@ -10,9 +10,7 @@
       "name": "Signup Student",
       "request": {
         "method": "POST",
-        "header": [
-          { "key": "Content-Type", "value": "application/json" }
-        ],
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"role\": \"student\",\n  \"fullName\": \"Alice Smith\",\n  \"email\": \"alice.smith@example.com\",\n  \"contactNumber\": \"9876543210\",\n  \"enrollmentNumber\": \"ENR20001\",\n  \"semester\": 4,\n  \"year\": 2,\n  \"department\": \"ECE\",\n  \"password\": \"Password@123\"\n}"
@@ -30,9 +28,7 @@
       "name": "Signup Staff",
       "request": {
         "method": "POST",
-        "header": [
-          { "key": "Content-Type", "value": "application/json" }
-        ],
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"role\": \"staff\",\n  \"fullName\": \"Bob Johnson\",\n  \"email\": \"bob.johnson@example.com\",\n  \"contactNumber\": \"9123456780\",\n  \"staffId\": \"STF20001\",\n  \"department\": \"CSE\",\n  \"password\": \"Password@123\"\n}"
@@ -50,9 +46,7 @@
       "name": "Signin Student/Staff",
       "request": {
         "method": "POST",
-        "header": [
-          { "key": "Content-Type", "value": "application/json" }
-        ],
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"role\": \"student\",\n  \"email\": \"alice.smith@example.com\",\n  \"password\": \"Password@123\"\n}"
@@ -70,9 +64,7 @@
       "name": "Signin Admin",
       "request": {
         "method": "POST",
-        "header": [
-          { "key": "Content-Type", "value": "application/json" }
-        ],
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"role\": \"admin\",\n  \"password\": \"Admin@1234\"\n}"
@@ -83,6 +75,42 @@
           "host": ["localhost"],
           "port": "5000",
           "path": ["api", "auth", "signin"]
+        }
+      }
+    },
+    {
+      "name": "Forgot Password",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"email\": \"alice.smith@example.com\" }"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/auth/forgot-password",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "auth", "forgot-password"]
+        }
+      }
+    },
+    {
+      "name": "Reset Password",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"password\": \"NewPassword@123\" }"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/auth/reset-password/:token",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "auth", "reset-password", ":token"]
         }
       }
     }
