@@ -37,10 +37,10 @@ const userSchema = new mongoose.Schema(
       required: function () {
         return this.role === "student";
       },
-      unique: function () {
-        return this.role === "student";
-      },
+      unique: true,
+      sparse: true,
     },
+
     semester: {
       type: Number,
       required: function () {
@@ -63,6 +63,8 @@ const userSchema = new mongoose.Schema(
       unique: function () {
         return this.role === "staff";
       },
+      unique: true, // keep unique
+      sparse: true,
     },
 
     department: {
