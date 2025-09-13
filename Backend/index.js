@@ -2,6 +2,9 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./config/db");
+const lostItemRoutes = require("./routes/lostItemRoutes");
+const foundItemRoutes = require("./routes/foundItemRoutes");
+
 
 dotenv.config();
 connectDB();
@@ -9,6 +12,8 @@ connectDB();
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use("/api/lost-items", lostItemRoutes);
+app.use("/api/found-items", foundItemRoutes);
 
 // Routes
 const authRoutes = require("./routes/auth");
