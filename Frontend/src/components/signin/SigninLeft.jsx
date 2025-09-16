@@ -5,7 +5,7 @@ function SigninLeft({ images, currentImage }) {
     <div className="hidden md:flex md:w-1/2 flex-col items-center justify-center 
         bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 text-gray-800 p-8 md:p-12 -3xl shadow-xl relative"
     >
-      <div className="w-96 md:w-[28rem] h-96 md:h-[28rem] relative backdrop-blur-md rounded-2xl flex items-center justify-center">
+      <div className="w-80 md:w-96 h-80 md:h-96 relative backdrop-blur-md rounded-2xl flex items-center justify-center">
         {images.map((img, index) => (
           <img
             key={index}

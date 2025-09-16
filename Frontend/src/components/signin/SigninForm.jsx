@@ -6,7 +6,6 @@ import RoleDropdown from "./RoleDropdown";
 function SigninForm({ role, open, setOpen, handleSelect }) {
   return (
     <div className="md:w-1/2 w-full flex flex-col md:justify-center bg-white p-8 md:p-12">
-      
       {/* Back to Home on top */}
       <div className="flex justify-end mb-6">
         <a
@@ -69,16 +68,21 @@ function SigninForm({ role, open, setOpen, handleSelect }) {
       </form>
 
       {/* Divider */}
-      <div className="my-4 md:my-6 hidden md:flex items-center justify-center">
-        <span className="h-px w-1/4 bg-orange-200"></span>
-        <span className="px-2 md:px-3 text-gray-500 text-sm md:text-base">or</span>
-        <span className="h-px w-1/4 bg-orange-200"></span>
+      <div className="my-4 md:my-6 flex items-center justify-center">
+        <span className="h-px flex-1 bg-orange-200"></span>
+        <span className="px-2 md:px-3 text-gray-500 text-sm md:text-base">
+          or
+        </span>
+        <span className="h-px flex-1 bg-orange-200"></span>
       </div>
 
       {/* Redirect to Signup */}
       <p className="text-center text-gray-600 text-sm md:text-base">
         Don’t have an account?{" "}
-        <a href="/signup" className="text-orange-600 font-semibold hover:underline">
+        <a
+          href="/signup"
+          className="text-orange-600 font-semibold hover:underline"
+        >
           Create Account
         </a>
       </p>
