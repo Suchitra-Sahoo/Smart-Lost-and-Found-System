@@ -24,7 +24,7 @@ function SigninLeft({ images, currentImage }) {
 
       <p className="mt-4 text-center max-w-sm leading-relaxed text-base md:text-lg text-gray-700">
         Sign in to your{" "}
-        <span className="font-semibold text-orange-600">Smart Lost & Found</span>{" "}
+        <span className="font-semibold text-orange-600">CampusFind</span>{" "}
         account and continue your journey with us.
       </p>
     </div>
