@@ -101,7 +101,7 @@ exports.forgotPassword = async (req, res) => {
     await user.save();
 
     // return the reset token URL in response for testing
-    const resetUrl = `http://localhost:5173/reset-password/${resetToken}`;
+    const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
 
     res.json({ message: "Password reset link generated", resetUrl });
   } catch (error) {
