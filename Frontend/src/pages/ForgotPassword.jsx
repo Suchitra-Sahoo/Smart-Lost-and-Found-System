@@ -15,7 +15,7 @@ function ForgotPassword() {
       setCurrentImage((prev) => (prev + 1) % images.length);
     }, 2000);
 
-    return () => clearInterval(interval); // cleanup on unmount
+    return () => clearInterval(interval); 
   }, [images.length]);
 
   return (

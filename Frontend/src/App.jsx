@@ -5,6 +5,7 @@ import Signin from "./pages/Signin";
 import LandingPage from "./pages/LandingPage";
 import ForgotPassword from "./pages/ForgotPassword";
 import { Toaster } from "react-hot-toast";
+import ResetPassword from "./pages/ResetPassword";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+         <Route path="/reset-password/:token" element={<ResetPassword />} />
       </Routes>
     </>
   );

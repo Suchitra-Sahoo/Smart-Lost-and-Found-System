@@ -1,32 +1,20 @@
 import React, { useState } from "react";
 import { FaEnvelope, FaArrowLeft } from "react-icons/fa";
-
+import toast from "react-hot-toast";
+import { forgotPassword } from "../../api/auth"; 
 function RightSection() {
   const [email, setEmail] = useState("");
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/forgot-password`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      alert("Check your email for the reset link!");
-      console.log("Reset URL (for testing):", data.resetUrl);
-    } else {
-      alert(data.message || "Something went wrong");
+    e.preventDefault();
+    try {
+      await forgotPassword(email);
+      toast.success("Check your email for the reset link!");
+    } catch (err) {
+      toast.error(err.message || "Something went wrong");
+      console.error("Forgot password error:", err);
     }
-  } catch (err) {
-    console.error(err);
-    alert("Server error. Try again later.");
-  }
-};
-
+  };
 
   return (
     <div className="flex-1 flex flex-col md:justify-center bg-white p-8 md:p-12 text-lg">
