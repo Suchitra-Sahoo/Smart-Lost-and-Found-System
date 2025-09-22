@@ -6,9 +6,11 @@ import {
   FaEye,
   FaEyeSlash,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import InputField from "./InputField";
 import RoleDropdown from "./RoleDropdown";
 import { signin } from "../../api/auth";
+import toast from "react-hot-toast";
 
 function SigninForm({ role, open, setOpen, handleSelect }) {
   const [email, setEmail] = useState("");
@@ -16,6 +18,8 @@ function SigninForm({ role, open, setOpen, handleSelect }) {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,18 +39,24 @@ function SigninForm({ role, open, setOpen, handleSelect }) {
       // Store token
       localStorage.setItem("token", res.token);
 
-      // Redirect to home
-      window.location.href = "/";
+      // Show success toast
+      toast.success("Signin successful!");
+
+      // Delay redirect so toast is visible
+      setTimeout(() => {
+        navigate("/");
+      }, 1200);
     } catch (err) {
       console.error(err.message);
       setError(err.message);
+      toast.error(err.message); // Show error toast
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="md:w-1/2 w-full flex flex-col md:justify-center bg-white p-8 md:p-12 text-lg ">
+    <div className="md:w-1/2 w-full flex flex-col md:justify-center bg-white p-8 md:p-12 text-lg">
       {/* Back to Home */}
       <div className="flex justify-end mb-6 hover:underline text-xl font-semibold">
         <a href="/" className="flex items-center gap-2 text-orange-500">
