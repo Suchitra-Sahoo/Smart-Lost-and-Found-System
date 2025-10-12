@@ -7,6 +7,8 @@ import ForgotPassword from "./pages/ForgotPassword";
 import { Toaster } from "react-hot-toast";
 import ResetPassword from "./pages/ResetPassword";
 import Loader from "./components/common/Loader/Loader";
+import '../src/App.css'
+
 
 const App = () => {
   const [loading, setLoading] = useState(true);
