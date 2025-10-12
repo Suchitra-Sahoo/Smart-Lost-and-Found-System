@@ -4,6 +4,7 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const lostItemRoutes = require("./routes/lostItemRoutes");
 const foundItemRoutes = require("./routes/foundItemRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 dotenv.config();
 connectDB();
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/lost-items", lostItemRoutes);
 app.use("/api/found-items", foundItemRoutes);
+app.use("/api/users", userRoutes);
 
 // Routes
 const authRoutes = require("./routes/auth");

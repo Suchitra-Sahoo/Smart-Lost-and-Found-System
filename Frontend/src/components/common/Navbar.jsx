@@ -52,8 +52,13 @@ export default function Navbar() {
     { name: "Contact", icon: <FaPhone />, to: "/contact" },
   ];
 
+  // Dynamic dashboard link based on role
   const userOptions = [
-    { name: "Dashboard", icon: <MdDashboard />, to: "/dashboard" },
+    {
+      name: "Dashboard",
+      icon: <MdDashboard />,
+      to: role === "admin" ? "/admin-dashboard" : "/dashboard",
+    },
     { name: "Logout", icon: <FaSignOutAlt />, action: handleLogout },
   ];
 
@@ -64,10 +69,12 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img src={Logo} alt="CampusFind Logo" className="h-10 w-auto" />
-            <span className="text-xl font-bold text-orange-500">CampusFind</span>
+            <span className="text-xl font-bold text-orange-500">
+              CampusFind
+            </span>
           </Link>
 
-          {/* Desktop Menu (screens 1280px+) */}
+          {/* Desktop Menu */}
           <div className="hidden xl:flex xl:items-center justify-between w-full">
             <div className="flex justify-center flex-1 space-x-3">
               {menuItems.map((item) => (
@@ -95,7 +102,7 @@ export default function Navbar() {
                     </span>
                   </button>
 
-                  {/* Dropdown below navbar */}
+                  {/* Dropdown */}
                   {userDropdown && (
                     <div className="absolute left-0 top-full mt-1 w-44 bg-white rounded-md shadow-lg py-2 z-50">
                       {userOptions.map((option) =>
@@ -135,7 +142,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Mobile & Tablet Menu Button (screens below 1280px) */}
+          {/* Mobile/Tablet Menu Button */}
           <div className="flex xl:hidden items-center space-x-2">
             {isLoggedIn && !userDropdown && (
               <button
@@ -213,7 +220,7 @@ export default function Navbar() {
 
           {!isLoggedIn && (
             <Link
-              to="/signup"
+              to="/signin"
               className="flex items-center justify-center space-x-2 mx-6 my-3 bg-orange-500 text-white font-semibold px-4 py-3 rounded-lg hover:bg-orange-600 transition duration-300"
             >
               <FaUserPlus />
