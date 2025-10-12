@@ -5,12 +5,13 @@ import Signin from "./pages/Signin";
 import LandingPage from "./pages/LandingPage";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
-import AdminDashboard from "./pages/AdminDashbaord";
+import AdminDashboard from "./pages/AdminDashboard";
 import Loader from "./components/common/Loader/Loader";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
-import './App.css';
+import "./App.css";
 import Dashboard from "./pages/Dashboard";
+import LostItemsPage from "./components/admin-dashboard/Lost-Item/LostItemPage";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -37,8 +38,8 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/lost-items" element={<LostItemsPage />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
-
 
         {/* Protected Admin Dashboard */}
         <Route
@@ -49,11 +50,11 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-           <Route
-          path="/dashboard"
+        <Route
+          path="/admin-dashboard/*"
           element={
             <ProtectedRoute tokenKey="adminToken">
-              <Dashboard />
+              <AdminDashboard />
             </ProtectedRoute>
           }
         />

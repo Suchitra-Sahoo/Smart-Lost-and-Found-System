@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../public/logo.png";
+import { MdDashboard } from "react-icons/md";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,9 +28,18 @@ const Sidebar = () => {
 
   const menuItems = [
     { name: "Home", icon: <FaHome />, path: "/" },
-    { name: "Lost Items", icon: <FaBoxOpen />, path: "/lost-items" },
-    { name: "Found Items", icon: <FaSearch />, path: "/found-items" },
+    {
+      name: "Lost Items",
+      icon: <FaBoxOpen />,
+      path: "/admin-dashboard/lost-items",
+    },
+    {
+      name: "Found Items",
+      icon: <FaSearch />,
+      path: "/admin-dashboard/found-items",
+    },
     { name: "Users", icon: <FaUser />, dropdown: ["Students", "Staff"] },
+    { name: "Dashboard", icon: <MdDashboard />, path: "/admin-dashboard" },
     { name: "Logout", icon: <FaSignOutAlt />, action: handleLogout },
   ];
 
@@ -92,7 +102,7 @@ const Sidebar = () => {
                       key={subItem}
                       className="text-gray-600 hover:text-orange-500 p-1 text-md font-semibold cursor-pointer rounded-md text-left"
                       onClick={() => {
-                        navigate(`/${subItem.toLowerCase()}`);
+                        navigate(`/admin-dashboard/${subItem.toLowerCase()}`);
                         setIsOpen(false);
                         setUsersDropdownOpen(false);
                       }}
