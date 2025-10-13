@@ -1,8 +1,14 @@
 import React from 'react'
+import Navbar from '../components/common/Navbar'
+import Footer from '../components/common/Footer'
 
 function LandingPage() {
   return (
-    <div>LandingPage</div>
+    <>
+    <Navbar />
+    <div className='h-[500px] '></div>
+    <Footer />
+    </>
   )
 }
 

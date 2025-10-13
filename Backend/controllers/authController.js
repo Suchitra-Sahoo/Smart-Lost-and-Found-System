@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const crypto = require("crypto");
+const nodemailer = require("nodemailer");
 
 // Student/Staff Signup
 exports.signup = async (req, res) => {
@@ -84,7 +85,7 @@ exports.signin = async (req, res) => {
   }
 };
 
-// Forgot Password 
+// Forgot Password
 exports.forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
@@ -93,19 +94,50 @@ exports.forgotPassword = async (req, res) => {
 
     // Generate reset token
     const resetToken = crypto.randomBytes(32).toString("hex");
-    const hashedToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+    const hashedToken = crypto
+      .createHash("sha256")
+      .update(resetToken)
+      .digest("hex");
 
     // Save token and expiry in DB
     user.resetPasswordToken = hashedToken;
     user.resetPasswordExpires = Date.now() + 10 * 60 * 1000; // 10 minutes
     await user.save();
 
-    // return the reset token URL in response for testing
+    // Create reset URL
     const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
 
-    res.json({ message: "Password reset link generated", resetUrl });
+    // Nodemailer transport
+    const transporter = nodemailer.createTransport({
+      host: process.env.EMAIL_HOST,
+      port: parseInt(process.env.EMAIL_PORT),
+      secure: process.env.EMAIL_SECURE === "true",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    transporter.verify((err, success) => {
+      if (err) console.log("SMTP Error:", err);
+      else console.log("SMTP Ready:", success);
+    });
+
+    const mailOptions = {
+      from: `"CampusFind Team" <${process.env.EMAIL_USER}>`,
+      to: user.email,
+      subject: "Password Reset Link",
+      html: `<p>Click <a href="${resetUrl}">here</a> to reset your password. This link expires in 10 minutes.</p>`,
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    res.json({ message: "Reset link sent to your email!" });
   } catch (error) {
-    res.status(500).json({ message: "Forgot password failed", error: error.message });
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Forgot password failed", error: error.message });
   }
 };
 
@@ -122,7 +154,8 @@ exports.resetPassword = async (req, res) => {
       resetPasswordExpires: { $gt: Date.now() },
     });
 
-    if (!user) return res.status(400).json({ message: "Invalid or expired token" });
+    if (!user)
+      return res.status(400).json({ message: "Invalid or expired token" });
 
     // Hash new password and save
     user.password = await bcrypt.hash(password, 10);
@@ -133,6 +166,8 @@ exports.resetPassword = async (req, res) => {
 
     res.json({ message: "Password reset successful" });
   } catch (error) {
-    res.status(500).json({ message: "Reset password failed", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Reset password failed", error: error.message });
   }
 };
