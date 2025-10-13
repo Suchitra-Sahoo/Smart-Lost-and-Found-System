@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import signin from "../assets/signin/signin.png";
-import signin1 from "../assets/signin/signin1.png";
-import signin2 from "../assets/signin/signin2.png";
+import signinImg from "../assets/signin/signin.png";
+import signinImg1 from "../assets/signin/signin1.png";
+import signinImg2 from "../assets/signin/signin2.png";
 import SigninLeft from "../components/signin/SigninLeft";
 import SigninForm from "../components/signin/SigninForm";
 
 function Signin() {
-  const images = [signin, signin1, signin2];
+  const images = [signinImg, signinImg1, signinImg2];
   const [currentImage, setCurrentImage] = useState(0);
 
   // Dropdown states
@@ -34,4 +34,3 @@ function Signin() {
 }
 
 export default Signin;
-
