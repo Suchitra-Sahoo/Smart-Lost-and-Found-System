@@ -6,7 +6,7 @@ function LandingPage() {
   return (
     <>
     <Navbar />
-    <div className='h-[500px]'></div>
+    <div className='h-[500px] '></div>
     <Footer />
     </>
   )

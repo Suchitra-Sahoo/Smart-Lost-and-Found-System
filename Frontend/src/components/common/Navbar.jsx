@@ -47,7 +47,7 @@ export default function Navbar() {
   const menuItems = [
     { name: "Home", icon: <FaHome />, to: "/home" },
     { name: "About", icon: <FaInfoCircle />, to: "/about" },
-    { name: "Report Lost Item", icon: <FaBoxOpen />, to: "/report-lost" },
+    { name: "Report Lost Item", icon: <FaBoxOpen />, to: "/report-lost-item" },
     { name: "Report Found Item", icon: <FaSearch />, to: "/report-found" },
     { name: "Contact", icon: <FaPhone />, to: "/contact" },
   ];
@@ -69,9 +69,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img src={Logo} alt="CampusFind Logo" className="h-10 w-auto" />
-            <span className="text-xl font-bold text-orange-500">
-              CampusFind
-            </span>
+            <span className="text-xl font-bold text-orange-500">CampusFind</span>
           </Link>
 
           {/* Desktop Menu */}
@@ -82,6 +80,15 @@ export default function Navbar() {
                   key={item.name}
                   to={item.to}
                   className="flex items-center space-x-1 px-3 py-2 rounded-md hover:bg-white/40 transition duration-300 font-medium text-gray-700 hover:text-orange-500"
+                  onClick={(e) => {
+                    if (
+                      role === "admin" &&
+                      (item.name === "Report Lost Item" || item.name === "Report Found Item")
+                    ) {
+                      e.preventDefault();
+                      navigate("/admin-dashboard");
+                    }
+                  }}
                 >
                   <span className="text-lg">{item.icon}</span>
                   <span>{item.name}</span>
@@ -211,7 +218,16 @@ export default function Navbar() {
               key={item.name}
               to={item.to}
               className="flex items-center space-x-3 px-6 py-4 border-b border-gray-200 hover:bg-orange-50 rounded-md transition duration-300 font-medium"
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => {
+                if (
+                  role === "admin" &&
+                  (item.name === "Report Lost Item" || item.name === "Report Found Item")
+                ) {
+                  e.preventDefault();
+                  navigate("/admin-dashboard");
+                }
+                setIsOpen(false);
+              }}
             >
               <span className="text-lg">{item.icon}</span>
               <span>{item.name}</span>

@@ -12,6 +12,7 @@ import { Toaster } from "react-hot-toast";
 import "./App.css";
 import Dashboard from "./pages/Dashboard";
 import LostItemsPage from "./components/admin-dashboard/Lost-Item/LostItemPage";
+import ReportLostItem from "./pages/ReportLostItem";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -55,6 +56,15 @@ const App = () => {
           element={
             <ProtectedRoute tokenKey="adminToken">
               <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/report-lost-item"
+          element={
+            <ProtectedRoute tokenKey="token">
+              <ReportLostItem />
             </ProtectedRoute>
           }
         />
