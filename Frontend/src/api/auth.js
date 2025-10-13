@@ -15,6 +15,20 @@ export async function signin(data) {
   return response.json(); // { message, token }
 }
 
+export const signup = async (data) => {
+  const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  const resData = await response.json();
+  if (!response.ok) throw new Error(resData.message || "Signup failed");
+
+  return resData;
+};
+
+
 export const forgotPassword = async (email) => {
   const response = await fetch(`${API_BASE_URL}/auth/forgot-password`, {
     method: "POST",
@@ -40,3 +54,4 @@ export const resetPassword = async (token, password) => {
 
   return data;
 };
+
