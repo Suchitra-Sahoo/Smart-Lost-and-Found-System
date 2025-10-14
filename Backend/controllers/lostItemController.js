@@ -49,5 +49,27 @@ exports.getLostItems = async (req, res) => {
   }
 };
 
+exports.deleteLostItem = async (req, res) => {
+  try {
+    // Check if the user making the request is an admin
+    if (req.user.role !== "admin") {
+      return res.status(403).json({ message: "Access denied. Admins only." });
+    }
 
+    const { id } = req.params;
+
+    const deletedItem = await LostItem.findByIdAndDelete(id);
+
+    if (!deletedItem) {
+      return res.status(404).json({ message: "Lost item not found" });
+    }
+
+    res.json({ message: "Lost item deleted successfully" });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to delete lost item",
+      error: error.message,
+    });
+  }
+};
 
