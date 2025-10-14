@@ -68,7 +68,7 @@ const FoundItemModal = ({ item, onClose }) => {
               <img
                 src={imageUrl}
                 alt={item.itemName}
-                className="mt-2 w-full max-w-xs h-auto rounded object-cover"
+                className="mt-2 w-54 h-54 rounded object-cover"
               />
             </div>
           )}
