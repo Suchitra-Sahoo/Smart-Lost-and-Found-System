@@ -10,7 +10,7 @@ import {
   FaChevronDown,
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../../public/logo.png";
+import logo from "/logo.png";
 import { MdDashboard } from "react-icons/md";
 
 const Sidebar = () => {

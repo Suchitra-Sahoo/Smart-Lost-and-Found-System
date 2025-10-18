@@ -5,6 +5,7 @@ const connectDB = require("./config/db");
 const lostItemRoutes = require("./routes/lostItemRoutes");
 const foundItemRoutes = require("./routes/foundItemRoutes");
 const userRoutes = require("./routes/userRoutes");
+const userItemsRoutes = require("./routes/userItemsRoutes");
 
 dotenv.config();
 connectDB();
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use("/api/lost-items", lostItemRoutes);
 app.use("/api/found-items", foundItemRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/items", userItemsRoutes);
 
 // Routes
 const authRoutes = require("./routes/auth");
