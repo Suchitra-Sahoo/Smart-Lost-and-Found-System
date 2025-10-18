@@ -235,6 +235,46 @@
           "path": ["api", "users", "stats"]
         }
       }
+    },
+    {
+      "name": "My Lost Items",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <JWT_TOKEN>",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/api/items/my-lost-items",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "items", "my-lost-items"]
+        }
+      }
+    },
+    {
+      "name": "My Found Items",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <JWT_TOKEN>",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/api/items/my-found-items",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "items", "my-found-items"]
+        }
+      }
     }
   ]
 }
