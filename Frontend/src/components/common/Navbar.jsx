@@ -54,13 +54,17 @@ export default function Navbar() {
 
   // Dynamic dashboard link based on role
   const userOptions = [
-    {
-      name: "Dashboard",
-      icon: <MdDashboard />,
-      to: role === "admin" ? "/admin-dashboard" : "/dashboard",
-    },
-    { name: "Logout", icon: <FaSignOutAlt />, action: handleLogout },
-  ];
+  {
+    name: "Dashboard",
+    icon: <MdDashboard />,
+    to:
+      role === "admin"
+        ? "/admin-dashboard"
+        : "/user-dashboard", // student or staff
+  },
+  { name: "Logout", icon: <FaSignOutAlt />, action: handleLogout },
+];
+
 
   return (
     <nav className="fixed w-full top-0 left-0 z-50 bg-white/20 backdrop-blur-md text-gray-800 shadow-md">
@@ -69,7 +73,9 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img src={Logo} alt="CampusFind Logo" className="h-10 w-auto" />
-            <span className="text-xl font-bold text-orange-500">CampusFind</span>
+            <span className="text-xl font-bold text-orange-500">
+              CampusFind
+            </span>
           </Link>
 
           {/* Desktop Menu */}
@@ -221,7 +227,8 @@ export default function Navbar() {
               onClick={(e) => {
                 if (
                   role === "admin" &&
-                  (item.name === "Report Lost Item" || item.name === "Report Found Item")
+                  (item.name === "Report Lost Item" ||
+                    item.name === "Report Found Item")
                 ) {
                   e.preventDefault();
                   navigate("/admin-dashboard");
