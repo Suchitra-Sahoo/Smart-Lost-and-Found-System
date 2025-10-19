@@ -25,9 +25,9 @@ const Sidebar = () => {
 
   const menuItems = [
     { name: "Home", icon: <FaHome />, path: "/" },
-    { name: "My Lost Items", icon: <FaBoxOpen />, path: "/my-lost-items" },
+   { name: "My Lost Items", icon: <FaBoxOpen />, path: "/user-dashboard/my-lost-items" },
     { name: "My Found Items", icon: <FaSearch />, path: "/my-found-items" },
-    { name: "Profile", icon: <FaUser />, path: "/profile" },
+    { name: "Profile", icon: <FaUser />, path: "/user-dashboard" },
     { name: "Logout", icon: <FaSignOutAlt />, action: handleLogout },
   ];
 

@@ -10,10 +10,9 @@ import Loader from "./components/common/Loader/Loader";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 import "./App.css";
-import Dashboard from "./pages/Dashboard";
 import LostItemsPage from "./components/admin-dashboard/Lost-Item/LostItemPage";
 import ReportLostItem from "./pages/ReportLostItem";
-
+import UserDashboard from "./pages/UserDashboard";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -70,11 +69,11 @@ const App = () => {
           }
         />
 
-         <Route
-          path="/user-dashboard"
+        <Route
+          path="/user-dashboard/*"
           element={
             <ProtectedRoute tokenKey="token">
-              <Dashboard />
+              <UserDashboard />
             </ProtectedRoute>
           }
         />
