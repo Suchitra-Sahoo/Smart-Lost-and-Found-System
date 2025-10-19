@@ -171,3 +171,17 @@ exports.resetPassword = async (req, res) => {
       .json({ message: "Reset password failed", error: error.message });
   }
 };
+
+// Get logged-in user profile
+exports.getMe = async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ message: "Not authorized" });
+    }
+    res.json({ user: req.user });
+  } catch (error) {
+    console.error("Get Me Error:", error);
+    res.status(500).json({ message: "Failed to fetch user profile", error: error.message });
+  }
+}
+

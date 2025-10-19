@@ -51,7 +51,7 @@ const MyLostItems = () => {
       {/* If no items */}
       {items.length === 0 ? (
         <div className="flex flex-col justify-center items-center h-[60vh] text-gray-600">
-          <img src={noitems} alt="No items" className="w-28 mb-4 opacity-80" />
+          <img src={noitems} alt="No items" className="w-58 mb-4 opacity-80" />
           <p className="text-lg">You haven’t reported any lost items yet.</p>
         </div>
       ) : (
