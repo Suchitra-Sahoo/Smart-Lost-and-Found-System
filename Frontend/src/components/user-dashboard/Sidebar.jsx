@@ -4,13 +4,12 @@ import {
   FaTimes,
   FaHome,
   FaBoxOpen,
-  FaUser,
   FaSignOutAlt,
   FaSearch,
-  FaPlus,
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "/logo.png";
+import { MdDashboard } from "react-icons/md";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +26,7 @@ const Sidebar = () => {
     { name: "Home", icon: <FaHome />, path: "/" },
     { name: "My Lost Items", icon: <FaBoxOpen />, path: "/user-dashboard/my-lost-items" },
     { name: "My Found Items", icon: <FaSearch />, path: "/user-dashboard/my-found-items" },
-    { name: "Profile", icon: <FaUser />, path: "/user-dashboard" },
+    { name: "Dashboard", icon: <MdDashboard />, path: "/user-dashboard" },
     { name: "Logout", icon: <FaSignOutAlt />, action: handleLogout },
   ];
 
