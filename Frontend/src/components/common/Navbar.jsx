@@ -47,8 +47,16 @@ export default function Navbar() {
   const menuItems = [
     { name: "Home", icon: <FaHome />, to: "/home" },
     { name: "About", icon: <FaInfoCircle />, to: "/about" },
-    { name: "Report Lost Item", icon: <FaBoxOpen />, to: "/report-lost-item" },
-    { name: "Report Found Item", icon: <FaSearch />, to: "/report-found" },
+    {
+      name: "Report Lost Item",
+      icon: <FaBoxOpen />,
+      to: "/report-lost-item",
+    },
+    {
+      name: "Report Found Item",
+      icon: <FaSearch />,
+      to: "/report-found-item",
+    },
     { name: "Contact", icon: <FaPhone />, to: "/contact" },
   ];
 
@@ -64,7 +72,6 @@ export default function Navbar() {
   },
   { name: "Logout", icon: <FaSignOutAlt />, action: handleLogout },
 ];
-
 
   return (
     <nav className="fixed w-full top-0 left-0 z-50 bg-white/20 backdrop-blur-md text-gray-800 shadow-md">
@@ -155,7 +162,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Mobile/Tablet Menu Button */}
+           {/* Mobile/Tablet Menu Button */}
           <div className="flex xl:hidden items-center space-x-2">
             {isLoggedIn && !userDropdown && (
               <button
@@ -171,7 +178,7 @@ export default function Navbar() {
                 </span>
               </button>
             )}
-            <button
+             <button
               onClick={() => {
                 setIsOpen(!isOpen);
                 setUserDropdown(false);
@@ -179,12 +186,12 @@ export default function Navbar() {
               className="focus:outline-none"
             >
               {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-            </button>
+              </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile/Tablet User Dropdown */}
+       {/* Mobile/Tablet User Dropdown */}
       {isLoggedIn && userDropdown && (
         <div className="xl:hidden bg-white/90 backdrop-blur-md py-2 flex flex-col items-center">
           {userOptions.map((option) =>
@@ -214,12 +221,12 @@ export default function Navbar() {
 
       {/* Mobile/Tablet Menu */}
       {!userDropdown && (
-        <div
-          className={`xl:hidden bg-white/90 backdrop-blur-md overflow-hidden transition-all duration-500 ${
-            isOpen ? "max-h-[500px]" : "max-h-0"
-          }`}
-        >
-          {menuItems.map((item) => (
+      <div
+        className={`xl:hidden bg-white/90 backdrop-blur-md overflow-hidden transition-all duration-500 ${
+          isOpen ? "max-h-[500px]" : "max-h-0"
+        }`}
+      >
+        {menuItems.map((item) => (
             <Link
               key={item.name}
               to={item.to}
@@ -235,23 +242,23 @@ export default function Navbar() {
                 }
                 setIsOpen(false);
               }}
-            >
-              <span className="text-lg">{item.icon}</span>
-              <span>{item.name}</span>
-            </Link>
-          ))}
+          >
+            <span className="text-lg">{item.icon}</span>
+            <span>{item.name}</span>
+          </Link>
+        ))}
 
-          {!isLoggedIn && (
-            <Link
-              to="/signin"
-              className="flex items-center justify-center space-x-2 mx-6 my-3 bg-orange-500 text-white font-semibold px-4 py-3 rounded-lg hover:bg-orange-600 transition duration-300"
-            >
-              <FaUserPlus />
-              <span>Join Now</span>
-            </Link>
-          )}
-        </div>
-      )}
+        {!isLoggedIn && (
+          <Link
+            to="/signin"
+            className="flex items-center justify-center space-x-2 mx-6 my-3 bg-orange-500 text-white font-semibold px-4 py-3 rounded-lg hover:bg-orange-600 transition duration-300"
+          >
+            <FaUserPlus />
+            <span>Join Now</span>
+          </Link>
+            )}
+          </div>
+        )}
     </nav>
   );
 }

@@ -13,6 +13,7 @@ import "./App.css";
 import LostItemsPage from "./components/admin-dashboard/Lost-Item/LostItemPage";
 import ReportLostItem from "./pages/ReportLostItem";
 import UserDashboard from "./pages/UserDashboard";
+import ReportFoundItem from "./pages/ReportFoundItem";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -65,6 +66,15 @@ const App = () => {
           element={
             <ProtectedRoute tokenKey="token">
               <ReportLostItem />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/report-found-item"
+          element={
+            <ProtectedRoute tokenKey="token">
+              <ReportFoundItem />
             </ProtectedRoute>
           }
         />

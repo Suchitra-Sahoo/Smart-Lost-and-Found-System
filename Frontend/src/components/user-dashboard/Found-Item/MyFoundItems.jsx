@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import API_BASE_URL from "../../../config";
 import Loader from "../../common/Loader/Loader";
-import { FaBoxOpen, FaTimesCircle } from "react-icons/fa";
+import { FaBoxOpen } from "react-icons/fa";
 import noitems from "../../../assets/admin-dashboard/noitems.png";
+import ImageModal from "./ImageModal";
 
 const MyFoundItems = () => {
   const [items, setItems] = useState([]);
@@ -43,13 +44,11 @@ const MyFoundItems = () => {
 
   return (
     <div className="p-4 md:p-6 mt-10 md:mt-0">
-      {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <FaBoxOpen className="text-orange-600 text-3xl" />
         <h1 className="text-3xl font-bold text-gray-800">My Found Items</h1>
       </div>
 
-      {/* If no items */}
       {items.length === 0 ? (
         <div className="flex flex-col justify-center items-center h-[60vh] text-gray-600">
           <img src={noitems} alt="No items" className="w-58 mb-4 opacity-80" />
@@ -78,16 +77,15 @@ const MyFoundItems = () => {
                   {formatDate(item.dateFound)}
                 </p>
                 <p>
+                  <strong className="text-gray-900">Time Found:</strong>{" "}
+                  {item.timeFound || "Not specified"}
+                </p>
+                <p>
                   <strong className="text-gray-900">Location:</strong>{" "}
                   {item.placeFound || "Not specified"}
                 </p>
-                <p>
-                  <strong className="text-gray-900">Identification Mark:</strong>{" "}
-                  {item.identificationMark || "None"}
-                </p>
               </div>
 
-              {/* View Image Button */}
               {item.image && (
                 <button
                   onClick={() => setSelectedImage(item.image)}
@@ -101,33 +99,8 @@ const MyFoundItems = () => {
         </div>
       )}
 
-      {/* Modal */}
-      {selectedImage && (
-        <div
-          className="fixed inset-0 flex justify-center items-center z-50"
-          style={{ backdropFilter: "blur(5px)" }} // Blur the background
-          onClick={() => setSelectedImage(null)}
-        >
-          <div
-            className="relative bg-white rounded-lg shadow-xl"
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking modal content
-          >
-            {/* Bold Close Icon */}
-            <button
-              className="absolute top-2 right-2 cursor-pointer"
-              onClick={() => setSelectedImage(null)}
-            >
-              <FaTimesCircle size={28} />
-            </button>
-
-            <img
-              src={selectedImage}
-              alt="Found Item"
-              className="max-h-[70vh] max-w-[90vw] rounded"
-            />
-          </div>
-        </div>
-      )}
+      {/* Image Modal */}
+      <ImageModal image={selectedImage} onClose={() => setSelectedImage(null)} />
     </div>
   );
 };
