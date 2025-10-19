@@ -10,11 +10,11 @@ const ImageModal = ({ image, onClose }) => {
       onClick={onClose}
     >
       <div
-        className="relative bg-white rounded-lg shadow-xl p-2"
+        className="relative bg-white rounded-lg shadow-xl p-2 max-w-[90vw] max-h-[90vh] flex justify-center items-center"
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          className="cursor-pointer absolute top-2 right-2 text-gray-700 hover:text-gray-900"
+          className="cursor-pointer absolute top-2 right-2 text-white bg-orange-600 rounded-full p-1 shadow hover:bg-orange-500 transition"
           onClick={onClose}
         >
           <FaTimesCircle size={28} />
@@ -23,7 +23,7 @@ const ImageModal = ({ image, onClose }) => {
         <img
           src={image}
           alt="Found Item"
-          className="object-cover w-[500px] h-[500px] rounded"
+          className="object-contain min-w-[500px] min-h-[500px] max-w-[85vw] max-h-[85vh] rounded"
         />
       </div>
     </div>

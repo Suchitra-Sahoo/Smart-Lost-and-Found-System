@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import toast from "react-hot-toast";
 import API_BASE_URL from "../../config";
@@ -9,9 +11,9 @@ const ReportFoundItemForm = ({ user }) => {
     itemDescription: "",
     placeFound: "",
     timeFound: "",
-    dateFound: "",
   });
 
+  const [dateFound, setDateFound] = useState(null);
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -24,7 +26,7 @@ const ReportFoundItemForm = ({ user }) => {
   };
 
   const handleSubmit = async () => {
-    const { itemName, itemDescription, placeFound, timeFound, dateFound } = formData;
+    const { itemName, itemDescription, placeFound, timeFound } = formData;
 
     if (!itemName || !itemDescription || !placeFound || !timeFound || !dateFound || !image) {
       toast.error("Please fill all required fields including image.");
@@ -35,13 +37,12 @@ const ReportFoundItemForm = ({ user }) => {
       setLoading(true);
       const token = localStorage.getItem("token");
 
-      // Use FormData for image upload
       const data = new FormData();
       data.append("itemName", itemName);
       data.append("itemDescription", itemDescription);
       data.append("placeFound", placeFound);
       data.append("timeFound", timeFound);
-      data.append("dateFound", dateFound);
+      data.append("dateFound", dateFound.toISOString().split("T")[0]);
       data.append("image", image);
 
       const response = await axios.post(`${API_BASE_URL}/found-items`, data, {
@@ -53,14 +54,8 @@ const ReportFoundItemForm = ({ user }) => {
 
       toast.success(response.data.message);
 
-      // Reset form
-      setFormData({
-        itemName: "",
-        itemDescription: "",
-        placeFound: "",
-        timeFound: "",
-        dateFound: "",
-      });
+      setFormData({ itemName: "", itemDescription: "", placeFound: "", timeFound: "" });
+      setDateFound(null);
       setImage(null);
     } catch (error) {
       console.error(error);
@@ -98,12 +93,12 @@ const ReportFoundItemForm = ({ user }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block mb-1 font-medium text-gray-700">Date Found *</label>
-          <input
-            type="date"
-            name="dateFound"
-            value={formData.dateFound}
-            onChange={handleChange}
+          <DatePicker
+            selected={dateFound}
+            onChange={(date) => setDateFound(date)}
             className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300 transition"
+            placeholderText="Select date"
+            dateFormat="yyyy-MM-dd"
           />
         </div>
 
