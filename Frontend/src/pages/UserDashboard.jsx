@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Sidebar from "../components/user-dashboard/Sidebar";
 import TopSectionUser from "../components/user-dashboard/TopSectionUser";
 import MyLostItems from "../components/user-dashboard/Lost-Item/MyLostItems"; 
+import MyFoundItems from "../components/user-dashboard/Found-Item/MyFoundItems";
 
 function UserDashboard() {
   return (
@@ -13,6 +14,7 @@ function UserDashboard() {
         <Routes>
           <Route path="/" element={<TopSectionUser />} />
           <Route path="/my-lost-items" element={<MyLostItems />} /> 
+          <Route path="/my-found-items" element={<MyFoundItems />} /> 
         </Routes>
       </div>
     </div>
