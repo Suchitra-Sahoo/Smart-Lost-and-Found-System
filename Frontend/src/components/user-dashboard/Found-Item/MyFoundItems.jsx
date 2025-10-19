@@ -66,9 +66,6 @@ const MyFoundItems = () => {
                 <h2 className="text-xl font-semibold text-gray-800">
                   {item.itemName || "Unnamed Item"}
                 </h2>
-                <span className="text-sm bg-orange-100 text-orange-700 px-3 py-1 rounded-full cursor-pointer">
-                  {item.itemCategory || "General"}
-                </span>
               </div>
 
               <div className="text-sm text-gray-700 space-y-1.5 mb-3">
