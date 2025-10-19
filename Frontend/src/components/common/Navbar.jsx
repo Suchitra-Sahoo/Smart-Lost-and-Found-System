@@ -156,7 +156,7 @@ export default function Navbar() {
                   className="flex items-center space-x-2 bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition duration-300 font-semibold"
                 >
                   <FaUserPlus />
-                  <span>Join Now</span>
+                  <span className="cursor-pointer">Join Now</span>
                 </Link>
               )}
             </div>

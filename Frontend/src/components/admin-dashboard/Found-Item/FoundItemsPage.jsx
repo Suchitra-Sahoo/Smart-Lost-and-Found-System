@@ -20,7 +20,7 @@ const FoundItemsPage = () => {
   useEffect(() => {
     const fetchFoundItems = async () => {
       try {
-        const token = localStorage.getItem("adminToken");
+        const token = localStorage.getItem("token");
         if (!token) throw new Error("Admin token not found");
 
         const config = { headers: { Authorization: `Bearer ${token}` } };
@@ -72,6 +72,7 @@ const FoundItemsPage = () => {
   if (error) return <p className="p-4 text-red-500">{error}</p>;
 
   return (
+    
     <div className="p-4 min-h-screen">
       <Toaster position="top-right" reverseOrder={false} />
       <div className="mb-6">
