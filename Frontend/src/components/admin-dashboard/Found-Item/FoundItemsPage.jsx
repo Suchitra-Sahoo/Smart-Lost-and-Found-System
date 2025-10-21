@@ -53,7 +53,7 @@ const FoundItemsPage = () => {
 
   const handleDelete = async (id) => {
     try {
-      const token = localStorage.getItem("adminToken");
+      const token = localStorage.getItem("token");
       const config = { headers: { Authorization: `Bearer ${token}` } };
       await axios.delete(`${API_BASE_URL}/found-items/${id}`, config);
 

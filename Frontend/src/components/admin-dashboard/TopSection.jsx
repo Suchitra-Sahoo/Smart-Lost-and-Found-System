@@ -11,7 +11,7 @@ const TopSection = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem("adminToken");
+        const token = localStorage.getItem("token");
         if (!token) throw new Error("Admin token not found");
 
         const config = { headers: { Authorization: `Bearer ${token}` } };

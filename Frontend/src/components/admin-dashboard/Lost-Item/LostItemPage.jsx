@@ -15,12 +15,12 @@ const LostItemsPage = () => {
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
   const [selectedItem, setSelectedItem] = useState(null);
-  const [confirmDeleteId, setConfirmDeleteId] = useState(null); // inline confirmation
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null); 
 
   useEffect(() => {
     const fetchLostItems = async () => {
       try {
-        const token = localStorage.getItem("adminToken");
+        const token = localStorage.getItem("token");
         if (!token) throw new Error("Admin token not found");
 
         const config = { headers: { Authorization: `Bearer ${token}` } };
@@ -53,7 +53,7 @@ const LostItemsPage = () => {
 
   const handleDelete = async (id) => {
     try {
-      const token = localStorage.getItem("adminToken");
+      const token = localStorage.getItem("token");
       const config = { headers: { Authorization: `Bearer ${token}` } };
       await axios.delete(`${API_BASE_URL}/lost-items/${id}`, config);
 

@@ -45,17 +45,9 @@ const App = () => {
 
         {/* Protected Admin Dashboard */}
         <Route
-          path="/admin-dashboard"
-          element={
-            <ProtectedRoute tokenKey="adminToken">
-              <AdminDashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
           path="/admin-dashboard/*"
           element={
-            <ProtectedRoute tokenKey="adminToken">
+            <ProtectedRoute tokenKey="token">
               <AdminDashboard />
             </ProtectedRoute>
           }
