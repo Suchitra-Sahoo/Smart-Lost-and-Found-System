@@ -22,18 +22,35 @@ export default function Navbar() {
   const [role, setRole] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-      try {
-        const payload = JSON.parse(atob(token.split(".")[1]));
+useEffect(() => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      
+      // Check expiry
+      const currentTime = Math.floor(Date.now() / 1000); // in seconds
+      if (payload.exp && payload.exp < currentTime) {
+        // Token expired
+        localStorage.removeItem("token");
+        setIsLoggedIn(false);
+        setRole("");
+      } else {
+        setIsLoggedIn(true);
         setRole(payload.role);
-      } catch (err) {
-        console.error("Invalid token", err);
       }
+    } catch (err) {
+      console.error("Invalid token", err);
+      localStorage.removeItem("token");
+      setIsLoggedIn(false);
+      setRole("");
     }
-  }, []);
+  } else {
+    setIsLoggedIn(false);
+    setRole("");
+  }
+}, []);
+
 
   const handleLogout = () => {
     localStorage.removeItem("token");
