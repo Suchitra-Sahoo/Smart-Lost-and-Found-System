@@ -3,6 +3,7 @@ import Navbar from '../components/common/Navbar'
 import Footer from '../components/common/Footer'
 import { Hero } from '../components/landing-page/Hero'
 import { Stats } from '../components/landing-page/Stats'
+import { Features } from '../components/landing-page/Features'
 
 function LandingPage() {
   return (
@@ -10,6 +11,7 @@ function LandingPage() {
     <Navbar />
     <Hero />
     <Stats />
+    <Features />
     <Footer />
     </>
   )

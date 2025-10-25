@@ -12,7 +12,7 @@ import Logo from "/logo.png";
 
 function Footer() {
   return (
-    <footer className="bg-gray-100 backdrop-blur-md text-gray-800  mt-16 border-t border-white/30">
+    <footer className="bg-gray-100 backdrop-blur-md text-gray-800 border-t border-white/30">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Logo and About */}
         <div className="text-left">
