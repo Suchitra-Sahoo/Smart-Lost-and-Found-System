@@ -275,6 +275,46 @@
           "path": ["api", "items", "my-found-items"]
         }
       }
+    },
+    {
+      "name": "Get All Student Details",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <ADMIN_JWT>",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/api/admin/student-details",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "admin", "student-details"]
+        }
+      }
+    },
+    {
+      "name": "Get All Staff Details",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <ADMIN_JWT>",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/api/admin/staff-details",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "admin", "staff-details"]
+        }
+      }
     }
   ]
 }
