@@ -14,7 +14,7 @@ function AdminDashboard() {
       <Sidebar />
 
       {/* Right content */}
-      <div className="flex-1 bg-gray-50 min-h-screen p-5 md:ml-64">
+      <div className="flex-1 bg-gray-50 min-h-screen md:ml-64">
         <Routes>
           <Route path="/" element={<TopSection />} />
           <Route path="lost-items" element={<LostItemsPage />} />
