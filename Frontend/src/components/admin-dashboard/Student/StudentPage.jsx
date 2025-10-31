@@ -81,7 +81,7 @@ const StudentPage = () => {
         Student Management Dashboard
       </h1>
 
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} placeholder="Search students here..."/>
 
       <div className="flex flex-col gap-6 w-full">
         {filteredStudents.length === 0 ? (

@@ -1,7 +1,7 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 
-const SearchBar = ({ searchTerm, setSearchTerm }) => {
+const SearchBar = ({ searchTerm, setSearchTerm, placeholder }) => {
   return (
     <div className="flex mb-6">
       <div className="relative w-64 sm:w-80 md:w-[28rem] lg:w-[42rem]">
@@ -10,7 +10,7 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => {
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search items here..."
+          placeholder={placeholder || "Search here..."}
           className="w-full pl-12 pr-5 py-3 text-base border border-gray-300 rounded-xl 
                      focus:outline-none focus:ring-2 focus:ring-orange-500 transition 
                      placeholder-gray-400 shadow-sm"

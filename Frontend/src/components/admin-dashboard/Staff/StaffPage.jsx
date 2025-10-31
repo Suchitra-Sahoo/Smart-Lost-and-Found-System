@@ -79,7 +79,7 @@ const StaffPage = () => {
       </h1>
 
       {/* Search Bar */}
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} placeholder="Search staff here..." />
 
       <div className="flex flex-col gap-6 w-full">
         {filteredStaff.length === 0 ? (
