@@ -4,6 +4,8 @@ import Sidebar from "../components/admin-dashboard/Sidebar";
 import TopSection from "../components/admin-dashboard/TopSection";
 import LostItemsPage from "../components/admin-dashboard/Lost-Item/LostItemPage";
 import FoundItemsPage from "../components/admin-dashboard/Found-Item/FoundItemsPage";
+import StudentsPage from "../components/admin-dashboard/Student/StudentPage";
+import StaffPage from "../components/admin-dashboard/Staff/StaffPage";
 
 function AdminDashboard() {
   return (
@@ -17,6 +19,8 @@ function AdminDashboard() {
           <Route path="/" element={<TopSection />} />
           <Route path="lost-items" element={<LostItemsPage />} />
           <Route path="found-items" element={<FoundItemsPage />} />
+          <Route path="students" element={<StudentsPage />} />
+          <Route path="staff" element={<StaffPage />} />
         </Routes>
       </div>
     </div>
