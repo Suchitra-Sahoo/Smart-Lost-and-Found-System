@@ -160,7 +160,7 @@ const RecentFoundItems = () => {
         "
       >
         <h2 className="text-xl font-semibold text-gray-800 mb-4">
-          Most Frequently Found Items
+          Frequently Found Items of the Month
         </h2>
 
         <div
