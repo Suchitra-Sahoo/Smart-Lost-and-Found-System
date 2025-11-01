@@ -7,6 +7,7 @@ import noitems from "./../../../assets/admin-dashboard/noitems.png";
 import Loader from "../../common/Loader/Loader";
 import LostItemModal from "./LostItemModal";
 import SearchBar from "../../common/SearchBar";
+import RecentReportedItems from "./RecentReportedItems";
 
 const LostItemsPage = () => {
   const [lostItems, setLostItems] = useState([]);
@@ -15,7 +16,7 @@ const LostItemsPage = () => {
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
   const [selectedItem, setSelectedItem] = useState(null);
-  const [confirmDeleteId, setConfirmDeleteId] = useState(null); 
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
 
   useEffect(() => {
     const fetchLostItems = async () => {
@@ -28,7 +29,10 @@ const LostItemsPage = () => {
         setLostItems(res.data.items || []);
         setFilteredItems(res.data.items || []);
       } catch (err) {
-        console.error("Error fetching lost items:", err.response?.data || err.message);
+        console.error(
+          "Error fetching lost items:",
+          err.response?.data || err.message
+        );
         setError(err.response?.data?.message || "Failed to fetch lost items");
       } finally {
         setLoading(false);
@@ -61,7 +65,10 @@ const LostItemsPage = () => {
       setFilteredItems(filteredItems.filter((item) => item._id !== id));
       toast.success("Item deleted successfully!");
     } catch (err) {
-      console.error("Failed to delete item:", err.response?.data || err.message);
+      console.error(
+        "Failed to delete item:",
+        err.response?.data || err.message
+      );
       toast.error("Failed to delete item");
     } finally {
       setConfirmDeleteId(null); // remove inline confirm
@@ -75,18 +82,28 @@ const LostItemsPage = () => {
     <div className="p-4 min-h-screen">
       <Toaster position="top-right" reverseOrder={false} />
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-orange-600 mt-10 sm:mt-10 md:mt-0 mb-4">Lost Items</h1>
-        <SearchBar searchTerm={search} setSearchTerm={setSearch} />
+        <div className="flex justify-center mt-20 lg:mt-4 md:mt-4">
+          <SearchBar
+            searchTerm={search}
+            setSearchTerm={setSearch}
+            placeholder="Search lost items here..."
+          />
+        </div>
       </div>
 
       {filteredItems.length === 0 ? (
         <div className="flex flex-col items-center justify-center mt-16">
-          <img src={noitems} alt="No items" className="w-64 h-64 object-contain mb-4" />
+          <img
+            src={noitems}
+            alt="No items"
+            className="w-64 h-64 object-contain mb-4"
+          />
           <p className="text-gray-500 text-lg font-medium">No items found</p>
         </div>
       ) : (
         <div className="overflow-x-auto w-full">
-          <table className="min-w-full divide-y divide-gray-200 bg-white shadow rounded-lg">
+          <RecentReportedItems />
+          <table className="mt-8 min-w-full divide-y divide-gray-200 bg-white shadow rounded-lg">
             <thead className="bg-orange-50">
               <tr>
                 <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
@@ -167,7 +184,10 @@ const LostItemsPage = () => {
         </div>
       )}
 
-      <LostItemModal item={selectedItem} onClose={() => setSelectedItem(null)} />
+      <LostItemModal
+        item={selectedItem}
+        onClose={() => setSelectedItem(null)}
+      />
     </div>
   );
 };
