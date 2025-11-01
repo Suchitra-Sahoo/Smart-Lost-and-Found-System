@@ -8,7 +8,7 @@ import {
   FaSearchLocation,
 } from "react-icons/fa";
 import { MdLocationOn, MdAccessTime } from "react-icons/md";
-import noitems from "../../../assets/admin-dashboard/noitems.png";
+import noperson from "../../../assets/admin-dashboard/noperson.png";
 import Loader from "../../common/Loader/Loader";
 import { motion, AnimatePresence } from "framer-motion";
 import SearchBar from "../../common/SearchBar";
@@ -84,7 +84,7 @@ const StaffPage = () => {
       <div className="flex flex-col gap-6 w-full">
         {filteredStaff.length === 0 ? (
           <div className="flex flex-col items-center justify-center mt-20">
-            <img src={noitems} alt="No staff" className="w-52 opacity-70" />
+            <img src={noperson} alt="No staff" className="w-82" />
             <p className="text-gray-600 mt-4 text-lg">
               {searchTerm
                 ? "No staff found matching your search"
