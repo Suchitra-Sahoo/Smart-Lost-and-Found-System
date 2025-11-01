@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 const statsData = [
   { label: "Items Recovered", value: 1200 },
@@ -9,10 +9,35 @@ const statsData = [
 
 export const Stats = () => {
   const [counts, setCounts] = useState(statsData.map(() => 0));
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          startCounting();
+          setHasAnimated(true);
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [hasAnimated]);
+
+  const startCounting = () => {
     const intervals = statsData.map((stat, index) => {
       const increment = Math.ceil(stat.value / 100);
+
       return setInterval(() => {
         setCounts((prev) => {
           const newCounts = [...prev];
@@ -24,12 +49,12 @@ export const Stats = () => {
       }, 20);
     });
 
-    return () => intervals.forEach(clearInterval);
-  }, []);
+    setTimeout(() => intervals.forEach(clearInterval), 2500);
+  };
 
   return (
-    <div className="relative w-full bg-orange-500 overflow-hidden">
-      {/* Faded Background Image */}
+    <div ref={sectionRef} className="relative w-full bg-orange-500 overflow-hidden">
+      {/* Background */}
       <img
         src="https://www.247software.com/hubfs/lost-and-found-software.png"
         alt="Lost and Found Background"
@@ -46,6 +71,7 @@ export const Stats = () => {
             See how CampusFind is making your campus safer and more connected!
           </p>
         </div>
+
         <dl className="mt-10 text-center sm:max-w-3xl sm:mx-auto sm:grid sm:grid-cols-4 sm:gap-8">
           {statsData.map((stat, idx) => (
             <div key={idx} className="flex flex-col mt-10 sm:mt-0">
