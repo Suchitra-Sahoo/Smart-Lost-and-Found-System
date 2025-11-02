@@ -6,6 +6,7 @@ import LostItemsPage from "../components/admin-dashboard/Lost-Item/LostItemPage"
 import FoundItemsPage from "../components/admin-dashboard/Found-Item/FoundItemsPage";
 import StudentsPage from "../components/admin-dashboard/Student/StudentPage";
 import StaffPage from "../components/admin-dashboard/Staff/StaffPage";
+import StudentProfile from "../components/admin-dashboard/Student/StudentProfile";
 
 function AdminDashboard() {
   return (
@@ -21,6 +22,7 @@ function AdminDashboard() {
           <Route path="found-items" element={<FoundItemsPage />} />
           <Route path="students" element={<StudentsPage />} />
           <Route path="staff" element={<StaffPage />} />
+          <Route path="student-profile/:id" element={<StudentProfile />} />
         </Routes>
       </div>
     </div>

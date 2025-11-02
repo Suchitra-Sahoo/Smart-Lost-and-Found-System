@@ -1,26 +1,18 @@
 import React, { useEffect, useState } from "react";
 import API_BASE_URL from "../../../config";
-import {
-  FaUserGraduate,
-  FaEnvelope,
-  FaPhoneAlt,
-  FaUniversity,
-  FaBoxOpen,
-  FaSearchLocation,
-} from "react-icons/fa";
-import { MdLocationOn, MdAccessTime } from "react-icons/md";
+import { FaEnvelope, FaPhoneAlt, FaUniversity } from "react-icons/fa";
+import { MdArrowForward } from "react-icons/md";
 import noperson from "../../../assets/admin-dashboard/noperson.png";
 import Loader from "../../common/Loader/Loader";
-import { motion, AnimatePresence } from "framer-motion";
 import SearchBar from "../../common/SearchBar";
+import { useNavigate } from "react-router-dom";
 
 const StudentPage = () => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [expandedStudent, setExpandedStudent] = useState(null);
-  const [viewType, setViewType] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -77,186 +69,115 @@ const StudentPage = () => {
 
   return (
     <div className="p-8 bg-gray-50 min-h-screen">
-      <h1 className="text-4xl font-bold text-gray-800 mb-8 flex items-center gap-3 mt-6 lg:mt-0">
-        Student Management Dashboard
-      </h1>
-
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} placeholder="Search students here..."/>
-
-      <div className="flex flex-col gap-6 w-full">
+      <div className="flex justify-center mt-20 lg:mt-4 md:mt-4">
+        <SearchBar
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          placeholder="Search students here..."
+        />
+      </div>
+      {/* ✅ Responsive Grid */}
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 w-full mt-6">
         {filteredStudents.length === 0 ? (
-          <div className="flex flex-col items-center justify-center mt-20">
-            <img src={noperson} alt="No students" className="w-82" />
-            <p className="text-gray-600 mt-4 text-lg">
-              {searchTerm
-                ? "No students found matching your search"
-                : "No student data found"}
+          <div className="flex flex-col items-center justify-center col-span-full mt-10">
+            <img src={noperson} alt="No students" className="w-88 " />
+            <p className="text-gray-600 text-lg font-medium">
+              No students found
             </p>
           </div>
         ) : (
           filteredStudents.map((student) => (
             <div
               key={student._id}
-              className="bg-white shadow-sm rounded-xl border border-gray-200 p-6 hover:shadow-md transition-all duration-200 w-full"
+              className="relative bg-white shadow-md rounded-xl border border-gray-200 p-5 hover:shadow-lg transition-all duration-200"
             >
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
-                <div>
-                  <h2 className="text-2xl font-semibold text-gray-900 flex items-center gap-2">
-                    <FaUserGraduate className="text-orange-500" />{" "}
+              {/* ✅ Desktop View Profile Button */}
+              <button
+                onClick={() =>
+                  navigate(`/admin-dashboard/student-profile/${student._id}`)
+                }
+                className="
+    cursor-pointer absolute top-4 right-4 
+    px-3 py-1.5 text-sm font-medium 
+    bg-orange-500 hover:bg-orange-600 text-white 
+    rounded-md shadow-sm transition
+    hidden sm:block
+  "
+              >
+                View Profile
+              </button>
+
+              {/* ✅ Mobile Slanted Arrow */}
+              <button
+                onClick={() =>
+                  navigate(`/admin-dashboard/student-profile/${student._id}`)
+                }
+                className="
+    cursor-pointer absolute top-4 right-4 
+    text-orange-600 
+    sm:hidden
+    text-2xl
+  "
+              >
+                <MdArrowForward />
+              </button>
+
+              {/* ✅ Card Header */}
+              <div className="flex gap-4 items-stretch">
+                <div
+                  className="
+              w-16 md:w-20 lg:w-24 
+              flex-shrink-0
+              rounded-xl bg-orange-500 text-white 
+              text-2xl md:text-3xl font-bold 
+              flex items-center justify-center p-2
+            "
+                >
+                  {student.fullName?.charAt(0).toUpperCase()}
+                </div>
+
+                <div className="flex flex-col justify-between gap-1 flex-1 min-w-0">
+                  <h2 className="text-lg md:text-xl font-semibold">
                     {student.fullName}
                   </h2>
-                  <p className="text-gray-700 text-md flex items-center gap-3 mt-1">
+
+                  <p className="text-gray-700 text-sm flex items-center gap-2 break-all">
                     <FaEnvelope className="text-orange-400" /> {student.email}
                   </p>
-                  <p className="text-gray-700 text-md flex items-center gap-3">
-                    <FaUniversity className="text-orange-400" />{" "}
+
+                  <p className="text-gray-700 text-sm flex items-center gap-2 break-all">
+                    <FaUniversity className="text-orange-400" />
                     {student.department} | Year {student.year} | Sem{" "}
                     {student.semester}
                   </p>
-                  <p className="text-gray-700 text-md flex items-center gap-3">
-                    <FaPhoneAlt className="text-orange-400" />{" "}
+
+                  <p className="text-gray-700 text-sm flex items-center gap-2 break-words">
+                    <FaPhoneAlt className="text-orange-400" />
                     {student.contactNumber}
                   </p>
                 </div>
-
-                {/* Buttons */}
-                <div className="flex flex-wrap gap-3 mt-3 md:mt-0">
-                  <button
-                    onClick={() => {
-                      if (
-                        expandedStudent === student._id &&
-                        viewType === "lost"
-                      ) {
-                        setExpandedStudent(null);
-                        setViewType("");
-                      } else {
-                        setExpandedStudent(student._id);
-                        setViewType("lost");
-                      }
-                    }}
-                    className={`px-5 py-2.5 rounded-lg text-sm font-medium transition cursor-pointer ${
-                      expandedStudent === student._id && viewType === "lost"
-                        ? "bg-red-600 text-white"
-                        : "bg-red-500 hover:bg-red-600 text-white"
-                    }`}
-                  >
-                    View Lost Items
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      if (
-                        expandedStudent === student._id &&
-                        viewType === "found"
-                      ) {
-                        setExpandedStudent(null);
-                        setViewType("");
-                      } else {
-                        setExpandedStudent(student._id);
-                        setViewType("found");
-                      }
-                    }}
-                    className={`px-5 py-2.5 rounded-lg text-sm font-medium transition cursor-pointer ${
-                      expandedStudent === student._id && viewType === "found"
-                        ? "bg-green-600 text-white"
-                        : "bg-green-500 hover:bg-green-600 text-white"
-                    }`}
-                  >
-                    View Found Items
-                  </button>
-                </div>
               </div>
 
-              {/* Animated Expand Section */}
-              <AnimatePresence>
-                {expandedStudent === student._id && (
-                  <motion.div
-                    key="expanded-section"
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="mt-5 border-t border-orange-500 pt-4 overflow-hidden"
-                  >
-                    {viewType === "lost" ? (
-                      <>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                          <FaBoxOpen className="text-red-500" /> Reported Lost
-                          Items
-                        </h3>
-                        {student.lostItems?.length > 0 ? (
-                          <ul className="space-y-3">
-                            {student.lostItems.map((item) => (
-                              <li
-                                key={item._id}
-                                className="p-3 bg-gray-50 rounded-lg border border-gray-200"
-                              >
-                                <p className="font-medium text-gray-900 text-base">
-                                  {item.itemName}
-                                </p>
-                                <p className="text-md text-gray-700 flex items-center gap-2 mt-1">
-                                  <MdLocationOn className="text-orange-500" />{" "}
-                                  {item.location} |{" "}
-                                  <MdAccessTime className="text-orange-500" />{" "}
-                                  {item.timeRange}
-                                </p>
-                                <p className="text-md text-gray-600 mt-1">
-                                  {item.itemDescription}
-                                </p>
-                              </li>
-                            ))}
-                          </ul>
-                        ) : (
-                          <p className="text-gray-500 text-md">
-                            No lost items reported
-                          </p>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                          <FaSearchLocation className="text-green-600" />{" "}
-                          Reported Found Items
-                        </h3>
-                        {student.foundItems?.length > 0 ? (
-                          <ul className="space-y-3">
-                            {student.foundItems.map((item) => (
-                              <li
-                                key={item._id}
-                                className="p-3 bg-gray-50 rounded-lg border border-gray-200"
-                              >
-                                <p className="font-medium text-gray-900 text-base">
-                                  {item.itemName}
-                                </p>
-                                <p className="text-md text-gray-700 flex items-center gap-2 mt-1">
-                                  <MdLocationOn className="text-green-600" />{" "}
-                                  {item.placeFound} |{" "}
-                                  <MdAccessTime className="text-green-600" />{" "}
-                                  {item.timeFound}
-                                </p>
-                                <p className="text-md text-gray-600 mt-1">
-                                  {item.itemDescription}
-                                </p>
-                                {item.image && (
-                                  <img
-                                    src={item.image}
-                                    alt={item.itemName}
-                                    className="mt-2 w-48 h-36 object-cover rounded-lg border border-gray-200"
-                                  />
-                                )}
-                              </li>
-                            ))}
-                          </ul>
-                        ) : (
-                          <p className="text-gray-500 text-md">
-                            No found items reported
-                          </p>
-                        )}
-                      </>
-                    )}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {/* ✅ Lost & Found Buttons */}
+              <div className="flex flex-wrap gap-3 mt-4">
+                <button
+                  onClick={() =>
+                    navigate(`/admin-dashboard/student-profile/${student._id}`)
+                  }
+                  className="cursor-pointer px-4 py-2 text-sm rounded-lg text-white bg-red-500 hover:bg-red-600 transition"
+                >
+                  Lost Items
+                </button>
+
+                <button
+                  onClick={() =>
+                    navigate(`/admin-dashboard/student-profile/${student._id}`)
+                  }
+                  className="cursor-pointer px-4 py-2 text-sm rounded-lg text-white bg-green-500 hover:bg-green-600 transition"
+                >
+                  Found Items
+                </button>
+              </div>
             </div>
           ))
         )}
