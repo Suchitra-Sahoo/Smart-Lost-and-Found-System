@@ -29,7 +29,7 @@ const TopSectionUser = () => {
 
   return (
     <div >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-16 lg:pt-0 md:pt-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:pt-0 md:pt-0">
         <div className="bg-white p-5 rounded-lg shadow hover:shadow-lg transition-shadow border-l-4 border-orange-500">
           <h2 className="text-lg font-semibold text-gray-700">Your Lost Items</h2>
           <p className="text-3xl font-bold mt-2 text-gray-600">{lostItems}</p>

@@ -67,7 +67,7 @@ const ProfileChart = () => {
 
         scales: {
           x: {
-            offset: false,  
+            offset: false,
             ticks: { font: { size: 12 } },
             grid: { display: false },
           },
@@ -82,14 +82,7 @@ const ProfileChart = () => {
 
   return (
     <div className="bg-white p-5 mt-6 rounded-xl shadow-md w-full h-[330px] overflow-x-hidden overflow-y-hidden">
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">
-        Lost / Found / Claimed Overview
-      </h2>
-
-      <canvas
-        ref={chartRef}
-        className="w-full max-w-full block"
-      ></canvas>
+      <canvas ref={chartRef} className="w-full max-w-full block"></canvas>
     </div>
   );
 };
