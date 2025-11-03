@@ -5,13 +5,14 @@ import TopSectionUser from "../components/user-dashboard/TopSectionUser";
 import MyLostItems from "../components/user-dashboard/Lost-Item/MyLostItems"; 
 import MyFoundItems from "../components/user-dashboard/Found-Item/MyFoundItems";
 import ProfileSection from "../components/user-dashboard/ProfileSection";
+import ProfileChart from "../components/user-dashboard/main-dashboard/ProfileChart";
 
 function UserDashboard() {
   return (
     <div className="flex">
       <Sidebar />
 
-      <div className="flex-1 bg-gray-50 min-h-screen p-5 md:ml-64">
+      <div className="flex-1 bg-gray-50 min-h-screen md:ml-64 p-5">
         <Routes>
           <Route
             path="/"
@@ -19,6 +20,7 @@ function UserDashboard() {
               <>
                 <TopSectionUser />
                 <ProfileSection />
+                <ProfileChart />
               </>
             }
           />

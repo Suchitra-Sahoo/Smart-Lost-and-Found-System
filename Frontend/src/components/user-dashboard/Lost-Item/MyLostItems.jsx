@@ -14,10 +14,16 @@ const MyLostItems = () => {
       try {
         const token = localStorage.getItem("token");
         const config = { headers: { Authorization: `Bearer ${token}` } };
-        const res = await axios.get(`${API_BASE_URL}/items/my-lost-items`, config);
+        const res = await axios.get(
+          `${API_BASE_URL}/items/my-lost-items`,
+          config
+        );
         setItems(res.data.items || []);
       } catch (err) {
-        console.error("Error fetching lost items:", err.response?.data || err.message);
+        console.error(
+          "Error fetching lost items:",
+          err.response?.data || err.message
+        );
       } finally {
         setLoading(false);
       }
@@ -33,20 +39,11 @@ const MyLostItems = () => {
   };
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-[70vh]">
-        <Loader />
-      </div>
-    );
+    return <Loader />;
   }
 
   return (
     <div className="p-4 md:p-6 mt-10 md:mt-0">
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
-        <FaBoxOpen className="text-orange-600 text-3xl" />
-        <h1 className="text-3xl font-bold text-gray-800">My Lost Items</h1>
-      </div>
 
       {/* If no items */}
       {items.length === 0 ? (
@@ -84,7 +81,9 @@ const MyLostItems = () => {
                   {item.location || "Not specified"}
                 </p>
                 <p>
-                  <strong className="text-gray-900">Identification Mark:</strong>{" "}
+                  <strong className="text-gray-900">
+                    Identification Mark:
+                  </strong>{" "}
                   {item.identificationMark || "None"}
                 </p>
               </div>

@@ -16,10 +16,16 @@ const MyFoundItems = () => {
       try {
         const token = localStorage.getItem("token");
         const config = { headers: { Authorization: `Bearer ${token}` } };
-        const res = await axios.get(`${API_BASE_URL}/items/my-found-items`, config);
+        const res = await axios.get(
+          `${API_BASE_URL}/items/my-found-items`,
+          config
+        );
         setItems(res.data.items || []);
       } catch (err) {
-        console.error("Error fetching found items:", err.response?.data || err.message);
+        console.error(
+          "Error fetching found items:",
+          err.response?.data || err.message
+        );
       } finally {
         setLoading(false);
       }
@@ -35,19 +41,11 @@ const MyFoundItems = () => {
   };
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-[70vh]">
-        <Loader />
-      </div>
-    );
+    return <Loader />;
   }
 
   return (
     <div className="p-4 md:p-6 mt-10 md:mt-0">
-      <div className="flex items-center gap-3 mb-6">
-        <FaBoxOpen className="text-orange-600 text-3xl" />
-        <h1 className="text-3xl font-bold text-gray-800">My Found Items</h1>
-      </div>
 
       {items.length === 0 ? (
         <div className="flex flex-col justify-center items-center h-[60vh] text-gray-600">
@@ -100,7 +98,10 @@ const MyFoundItems = () => {
       )}
 
       {/* Image Modal */}
-      <ImageModal image={selectedImage} onClose={() => setSelectedImage(null)} />
+      <ImageModal
+        image={selectedImage}
+        onClose={() => setSelectedImage(null)}
+      />
     </div>
   );
 };
