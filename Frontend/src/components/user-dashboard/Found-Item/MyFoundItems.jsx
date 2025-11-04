@@ -3,7 +3,6 @@ import axios from "axios";
 import API_BASE_URL from "../../../config";
 import Loader from "../../common/Loader/Loader";
 import noitems from "../../../assets/admin-dashboard/noitems.png";
-import ImageModal from "./ImageModal"; // ✅ your modal
 
 const MyFoundItems = () => {
   const [items, setItems] = useState([]);
@@ -130,12 +129,6 @@ const MyFoundItems = () => {
           </div>
         </div>
       )}
-
-      {/* ✅ IMAGE MODAL */}
-      <ImageModal
-        image={selectedImage}
-        onClose={() => setSelectedImage(null)}
-      />
     </div>
   );
 };

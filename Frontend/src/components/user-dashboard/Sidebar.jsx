@@ -10,6 +10,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import logo from "/logo.png";
 import { MdDashboard } from "react-icons/md";
+import { IoNotifications } from "react-icons/io5";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,6 +28,7 @@ const Sidebar = () => {
     { name: "My Lost Items", icon: <FaBoxOpen />, path: "/user-dashboard/my-lost-items" },
     { name: "My Found Items", icon: <FaSearch />, path: "/user-dashboard/my-found-items" },
     { name: "Dashboard", icon: <MdDashboard />, path: "/user-dashboard" },
+    { name: "Notification", icon: <IoNotifications />, path: "/user-dashboard/notification" },
     { name: "Logout", icon: <FaSignOutAlt />, action: handleLogout },
   ];
 
