@@ -317,36 +317,85 @@
       }
     },
     {
-  "name": "Match Lost & Found Item",
-  "request": {
-    "method": "POST",
-    "header": [
-      {
-        "key": "Authorization",
-        "value": "Bearer {{adminToken}}",
-        "type": "text"
-      },
-      {
-        "key": "Content-Type",
-        "value": "application/json",
-        "type": "text"
+      "name": "Match Lost & Found Item",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{adminToken}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"lostItemId\": \"{{lostItemId}}\",\n    \"foundItemId\": \"{{foundItemId}}\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/match",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "match"]
+        }
       }
-    ],
-    "body": {
-      "mode": "raw",
-      "raw": "{\n    \"lostItemId\": \"{{lostItemId}}\",\n    \"foundItemId\": \"{{foundItemId}}\"\n}"
     },
-    "url": {
-      "raw": "{{baseUrl}}/api/match",
-      "host": [
-        "{{baseUrl}}"
-      ],
-      "path": [
-        "api",
-        "match"
-      ]
+    {
+      "name": "Claim Matched Item",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{userToken}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/match/{{matchId}}/claim",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "match", "{{matchId}}", "claim"]
+        }
+      }
+    },
+    {
+      "name": "Reject Matched Item",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{userToken}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/match/{{matchId}}/reject",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "match", "{{matchId}}", "reject"]
+        }
+      }
     }
-  }
-}
   ]
 }
