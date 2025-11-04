@@ -2,11 +2,21 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import API_BASE_URL from "../../config";
 import Banner from "../../assets/admin-dashboard/banner.jpg";
+import Loader from "../common/Loader/Loader";
 
 const ProfileSection = () => {
   const [user, setUser] = useState(null);
+  const [lostCount, setLostCount] = useState(0);
+  const [foundCount, setFoundCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const getOrdinal = (num) => {
+    if (!num) return "N/A";
+    const s = ["th", "st", "nd", "rd"];
+    const v = num % 100;
+    return num + (s[(v - 20) % 10] || s[v] || s[0]);
+  };
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -18,8 +28,23 @@ const ProfileSection = () => {
           headers: { Authorization: `Bearer ${token}` },
         };
 
+        // Fetch user profile
         const res = await axios.get(`${API_BASE_URL}/auth/me`, config);
         setUser(res.data.user);
+
+        // Fetch lost & found items count
+        const lostRes = await axios.get(
+          `${API_BASE_URL}/items/my-lost-items`,
+          config
+        );
+        const foundRes = await axios.get(
+          `${API_BASE_URL}/items/my-found-items`,
+          config
+        );
+
+        setLostCount(lostRes.data.items.length);
+        setFoundCount(foundRes.data.items.length);
+
         setLoading(false);
       } catch (err) {
         setError(err.response?.data?.message || err.message);
@@ -30,7 +55,7 @@ const ProfileSection = () => {
     fetchProfile();
   }, []);
 
-  if (loading) return <p className="text-gray-500">Loading profile...</p>;
+ if (loading) return <Loader />;
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
@@ -58,20 +83,38 @@ const ProfileSection = () => {
         <h1 className="text-3xl font-bold text-gray-900">{user.fullName}</h1>
 
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Left Column */}
+          {/* ✅ LEFT COLUMN */}
           <div className="space-y-4">
             <div>
               <p className="text-sm text-gray-600 uppercase">Email</p>
-              <p className="text-lg font-medium text-gray-800">{user.email}</p>
+              <p className="text-lg font-medium text-gray-800 truncate max-w-[260px] sm:max-w-full">
+                {user.email}
+              </p>
             </div>
 
             <div>
               <p className="text-sm text-gray-600 uppercase">Role</p>
               <p className="text-lg font-medium text-gray-800">{user.role}</p>
             </div>
+
+            {/* ✅ Lost Items */}
+            <div>
+              <p className="text-sm text-gray-600 uppercase">
+                Lost Items Reported
+              </p>
+              <p className="text-lg font-medium text-gray-800">{lostCount}</p>
+            </div>
+
+            {/* ✅ Found Items */}
+            <div>
+              <p className="text-sm text-gray-600 uppercase">
+                Found Items Reported
+              </p>
+              <p className="text-lg font-medium text-gray-800">{foundCount}</p>
+            </div>
           </div>
 
-          {/* Right Column */}
+          {/* ✅ RIGHT COLUMN */}
           <div className="space-y-4">
             {user.department && (
               <div>
@@ -105,6 +148,19 @@ const ProfileSection = () => {
                 <p className="text-sm text-gray-600 uppercase">Contact</p>
                 <p className="text-lg font-medium text-gray-800">
                   {user.contactNumber}
+                </p>
+              </div>
+            )}
+
+            {/* ✅ Semester | Year */}
+            {(user.semester || user.year) && (
+              <div>
+                <p className="text-sm text-gray-600 uppercase">
+                  Semester | Year
+                </p>
+                <p className="text-lg font-medium text-gray-800">
+                  {getOrdinal(user.semester)} Semester &nbsp;|&nbsp;{" "}
+                  {getOrdinal(user.year)} Year
                 </p>
               </div>
             )}

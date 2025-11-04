@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import API_BASE_URL from "../../../config";
 import Loader from "../../common/Loader/Loader";
-import { FaBoxOpen } from "react-icons/fa";
 import noitems from "../../../assets/admin-dashboard/noitems.png";
-import ImageModal from "./ImageModal";
+import ImageModal from "./ImageModal"; // ✅ your modal
 
 const MyFoundItems = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // ✅ Stores the image to show in modal
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
@@ -16,16 +17,15 @@ const MyFoundItems = () => {
       try {
         const token = localStorage.getItem("token");
         const config = { headers: { Authorization: `Bearer ${token}` } };
+
         const res = await axios.get(
           `${API_BASE_URL}/items/my-found-items`,
           config
         );
+
         setItems(res.data.items || []);
       } catch (err) {
-        console.error(
-          "Error fetching found items:",
-          err.response?.data || err.message
-        );
+        console.error("Error fetching found items:", err);
       } finally {
         setLoading(false);
       }
@@ -40,64 +40,90 @@ const MyFoundItems = () => {
     return new Date(dateString).toLocaleDateString("en-GB", options);
   };
 
-  if (loading) {
-    return <Loader />;
-  }
+  if (loading) return <Loader />;
 
   return (
     <div className="p-4 md:p-6 mt-10 md:mt-0">
-
+      {/* ✅ NO ITEMS */}
       {items.length === 0 ? (
-        <div className="flex flex-col justify-center items-center h-[60vh] text-gray-600">
-          <img src={noitems} alt="No items" className="w-58 mb-4 opacity-80" />
+        <div className="flex flex-col justify-center items-center h-[60vh] text-gray-600 text-center">
+          <img src={noitems} alt="No items" className="w-52 mb-4 opacity-80" />
           <p className="text-lg">You haven’t reported any found items yet.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {items.map((item) => (
-            <div
-              key={item._id}
-              className="bg-white p-5 rounded-2xl shadow-md hover:shadow-lg transition-all border border-gray-200"
-            >
-              <div className="flex justify-between items-start mb-3">
-                <h2 className="text-xl font-semibold text-gray-800">
-                  {item.itemName || "Unnamed Item"}
-                </h2>
-              </div>
+        /* ✅ DASHBOARD TABLE (NO IMAGE COLUMN) */
+        <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-200">
+          <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-6">
+            My Found Items
+          </h2>
 
-              <div className="text-sm text-gray-700 space-y-1.5 mb-3">
-                <p>
-                  <strong className="text-gray-900">Description:</strong>{" "}
-                  {item.itemDescription || "No description provided"}
-                </p>
-                <p>
-                  <strong className="text-gray-900">Date Found:</strong>{" "}
-                  {formatDate(item.dateFound)}
-                </p>
-                <p>
-                  <strong className="text-gray-900">Time Found:</strong>{" "}
-                  {item.timeFound || "Not specified"}
-                </p>
-                <p>
-                  <strong className="text-gray-900">Location:</strong>{" "}
-                  {item.placeFound || "Not specified"}
-                </p>
-              </div>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse min-w-[850px]">
+              <thead>
+                <tr className="bg-gray-100 text-left text-gray-700 uppercase text-sm">
+                  <th className="py-3 px-4">Item</th>
+                  <th className="py-3 px-4">Description</th>
+                  <th className="py-3 px-4">Date Found</th>
+                  <th className="py-3 px-4">Time</th>
+                  <th className="py-3 px-4">Location</th>
+                  <th className="py-3 px-4"></th>
+                </tr>
+              </thead>
 
-              {item.image && (
-                <button
-                  onClick={() => setSelectedImage(item.image)}
-                  className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition-colors cursor-pointer"
-                >
-                  View Image
-                </button>
-              )}
-            </div>
-          ))}
+              <tbody>
+                {items.map((item, index) => (
+                  <tr
+                    key={item._id}
+                    className={`${
+                      index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                    } hover:bg-orange-50 transition`}
+                  >
+                    {/* ✅ ITEM NAME */}
+                    <td className="py-3 px-4 font-medium text-gray-800 break-words">
+                      {item.itemName || "Unnamed Item"}
+                    </td>
+
+                    {/* ✅ DESCRIPTION */}
+                    <td className="py-3 px-4 text-gray-700 max-w-xs break-words">
+                      {item.itemDescription || "No description"}
+                    </td>
+
+                    {/* ✅ DATE */}
+                    <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
+                      {formatDate(item.dateFound)}
+                    </td>
+
+                    {/* ✅ TIME */}
+                    <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
+                      {item.timeFound || "Not specified"}
+                    </td>
+
+                    {/* ✅ LOCATION */}
+                    <td className="py-3 px-4 text-gray-700 break-words">
+                      {item.placeFound || "Not specified"}
+                    </td>
+
+                    {/* ✅ VIEW BUTTON → OPEN IMAGE MODAL */}
+                    <td className="py-3 px-4">
+                      <a
+                        href={item.image}
+                        download
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cursor-pointer px-4 py-1.5 bg-orange-600 text-white text-sm rounded-lg hover:bg-orange-700 transition"
+                      >
+                        View
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 
-      {/* Image Modal */}
+      {/* ✅ IMAGE MODAL */}
       <ImageModal
         image={selectedImage}
         onClose={() => setSelectedImage(null)}
