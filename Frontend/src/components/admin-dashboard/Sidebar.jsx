@@ -12,6 +12,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import logo from "/logo.png";
 import { MdDashboard } from "react-icons/md";
+import { GiPuzzle } from "react-icons/gi";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,6 +41,7 @@ const Sidebar = () => {
     },
     { name: "Users", icon: <FaUser />, dropdown: ["Students", "Staff"] },
     { name: "Dashboard", icon: <MdDashboard />, path: "/admin-dashboard" },
+    { name: "Match Items", icon: <GiPuzzle />, path: "/" },
     { name: "Logout", icon: <FaSignOutAlt />, action: handleLogout },
   ];
 
