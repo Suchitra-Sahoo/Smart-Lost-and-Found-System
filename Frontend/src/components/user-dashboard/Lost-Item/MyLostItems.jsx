@@ -43,18 +43,16 @@ const MyLostItems = () => {
 
   return (
     <div className="p-4 md:p-6 mt-10 md:mt-0">
-
-      {/* ✅ If no items */}
       {items.length === 0 ? (
         <div className="flex flex-col justify-center items-center h-[60vh] text-gray-600">
           <img src={noitems} alt="No items" className="w-58 mb-4 opacity-80" />
           <p className="text-lg">You haven’t reported any lost items yet.</p>
         </div>
       ) : (
-
-        /* ✅ PROFESSIONAL DASHBOARD TABLE */
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6">My Lost Items</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+            My Lost Items
+          </h2>
 
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
@@ -96,7 +94,7 @@ const MyLostItems = () => {
                       {formatDate(item.dateLost)}
                     </td>
 
-                     <td className="py-3 px-4 text-gray-700">
+                    <td className="py-3 px-4 text-gray-700">
                       {item.timeRange}
                     </td>
 
@@ -112,7 +110,6 @@ const MyLostItems = () => {
               </tbody>
             </table>
           </div>
-
         </div>
       )}
     </div>
