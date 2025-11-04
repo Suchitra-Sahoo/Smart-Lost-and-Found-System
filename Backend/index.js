@@ -7,6 +7,7 @@ const foundItemRoutes = require("./routes/foundItemRoutes");
 const userRoutes = require("./routes/userRoutes");
 const userItemsRoutes = require("./routes/userItemsRoutes");
 const adminUserRoutes = require("./routes/adminRoutes");
+const matchRoutes = require("./routes/matchRoutes");
 
 dotenv.config();
 connectDB();
@@ -19,6 +20,8 @@ app.use("/api/found-items", foundItemRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/items", userItemsRoutes);
 app.use("/api/admin", adminUserRoutes);
+app.use("/api", matchRoutes);
+
 
 // Routes
 const authRoutes = require("./routes/auth");

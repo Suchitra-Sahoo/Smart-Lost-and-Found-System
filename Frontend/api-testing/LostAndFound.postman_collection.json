@@ -315,6 +315,38 @@
           "path": ["api", "admin", "staff-details"]
         }
       }
+    },
+    {
+  "name": "Match Lost & Found Item",
+  "request": {
+    "method": "POST",
+    "header": [
+      {
+        "key": "Authorization",
+        "value": "Bearer {{adminToken}}",
+        "type": "text"
+      },
+      {
+        "key": "Content-Type",
+        "value": "application/json",
+        "type": "text"
+      }
+    ],
+    "body": {
+      "mode": "raw",
+      "raw": "{\n    \"lostItemId\": \"{{lostItemId}}\",\n    \"foundItemId\": \"{{foundItemId}}\"\n}"
+    },
+    "url": {
+      "raw": "{{baseUrl}}/api/match",
+      "host": [
+        "{{baseUrl}}"
+      ],
+      "path": [
+        "api",
+        "match"
+      ]
     }
+  }
+}
   ]
 }
