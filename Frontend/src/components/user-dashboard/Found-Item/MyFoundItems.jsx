@@ -62,6 +62,7 @@ const MyFoundItems = () => {
               <thead>
                 <tr className="bg-gray-100 text-left text-gray-700 uppercase text-sm">
                   <th className="py-3 px-4">Item</th>
+                  <th className="py-3 px-4">Category</th>
                   <th className="py-3 px-4">Description</th>
                   <th className="py-3 px-4">Date Found</th>
                   <th className="py-3 px-4">Time</th>
@@ -81,6 +82,13 @@ const MyFoundItems = () => {
                     {/* ✅ ITEM NAME */}
                     <td className="py-3 px-4 font-medium text-gray-800 break-words">
                       {item.itemName || "Unnamed Item"}
+                    </td>
+
+                    {/* ✅ CATEGORY */}
+                     <td className="py-3 px-4">
+                      <span className="bg-orange-100 text-orange-700 text-sm px-3 py-1 rounded-full">
+                        {item.category || "General"}
+                      </span>
                     </td>
 
                     {/* ✅ DESCRIPTION */}

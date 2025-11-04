@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import toast from "react-hot-toast";
 import API_BASE_URL from "../../config";
+import CategoryDropdown from "./CategoryDropdown";
 
 const ReportFoundItemForm = ({ user }) => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ const ReportFoundItemForm = ({ user }) => {
     itemDescription: "",
     placeFound: "",
     timeFound: "",
+    category: "", 
   });
 
   const [dateFound, setDateFound] = useState(null);
@@ -26,10 +28,19 @@ const ReportFoundItemForm = ({ user }) => {
   };
 
   const handleSubmit = async () => {
-    const { itemName, itemDescription, placeFound, timeFound } = formData;
+    const { itemName, itemDescription, placeFound, timeFound, category } =
+      formData;
 
-    if (!itemName || !itemDescription || !placeFound || !timeFound || !dateFound || !image) {
-      toast.error("Please fill all required fields including image.");
+    if (
+      !itemName ||
+      !itemDescription ||
+      !placeFound ||
+      !timeFound ||
+      !dateFound ||
+      !image ||
+      !category
+    ) {
+      toast.error("Please fill all required fields including category.");
       return;
     }
 
@@ -43,6 +54,7 @@ const ReportFoundItemForm = ({ user }) => {
       data.append("placeFound", placeFound);
       data.append("timeFound", timeFound);
       data.append("dateFound", dateFound.toISOString().split("T")[0]);
+      data.append("category", category); // ✅ Added
       data.append("image", image);
 
       const response = await axios.post(`${API_BASE_URL}/found-items`, data, {
@@ -54,12 +66,21 @@ const ReportFoundItemForm = ({ user }) => {
 
       toast.success(response.data.message);
 
-      setFormData({ itemName: "", itemDescription: "", placeFound: "", timeFound: "" });
+      setFormData({
+        itemName: "",
+        itemDescription: "",
+        placeFound: "",
+        timeFound: "",
+        category: "", 
+      });
+
       setDateFound(null);
       setImage(null);
     } catch (error) {
       console.error(error);
-      toast.error(error.response?.data?.message || "Failed to report found item");
+      toast.error(
+        error.response?.data?.message || "Failed to report found item"
+      );
     } finally {
       setLoading(false);
     }
@@ -67,8 +88,11 @@ const ReportFoundItemForm = ({ user }) => {
 
   return (
     <form className="space-y-5">
+      {/* Item Name */}
       <div>
-        <label className="block mb-1 font-medium text-gray-700">Item Name *</label>
+        <label className="block mb-1 font-medium text-gray-700">
+          Item Name *
+        </label>
         <input
           type="text"
           name="itemName"
@@ -79,8 +103,24 @@ const ReportFoundItemForm = ({ user }) => {
         />
       </div>
 
+      {/* ✅ Category */}
       <div>
-        <label className="block mb-1 font-medium text-gray-700">Description *</label>
+        <div>
+          <label className="block mb-1 font-medium text-gray-700">
+            Category *
+          </label>
+          <CategoryDropdown
+            value={formData.category}
+            onChange={(cat) => setFormData({ ...formData, category: cat })}
+          />
+        </div>
+      </div>
+
+      {/* Description */}
+      <div>
+        <label className="block mb-1 font-medium text-gray-700">
+          Description *
+        </label>
         <textarea
           name="itemDescription"
           value={formData.itemDescription}
@@ -90,9 +130,12 @@ const ReportFoundItemForm = ({ user }) => {
         />
       </div>
 
+      {/* Date & Time Found */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block mb-1 font-medium text-gray-700">Date Found *</label>
+          <label className="block mb-1 font-medium text-gray-700">
+            Date Found *
+          </label>
           <DatePicker
             selected={dateFound}
             onChange={(date) => setDateFound(date)}
@@ -103,7 +146,9 @@ const ReportFoundItemForm = ({ user }) => {
         </div>
 
         <div>
-          <label className="block mb-1 font-medium text-gray-700">Time Found *</label>
+          <label className="block mb-1 font-medium text-gray-700">
+            Time Found *
+          </label>
           <input
             type="text"
             name="timeFound"
@@ -115,8 +160,11 @@ const ReportFoundItemForm = ({ user }) => {
         </div>
       </div>
 
+      {/* Place Found */}
       <div>
-        <label className="block mb-1 font-medium text-gray-700">Place Found *</label>
+        <label className="block mb-1 font-medium text-gray-700">
+          Place Found *
+        </label>
         <input
           type="text"
           name="placeFound"
@@ -127,8 +175,11 @@ const ReportFoundItemForm = ({ user }) => {
         />
       </div>
 
+      {/* Image Upload */}
       <div>
-        <label className="block mb-1 font-medium text-gray-700">Upload Image *</label>
+        <label className="block mb-1 font-medium text-gray-700">
+          Upload Image *
+        </label>
         <input
           type="file"
           accept="image/*"
@@ -137,6 +188,7 @@ const ReportFoundItemForm = ({ user }) => {
         />
       </div>
 
+      {/* Submit Button */}
       <button
         type="button"
         onClick={handleSubmit}

@@ -64,6 +64,7 @@ const MyLostItems = () => {
                   <th className="py-3 px-4">Category</th>
                   <th className="py-3 px-4">Description</th>
                   <th className="py-3 px-4">Date Lost</th>
+                  <th className="py-3 px-4">Time</th>
                   <th className="py-3 px-4">Location</th>
                   <th className="py-3 px-4">Identification Mark</th>
                 </tr>
@@ -82,7 +83,7 @@ const MyLostItems = () => {
                     </td>
 
                     <td className="py-3 px-4">
-                      <span className="bg-orange-100 text-orange-700 text-xs px-3 py-1 rounded-full">
+                      <span className="bg-orange-100 text-orange-700 text-sm px-3 py-1 rounded-full">
                         {item.itemCategory || "General"}
                       </span>
                     </td>
@@ -93,6 +94,10 @@ const MyLostItems = () => {
 
                     <td className="py-3 px-4 text-gray-700">
                       {formatDate(item.dateLost)}
+                    </td>
+
+                     <td className="py-3 px-4 text-gray-700">
+                      {item.timeRange}
                     </td>
 
                     <td className="py-3 px-4 text-gray-700">

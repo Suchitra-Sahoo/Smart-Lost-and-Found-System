@@ -6,6 +6,7 @@ const FoundItemSchema = new mongoose.Schema({
   placeFound: { type: String, required: true },
   timeFound: { type: String, required: true },
   dateFound: { type: Date, required: true },
+  category: { type: String, required: true },
   userName: { type: String, required: true }, // auto from login
   userEmail: { type: String, required: true },
   image: { type: String, required: true }, // auto from login

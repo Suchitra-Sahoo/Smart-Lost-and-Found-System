@@ -99,6 +99,7 @@ const FoundItemsPage = () => {
             <thead className="bg-orange-50">
               <tr>
                 <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">Item Name</th>
+                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">Category</th>
                 <th className="px-4 py-2 text-left text-sm font-medium text-gray-700 hidden sm:table-cell">Date Found</th>
                 <th className="px-4 py-2 text-left text-sm font-medium text-gray-700 hidden md:table-cell">Time</th>
                 <th className="px-4 py-2 text-left text-sm font-medium text-gray-700 hidden md:table-cell">Place</th>
@@ -111,6 +112,7 @@ const FoundItemsPage = () => {
               {filteredItems.map((item) => (
                 <tr key={item._id}>
                   <td className="px-4 py-2">{item.itemName}</td>
+                  <td className="px-4 py-2">{item.category}</td>
                   <td className="px-4 py-2 hidden sm:table-cell">
                     {new Date(item.dateFound).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}
                   </td>
