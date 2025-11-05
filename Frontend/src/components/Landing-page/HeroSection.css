@@ -1,0 +1,128 @@
+/* Frontend/src/components/Landing page/HeroSection.css */
+
+/* --- Variables based on your website's colors --- */
+:root {
+  --accent-color: #ff6600; /* Use your specific orange/red from the logo/button */
+  --text-color: #333; /* Dark gray for main text */
+  --background-color: white;
+}
+
+/* --- Hero Section Layout --- */
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 0px; /* Generous padding to give it prominence */
+  min-height: 450px;
+  background-color: var(--background-color);
+}
+
+.hero-content {
+  max-width: 900px; /* Wider content area */
+}
+
+/* --- Typography --- */
+.hero-title {
+  font-size: 3.5em; /* Large and impactful */
+  color: var(--text-color);
+  margin-bottom: 0.4em;
+  font-weight: 700; /* Bold */
+  line-height: 1.1;
+}
+
+.hero-description {
+  font-size: 1.3em;
+  color: var(--text-color);
+  margin-bottom: 2.5em;
+  font-weight: 400;
+}
+
+/* --- Buttons/Actions --- */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  justify-content: center;
+  gap: 20px; /* Space between buttons */
+}
+
+.btn {
+  text-decoration: none;
+  padding: 14px 35px; /* Slightly larger buttons */
+  border-radius: 5px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 1.05em;
+  min-width: 200px; /* Ensures buttons are a uniform size */
+  text-align: center;
+}
+
+/* Primary Button (Solid Orange) */
+.btn-primary {
+  background-color: var(--accent-color);
+  color: white;
+  border: 2px solid var(--accent-color);
+}
+
+.btn-primary:hover {
+  background-color: #e65c00; /* Slightly darker orange on hover */
+  border-color: #e65c00;
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+
+/* Secondary Button (Outlined Orange) */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 2px solid var(--accent-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--accent-color); /* Fill on hover */
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* --- Responsive Adjustments (for smaller screens) --- */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 80px 15px;
+  }
+  .hero-title {
+    font-size: 2.5em;
+  }
+  .hero-description {
+    font-size: 1em;
+  }
+  .hero-actions {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 15px;
+  }
+  .btn {
+    width: 100%;
+  }
+}
+
+/* Update the main hero-section to use Flexbox for splitting content */
+.hero-section {
+  display: flex;
+  /* content-alignment changed from 'center' to 'flex-start' or 'space-around' */
+  justify-content: space-around;
+  align-items: center;
+  text-align: left; /* Text alignment should be left for the content side */
+  padding: 20px 0px;
+  gap: 30px;
+}
+
+/* Ensure content takes up half the space */
+.hero-content {
+  max-width: 50%;
+  text-align: left; /* Important to override the section's center alignment */
+}
+
+/* Add a style for the new image container */
+.hero-image {
+  max-width: 40%;
+}

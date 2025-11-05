@@ -1,0 +1,120 @@
+/* 🌟 Global Section Styles */
+.about-section {
+  background: linear-gradient(to right, #fff7ed, #fff, #fff7ed);
+  padding: 5rem 1.5rem;
+  text-align: center;
+}
+
+/* 🧡 Main Title */
+.about-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ea580c; /* Tailwind orange-600 */
+  margin-bottom: 1rem;
+}
+
+.about-title span {
+  color: #1f2937; /* Tailwind gray-800 */
+}
+
+/* 📝 Description paragraph */
+.about-description {
+  color: #374151;
+  font-size: 1.125rem;
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+  line-height: 1.75;
+}
+
+/* 🟠 Card Container (Mission, Vision, Features) */
+.about-card {
+  background-color: #ffffff;
+  border-radius: 1.25rem;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔹 Card Headings */
+.about-card h2 {
+  font-size: 1.75rem;
+  color: #f97316; /* Tailwind orange-500 */
+  margin-bottom: 1rem;
+}
+
+/* 📋 Card Text */
+.about-card p {
+  color: #374151;
+  line-height: 1.7;
+}
+
+/* ⚡ Features List */
+.about-features {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #374151;
+  font-size: 1.05rem;
+  margin-bottom: 0.75rem;
+}
+
+/* 💬 CTA Section */
+.about-cta {
+  background-color: #f97316; /* orange-500 */
+  color: white;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.about-cta h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.about-cta p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.about-cta a {
+  background-color: white;
+  color: #ea580c;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.about-cta a:hover {
+  background-color: #ffedd5;
+}
+
+/* 📱 Responsive Adjustments */
+@media (max-width: 768px) {
+  .about-title {
+    font-size: 2rem;
+  }
+
+  .about-card {
+    margin-bottom: 1.5rem;
+  }
+
+  .about-cta h2 {
+    font-size: 1.5rem;
+  }
+}
