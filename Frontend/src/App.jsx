@@ -15,6 +15,11 @@ import ReportLostItem from "./pages/ReportLostItem";
 import UserDashboard from "./pages/UserDashboard";
 import ReportFoundItem from "./pages/ReportFoundItem";
 
+//
+
+import About from "./components/Landing-page/About";
+<Route path="/about" element={<About />} />;
+
 const App = () => {
   const [loading, setLoading] = useState(true);
 
