@@ -25,13 +25,29 @@ export default function Navbar() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      setIsLoggedIn(true);
       try {
         const payload = JSON.parse(atob(token.split(".")[1]));
-        setRole(payload.role);
+
+        // Check expiry
+        const currentTime = Math.floor(Date.now() / 1000); // in seconds
+        if (payload.exp && payload.exp < currentTime) {
+          // Token expired
+          localStorage.removeItem("token");
+          setIsLoggedIn(false);
+          setRole("");
+        } else {
+          setIsLoggedIn(true);
+          setRole(payload.role);
+        }
       } catch (err) {
         console.error("Invalid token", err);
+        localStorage.removeItem("token");
+        setIsLoggedIn(false);
+        setRole("");
       }
+    } else {
+      setIsLoggedIn(false);
+      setRole("");
     }
   }, []);
 
@@ -45,11 +61,19 @@ export default function Navbar() {
   };
 
   const menuItems = [
-    { name: "Home", icon: <FaHome />, to: "/home" },
-    { name: "About", icon: <FaInfoCircle />, to: "/about" },
-    { name: "Report Lost Item", icon: <FaBoxOpen />, to: "/report-lost-item" },
-    { name: "Report Found Item", icon: <FaSearch />, to: "/report-found" },
-    { name: "Contact", icon: <FaPhone />, to: "/contact" },
+    { name: "Home", to: "/home" },
+    { name: "About", to: "/about" },
+    {
+      name: "Report Lost Item",
+
+      to: "/report-lost-item",
+    },
+    {
+      name: "Report Found Item",
+
+      to: "/report-found-item",
+    },
+    { name: "Contact", to: "/contact" },
   ];
 
   // Dynamic dashboard link based on role
@@ -57,7 +81,7 @@ export default function Navbar() {
     {
       name: "Dashboard",
       icon: <MdDashboard />,
-      to: role === "admin" ? "/admin-dashboard" : "/dashboard",
+      to: role === "admin" ? "/admin-dashboard" : "/user-dashboard", // student or staff
     },
     { name: "Logout", icon: <FaSignOutAlt />, action: handleLogout },
   ];
@@ -69,7 +93,9 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img src={Logo} alt="CampusFind Logo" className="h-10 w-auto" />
-            <span className="text-xl font-bold text-orange-500">CampusFind</span>
+            <span className="text-xl font-bold text-orange-500">
+              CampusFind
+            </span>
           </Link>
 
           {/* Desktop Menu */}
@@ -83,14 +109,14 @@ export default function Navbar() {
                   onClick={(e) => {
                     if (
                       role === "admin" &&
-                      (item.name === "Report Lost Item" || item.name === "Report Found Item")
+                      (item.name === "Report Lost Item" ||
+                        item.name === "Report Found Item")
                     ) {
                       e.preventDefault();
                       navigate("/admin-dashboard");
                     }
                   }}
                 >
-                  <span className="text-lg">{item.icon}</span>
                   <span>{item.name}</span>
                 </Link>
               ))}
@@ -127,7 +153,7 @@ export default function Navbar() {
                           <button
                             key={option.name}
                             onClick={option.action}
-                            className="flex items-center space-x-2 w-full px-4 py-2 text-gray-700 hover:bg-orange-50"
+                            className="flex items-center space-x-2 w-full px-4 py-2 text-gray-700 hover:bg-orange-50 cursor-pointer"
                           >
                             <span>{option.icon}</span>
                             <span>{option.name}</span>
@@ -143,7 +169,7 @@ export default function Navbar() {
                   className="flex items-center space-x-2 bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition duration-300 font-semibold"
                 >
                   <FaUserPlus />
-                  <span>Join Now</span>
+                  <span className="cursor-pointer">Join Now</span>
                 </Link>
               )}
             </div>
@@ -221,7 +247,8 @@ export default function Navbar() {
               onClick={(e) => {
                 if (
                   role === "admin" &&
-                  (item.name === "Report Lost Item" || item.name === "Report Found Item")
+                  (item.name === "Report Lost Item" ||
+                    item.name === "Report Found Item")
                 ) {
                   e.preventDefault();
                   navigate("/admin-dashboard");

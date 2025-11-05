@@ -10,9 +10,10 @@ import Loader from "./components/common/Loader/Loader";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 import "./App.css";
-import Dashboard from "./pages/Dashboard";
 import LostItemsPage from "./components/admin-dashboard/Lost-Item/LostItemPage";
 import ReportLostItem from "./pages/ReportLostItem";
+import UserDashboard from "./pages/UserDashboard";
+import ReportFoundItem from "./pages/ReportFoundItem";
 
 //
 
@@ -49,17 +50,9 @@ const App = () => {
 
         {/* Protected Admin Dashboard */}
         <Route
-          path="/admin-dashboard"
-          element={
-            <ProtectedRoute tokenKey="adminToken">
-              <AdminDashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
           path="/admin-dashboard/*"
           element={
-            <ProtectedRoute tokenKey="adminToken">
+            <ProtectedRoute tokenKey="token">
               <AdminDashboard />
             </ProtectedRoute>
           }
@@ -70,6 +63,24 @@ const App = () => {
           element={
             <ProtectedRoute tokenKey="token">
               <ReportLostItem />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/report-found-item"
+          element={
+            <ProtectedRoute tokenKey="token">
+              <ReportFoundItem />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/user-dashboard/*"
+          element={
+            <ProtectedRoute tokenKey="token">
+              <UserDashboard />
             </ProtectedRoute>
           }
         />

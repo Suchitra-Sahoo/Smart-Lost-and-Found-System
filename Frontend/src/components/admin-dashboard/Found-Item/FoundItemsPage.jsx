@@ -7,6 +7,7 @@ import noitems from "../../../assets/admin-dashboard/noitems.png";
 import Loader from "../../common/Loader/Loader";
 import FoundItemModal from "./FoundItemModal";
 import SearchBar from "../../common/SearchBar";
+import RecentFoundItems from "./ReccentFoundItems";
 
 const FoundItemsPage = () => {
   const [foundItems, setFoundItems] = useState([]);
@@ -20,7 +21,7 @@ const FoundItemsPage = () => {
   useEffect(() => {
     const fetchFoundItems = async () => {
       try {
-        const token = localStorage.getItem("adminToken");
+        const token = localStorage.getItem("token");
         if (!token) throw new Error("Admin token not found");
 
         const config = { headers: { Authorization: `Bearer ${token}` } };
@@ -53,7 +54,7 @@ const FoundItemsPage = () => {
 
   const handleDelete = async (id) => {
     try {
-      const token = localStorage.getItem("adminToken");
+      const token = localStorage.getItem("token");
       const config = { headers: { Authorization: `Bearer ${token}` } };
       await axios.delete(`${API_BASE_URL}/found-items/${id}`, config);
 
@@ -72,11 +73,18 @@ const FoundItemsPage = () => {
   if (error) return <p className="p-4 text-red-500">{error}</p>;
 
   return (
+    
     <div className="p-4 min-h-screen">
       <Toaster position="top-right" reverseOrder={false} />
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-orange-600 mt-10 sm:mt-10 md:mt-0 mb-4">Found Items</h1>
-        <SearchBar searchTerm={search} setSearchTerm={setSearch} />
+      
+       <div className="flex justify-center mt-20 lg:mt-4 md:mt-4">
+          <SearchBar
+            searchTerm={search}
+            setSearchTerm={setSearch}
+            placeholder="Search found items here..."
+          />
+        </div>
       </div>
 
       {filteredItems.length === 0 ? (
@@ -86,10 +94,12 @@ const FoundItemsPage = () => {
         </div>
       ) : (
         <div className="overflow-x-auto w-full">
-          <table className="min-w-full divide-y divide-gray-200 bg-white shadow rounded-lg">
+          <RecentFoundItems />
+          <table className="mt-8 min-w-full divide-y divide-gray-200 bg-white shadow rounded-lg">
             <thead className="bg-orange-50">
               <tr>
                 <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">Item Name</th>
+                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">Category</th>
                 <th className="px-4 py-2 text-left text-sm font-medium text-gray-700 hidden sm:table-cell">Date Found</th>
                 <th className="px-4 py-2 text-left text-sm font-medium text-gray-700 hidden md:table-cell">Time</th>
                 <th className="px-4 py-2 text-left text-sm font-medium text-gray-700 hidden md:table-cell">Place</th>
@@ -102,6 +112,7 @@ const FoundItemsPage = () => {
               {filteredItems.map((item) => (
                 <tr key={item._id}>
                   <td className="px-4 py-2">{item.itemName}</td>
+                  <td className="px-4 py-2">{item.category}</td>
                   <td className="px-4 py-2 hidden sm:table-cell">
                     {new Date(item.dateFound).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}
                   </td>

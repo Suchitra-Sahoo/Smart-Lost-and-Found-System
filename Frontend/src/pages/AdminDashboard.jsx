@@ -4,6 +4,10 @@ import Sidebar from "../components/admin-dashboard/Sidebar";
 import TopSection from "../components/admin-dashboard/TopSection";
 import LostItemsPage from "../components/admin-dashboard/Lost-Item/LostItemPage";
 import FoundItemsPage from "../components/admin-dashboard/Found-Item/FoundItemsPage";
+import StudentsPage from "../components/admin-dashboard/Student/StudentPage";
+import StaffPage from "../components/admin-dashboard/Staff/StaffPage";
+import StudentProfile from "../components/admin-dashboard/Student/StudentProfile";
+import StaffProfile from "../components/admin-dashboard/Staff/StaffProfile";
 
 function AdminDashboard() {
   return (
@@ -12,11 +16,17 @@ function AdminDashboard() {
       <Sidebar />
 
       {/* Right content */}
-      <div className="flex-1 bg-gray-50 min-h-screen p-5 md:ml-64">
+      <div className="flex-1 bg-gray-50 min-h-screen md:ml-64">
         <Routes>
           <Route path="/" element={<TopSection />} />
           <Route path="lost-items" element={<LostItemsPage />} />
           <Route path="found-items" element={<FoundItemsPage />} />
+          <Route path="students" element={<StudentsPage />} />
+          <Route path="staff" element={<StaffPage />} />
+          <Route path="student-profile/:id" element={<StudentProfile />} />
+          <Route path="staff-profile/:id" element={<StaffProfile />} />
+
+
         </Routes>
       </div>
     </div>

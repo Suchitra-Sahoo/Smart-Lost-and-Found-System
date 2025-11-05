@@ -3,9 +3,9 @@ const FoundItem = require("../models/FoundItem");
 // Report a found item
 exports.reportFoundItem = async (req, res) => {
   try {
-    const { itemName, itemDescription, placeFound, timeFound, dateFound } = req.body;
+    const { itemName, itemDescription, placeFound, timeFound, dateFound, category } = req.body;
 
-    if (!itemName || !itemDescription || !placeFound || !timeFound || !dateFound) {
+    if (!itemName || !itemDescription || !placeFound || !timeFound || !dateFound || !category) {
       return res.status(400).json({ message: "Please fill all required fields" });
     }
 
@@ -19,6 +19,7 @@ exports.reportFoundItem = async (req, res) => {
       placeFound,
       timeFound,
       dateFound,
+      category,
       userName: req.user.fullName,
       userEmail: req.user.email,
       image: req.file.path,
