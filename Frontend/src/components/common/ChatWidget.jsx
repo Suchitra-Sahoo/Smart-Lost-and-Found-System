@@ -10,7 +10,7 @@ const ChatWidget = () => {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-10 right-8 flex items-center gap-4 bg-black border-2 border-orange-500 text-orange-400 px-6 py-4 rounded-full shadow-[0_0_15px_#f97316] hover:shadow-[0_0_25px_#f97316] transition-all animate-bounce cursor-pointer"
+          className="fixed bottom-10 right-8 flex items-center gap-4 bg-black border-2 border-orange-500 text-orange-400 px-6 py-4 rounded-full shadow-[0_0_15px_#f97316] hover:shadow-[0_0_25px_#f97316] transition-all cursor-pointer"
         >
           <FaComments size={28} />
           <span className="font-bold text-lg">AI Support</span>
