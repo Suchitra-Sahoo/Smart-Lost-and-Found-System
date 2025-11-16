@@ -23,7 +23,7 @@ const CategoryDropdown = ({ value, onChange }) => {
     setOpen(false);
   };
 
-  // close dropdown on outside click
+  // Close dropdown on outside click
   useEffect(() => {
     const handler = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -36,13 +36,12 @@ const CategoryDropdown = ({ value, onChange }) => {
 
   return (
     <div className="relative w-full" ref={dropdownRef}>
-
       {/* BUTTON */}
       <div
         onClick={() => setOpen(!open)}
-        className="flex items-center justify-between bg-white px-4 py-2 border border-gray-300 cursor-pointer rounded-lg"
+        className="flex items-center justify-between bg-black border border-orange-500 px-4 py-2 cursor-pointer rounded-lg"
       >
-        <span className="text-base font-normal text-black">
+        <span className="text-gray-200 text-base font-normal">
           {value || "Choose Category"}
         </span>
 
@@ -60,18 +59,16 @@ const CategoryDropdown = ({ value, onChange }) => {
 
       {/* DROPDOWN */}
       {open && (
-        <div className="absolute w-full bg-gray-100 shadow-xl py-2 px-4 z-50 rounded-lg">
-
+        <div className="absolute w-full bg-black border border-orange-500 shadow-xl py-2 px-4 z-50 rounded-lg mt-1">
           {categories.map((cat) => (
             <div
               key={cat}
               onClick={() => handleSelect(cat)}
-              className="py-2 text-gray-600 font-medium cursor-pointer hover:text-orange-500"
+              className="py-2 text-gray-200 font-medium cursor-pointer hover:text-orange-400"
             >
               {cat}
             </div>
           ))}
-
         </div>
       )}
     </div>

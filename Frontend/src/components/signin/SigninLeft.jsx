@@ -3,9 +3,10 @@ import React from "react";
 function SigninLeft({ images, currentImage }) {
   return (
     <div className="hidden md:flex md:w-1/2 flex-col items-center justify-center 
-        bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 text-gray-800 p-8 md:p-12 -3xl shadow-xl relative"
+        bg-gradient-to-br from-zinc-900 via-black to-zinc-800 text-gray-100 p-8 md:p-12 shadow-xl relative"
     >
-      <div className="w-80 md:w-96 h-80 md:h-96 relative backdrop-blur-md rounded-2xl flex items-center justify-center">
+      {/* Image carousel without box */}
+      <div className="w-80 md:w-96 h-80 md:h-96 relative flex items-center justify-center">
         {images.map((img, index) => (
           <img
             key={index}
@@ -18,13 +19,15 @@ function SigninLeft({ images, currentImage }) {
         ))}
       </div>
 
-      <h2 className="text-4xl md:text-5xl font-extrabold mt-8 md:mt-10 tracking-tight text-center text-orange-600 drop-shadow-lg">
+      {/* Heading */}
+      <h2 className="text-4xl md:text-5xl font-extrabold mt-8 md:mt-10 tracking-tight text-center text-orange-500 drop-shadow-lg">
         Welcome Back
       </h2>
 
-      <p className="mt-4 text-center max-w-sm leading-relaxed text-base md:text-lg text-gray-700">
+      {/* Paragraph */}
+      <p className="mt-4 text-center max-w-sm leading-relaxed text-base md:text-lg text-gray-400">
         Sign in to your{" "}
-        <span className="font-semibold text-orange-600">CampusFind</span>{" "}
+        <span className="font-semibold text-orange-400">CampusFind</span>{" "}
         account and continue your journey with us.
       </p>
     </div>

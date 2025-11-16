@@ -54,7 +54,7 @@ const ReportFoundItemForm = ({ user }) => {
       data.append("placeFound", placeFound);
       data.append("timeFound", timeFound);
       data.append("dateFound", dateFound.toISOString().split("T")[0]);
-      data.append("category", category); // ✅ Added
+      data.append("category", category);
       data.append("image", image);
 
       const response = await axios.post(`${API_BASE_URL}/found-items`, data, {
@@ -71,7 +71,7 @@ const ReportFoundItemForm = ({ user }) => {
         itemDescription: "",
         placeFound: "",
         timeFound: "",
-        category: "", 
+        category: "",
       });
 
       setDateFound(null);
@@ -86,11 +86,14 @@ const ReportFoundItemForm = ({ user }) => {
     }
   };
 
+  const inputClasses =
+    "w-full bg-black text-gray-200 placeholder-gray-400 border border-orange-500 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 transition";
+
   return (
-    <form className="space-y-5">
+    <form className="space-y-5 bg-black p-6 rounded-xl shadow-lg">
       {/* Item Name */}
       <div>
-        <label className="block mb-1 font-medium text-gray-700">
+        <label className="block mb-1 font-medium text-orange-400">
           Item Name *
         </label>
         <input
@@ -99,26 +102,25 @@ const ReportFoundItemForm = ({ user }) => {
           value={formData.itemName}
           onChange={handleChange}
           placeholder="Enter item name"
-          className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300 transition"
+          className={inputClasses}
         />
       </div>
 
-      {/* ✅ Category */}
+      {/* Category */}
       <div>
-        <div>
-          <label className="block mb-1 font-medium text-gray-700">
-            Category *
-          </label>
-          <CategoryDropdown
-            value={formData.category}
-            onChange={(cat) => setFormData({ ...formData, category: cat })}
-          />
-        </div>
+        <label className="block mb-1 font-medium text-orange-400">
+          Category *
+        </label>
+        <CategoryDropdown
+          value={formData.category}
+          onChange={(cat) => setFormData({ ...formData, category: cat })}
+          dark
+        />
       </div>
 
       {/* Description */}
       <div>
-        <label className="block mb-1 font-medium text-gray-700">
+        <label className="block mb-1 font-medium text-orange-400">
           Description *
         </label>
         <textarea
@@ -126,27 +128,27 @@ const ReportFoundItemForm = ({ user }) => {
           value={formData.itemDescription}
           onChange={handleChange}
           placeholder="Describe the found item"
-          className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300 transition"
+          className={inputClasses + " h-24 resize-none"}
         />
       </div>
 
       {/* Date & Time Found */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block mb-1 font-medium text-gray-700">
+          <label className="block mb-1 font-medium text-orange-400">
             Date Found *
           </label>
           <DatePicker
             selected={dateFound}
             onChange={(date) => setDateFound(date)}
-            className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300 transition"
+            className={inputClasses}
             placeholderText="Select date"
             dateFormat="yyyy-MM-dd"
           />
         </div>
 
         <div>
-          <label className="block mb-1 font-medium text-gray-700">
+          <label className="block mb-1 font-medium text-orange-400">
             Time Found *
           </label>
           <input
@@ -155,14 +157,14 @@ const ReportFoundItemForm = ({ user }) => {
             value={formData.timeFound}
             onChange={handleChange}
             placeholder="e.g., 11:30 AM"
-            className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300 transition"
+            className={inputClasses}
           />
         </div>
       </div>
 
       {/* Place Found */}
       <div>
-        <label className="block mb-1 font-medium text-gray-700">
+        <label className="block mb-1 font-medium text-orange-400">
           Place Found *
         </label>
         <input
@@ -171,20 +173,20 @@ const ReportFoundItemForm = ({ user }) => {
           value={formData.placeFound}
           onChange={handleChange}
           placeholder="Where did you find it?"
-          className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300 transition"
+          className={inputClasses}
         />
       </div>
 
       {/* Image Upload */}
       <div>
-        <label className="block mb-1 font-medium text-gray-700">
+        <label className="block mb-1 font-medium text-orange-400">
           Upload Image *
         </label>
         <input
           type="file"
           accept="image/*"
           onChange={handleImageChange}
-          className="cursor-pointer w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300 transition"
+          className={inputClasses + " cursor-pointer"}
         />
       </div>
 
@@ -193,7 +195,7 @@ const ReportFoundItemForm = ({ user }) => {
         type="button"
         onClick={handleSubmit}
         disabled={loading}
-        className="cursor-pointer w-full bg-gradient-to-r from-orange-400 to-orange-600 text-white py-2.5 rounded-xl font-semibold shadow hover:scale-105 transform transition duration-300 disabled:opacity-50"
+        className="cursor-pointer w-full bg-gradient-to-r from-orange-600 to-orange-400 text-white py-2.5 rounded-xl font-semibold shadow-lg  hover:scale-105 transition-all duration-300 disabled:opacity-50"
       >
         {loading ? "Reporting..." : "Report Found Item"}
       </button>

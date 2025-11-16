@@ -9,7 +9,7 @@ const ReportFoundItem = () => {
     <>
       <Navbar />
 
-      <div className="min-h-screen bg-gray-50 flex flex-col pt-24">
+      <div className="min-h-screen bg-black flex flex-col pt-24">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between px-6 lg:px-8 py-10 gap-10">
           {/* Left - Image */}
           <div className="hidden lg:flex w-1/2 justify-center items-center">
@@ -21,8 +21,8 @@ const ReportFoundItem = () => {
           </div>
 
           {/* Right - Form */}
-          <div className="w-full lg:w-[600px] bg-white p-8 rounded-2xl shadow-md border border-orange-100">
-            <h2 className="text-3xl font-bold mb-6 text-orange-600 border-b border-orange-100 pb-2 text-center lg:text-left">
+          <div className="w-full lg:w-[600px] bg-black p-8 rounded-2xl shadow-md border border-orange-100">
+            <h2 className="text-3xl font-bold mb-6 text-white border-b border-orange-100 pb-2 text-center lg:text-left">
               Report Found Item
             </h2>
 

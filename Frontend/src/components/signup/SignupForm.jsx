@@ -31,7 +31,6 @@ function SignupForm({ role, open, setOpen, handleSelect }) {
 
   const navigate = useNavigate();
 
-  // Redirect Admin to signin
   useEffect(() => {
     if (role === "Admin") {
       navigate("/signin");
@@ -40,13 +39,11 @@ function SignupForm({ role, open, setOpen, handleSelect }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!role || role === "Admin") return;
-
     setLoading(true);
 
     const data = {
-      role: role.toLowerCase(), // lowercase
+      role: role.toLowerCase(),
       fullName,
       email,
       contactNumber,
@@ -72,20 +69,21 @@ function SignupForm({ role, open, setOpen, handleSelect }) {
   };
 
   return (
-    <div className="md:w-1/2 w-full flex flex-col md:justify-center bg-white p-8 md:p-12 text-lg">
+    <div className="md:w-1/2 w-full flex flex-col md:justify-center bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-700
+ p-8 md:p-12 text-lg text-gray-100 shadow-xl">
       {/* Back to Home */}
       <div className="flex justify-end mb-6 hover:underline text-xl font-semibold">
-        <a href="/" className="flex items-center gap-2 text-orange-500">
+        <a href="/" className="flex items-center gap-2 text-orange-400">
           <FaArrowLeft /> Back to Home
         </a>
       </div>
 
       {/* Sign Up Heading */}
       <div className="mb-8 flex items-center">
-        <h3 className="text-2xl md:text-3xl font-bold text-orange-600 mr-4">
+        <h3 className="text-2xl md:text-3xl font-bold text-orange-500 mr-4">
           Sign Up
         </h3>
-        <div className="flex-grow h-1 bg-orange-200"></div>
+        <div className="flex-grow h-1 bg-orange-600"></div>
       </div>
 
       {/* Form */}
@@ -105,7 +103,6 @@ function SignupForm({ role, open, setOpen, handleSelect }) {
           onChange={(e) => setFullName(e.target.value)}
         />
 
-        {/* Email and Contact Number */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <InputField
             icon={FaEnvelope}
@@ -123,7 +120,6 @@ function SignupForm({ role, open, setOpen, handleSelect }) {
           />
         </div>
 
-        {/* Student Fields */}
         {role === "Student" && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <InputField
@@ -140,10 +136,9 @@ function SignupForm({ role, open, setOpen, handleSelect }) {
               value={semester}
               onChange={(e) => {
                 const val = e.target.value;
-                if (/^\d*$/.test(val)) setSemester(val); // only allow digits
+                if (/^\d*$/.test(val)) setSemester(val);
               }}
             />
-
             <InputField
               icon={FaCalendarAlt}
               type="text"
@@ -151,10 +146,9 @@ function SignupForm({ role, open, setOpen, handleSelect }) {
               value={year}
               onChange={(e) => {
                 const val = e.target.value;
-                if (/^\d*$/.test(val)) setYear(val); // only allow digits
+                if (/^\d*$/.test(val)) setYear(val);
               }}
             />
-
             <InputField
               icon={FaBuilding}
               type="text"
@@ -165,7 +159,6 @@ function SignupForm({ role, open, setOpen, handleSelect }) {
           </div>
         )}
 
-        {/* Staff Fields */}
         {role === "Staff" && (
           <>
             <InputField
@@ -185,7 +178,6 @@ function SignupForm({ role, open, setOpen, handleSelect }) {
           </>
         )}
 
-        {/* Password and Confirm Password */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <InputField
             icon={FaLock}
@@ -206,7 +198,7 @@ function SignupForm({ role, open, setOpen, handleSelect }) {
         <button
           type="submit"
           disabled={loading}
-          className="cursor-pointer w-full bg-gradient-to-r from-orange-400 to-orange-600 text-white py-2.5 md:py-3 rounded-xl font-semibold shadow-lg hover:scale-105 transition-transform duration-300 text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
+          className="cursor-pointer w-full bg-gradient-to-r from-orange-500 to-orange-700 text-white py-2.5 md:py-3 rounded-xl font-semibold shadow-md hover:scale-105 transition-transform duration-300 text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? "Signing up..." : "Sign Up"}
         </button>
@@ -214,19 +206,19 @@ function SignupForm({ role, open, setOpen, handleSelect }) {
 
       {/* Divider */}
       <div className="my-4 md:my-6 flex items-center justify-center">
-        <span className="h-px flex-1 bg-orange-200"></span>
-        <span className="px-2 md:px-3 text-gray-500 text-sm md:text-base">
+        <span className="h-px flex-1 bg-zinc-700"></span>
+        <span className="px-2 md:px-3 text-gray-400 text-sm md:text-base">
           or
         </span>
-        <span className="h-px flex-1 bg-orange-200"></span>
+        <span className="h-px flex-1 bg-zinc-700"></span>
       </div>
 
       {/* Sign In Link */}
-      <p className="text-center text-gray-600 text-sm md:text-base">
+      <p className="text-center text-gray-300 text-sm md:text-base">
         Already have an account?{" "}
         <a
           href="/signin"
-          className="text-orange-600 font-semibold hover:underline"
+          className="text-orange-400 font-semibold hover:underline"
         >
           Sign In
         </a>
