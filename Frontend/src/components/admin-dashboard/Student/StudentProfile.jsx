@@ -74,8 +74,9 @@ const StudentProfile = () => {
         ></div>
 
         {/* Floating Profile Circle with Orange Border */}
-        <div className="absolute -bottom-10 left-4 sm:left-8 w-28 h-28 sm:w-32 sm:h-32 rounded-full flex items-center justify-center border-4 border-orange-500 shadow-lg">
-          <div className="w-24 h-24 sm:w-28 sm:h-28 bg-gray-800 text-white rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold">
+        {/* Floating Profile Circle */}
+        <div className="absolute -bottom-10 left-4 sm:left-8 w-28 h-28 sm:w-32 sm:h-32 bg-zinc-900 rounded-full shadow-lg flex items-center justify-center">
+          <div className="w-24 h-24 sm:w-28 sm:h-28 bg-orange-600 text-white rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold">
             {student.fullName.charAt(0).toUpperCase()}
           </div>
         </div>
@@ -123,7 +124,8 @@ const StudentProfile = () => {
                   </span>
                   <span className="hidden sm:block">|</span>
                   <span className="flex items-center gap-2">
-                    <MdAccessTime className="text-orange-400" /> {item.timeRange}
+                    <MdAccessTime className="text-orange-400" />{" "}
+                    {item.timeRange}
                   </span>
                 </div>
 
@@ -157,7 +159,8 @@ const StudentProfile = () => {
                 <p className="font-medium text-white">{item.itemName}</p>
                 <div className="mt-1 flex flex-col sm:flex-row sm:items-center sm:gap-2 text-white">
                   <span className="flex items-center gap-2">
-                    <MdLocationOn className="text-green-500" /> {item.placeFound}
+                    <MdLocationOn className="text-green-500" />{" "}
+                    {item.placeFound}
                   </span>
                   <span className="hidden sm:block">|</span>
                   <span className="flex items-center gap-2">
