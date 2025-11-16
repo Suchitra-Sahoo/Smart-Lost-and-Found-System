@@ -3,7 +3,7 @@ import "./Loader.css";
 
 const Loader = () => {
   return (
-    <div className="flex flex-col justify-center items-center h-screen bg-white">
+    <div className="flex flex-col justify-center items-center h-screen bg-black">
       {/* Uiverse Loader Animation */}
       <div className="loadingspinner">
         <div id="square1"></div>

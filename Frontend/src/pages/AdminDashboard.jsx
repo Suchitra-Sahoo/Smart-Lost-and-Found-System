@@ -8,6 +8,7 @@ import StudentsPage from "../components/admin-dashboard/Student/StudentPage";
 import StaffPage from "../components/admin-dashboard/Staff/StaffPage";
 import StudentProfile from "../components/admin-dashboard/Student/StudentProfile";
 import StaffProfile from "../components/admin-dashboard/Staff/StaffProfile";
+import MatchItemsPage from "../components/admin-dashboard/Match-Items/MatchItemsPage";
 
 function AdminDashboard() {
   return (
@@ -23,6 +24,7 @@ function AdminDashboard() {
           <Route path="found-items" element={<FoundItemsPage />} />
           <Route path="students" element={<StudentsPage />} />
           <Route path="staff" element={<StaffPage />} />
+          <Route path="match" element={<MatchItemsPage />} />
           <Route path="student-profile/:id" element={<StudentProfile />} />
           <Route path="staff-profile/:id" element={<StaffProfile />} />
 

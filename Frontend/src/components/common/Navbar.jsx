@@ -1,17 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  FaBars,
-  FaTimes,
-  FaUserPlus,
-  FaSearch,
-  FaBoxOpen,
-  FaHome,
-  FaInfoCircle,
-  FaPhone,
-  FaUserCircle,
-  FaSignOutAlt,
-} from "react-icons/fa";
+import { FaBars, FaTimes, FaUserPlus, FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import Logo from "/logo.png";
 
@@ -27,11 +16,8 @@ export default function Navbar() {
     if (token) {
       try {
         const payload = JSON.parse(atob(token.split(".")[1]));
-
-        // Check expiry
-        const currentTime = Math.floor(Date.now() / 1000); // in seconds
+        const currentTime = Math.floor(Date.now() / 1000);
         if (payload.exp && payload.exp < currentTime) {
-          // Token expired
           localStorage.removeItem("token");
           setIsLoggedIn(false);
           setRole("");
@@ -63,39 +49,33 @@ export default function Navbar() {
   const menuItems = [
     { name: "Home", to: "/home" },
     { name: "About", to: "/about" },
-    {
-      name: "Report Lost Item",
-
-      to: "/report-lost-item",
-    },
-    {
-      name: "Report Found Item",
-
-      to: "/report-found-item",
-    },
+    { name: "Report Lost Item", to: "/report-lost-item" },
+    { name: "Report Found Item", to: "/report-found-item" },
     { name: "Contact", to: "/contact" },
   ];
 
-  // Dynamic dashboard link based on role
   const userOptions = [
-    {
-      name: "Dashboard",
-      icon: <MdDashboard />,
-      to: role === "admin" ? "/admin-dashboard" : "/user-dashboard", // student or staff
-    },
+    { name: "Dashboard", icon: <MdDashboard />, to: role === "admin" ? "/admin-dashboard" : "/user-dashboard" },
     { name: "Logout", icon: <FaSignOutAlt />, action: handleLogout },
   ];
 
+  // Menu link classes (neon underline on hover)
+  const neonLinkClasses =
+    "relative px-3 py-2 text-gray-200 font-medium hover:text-orange-400 transition-all duration-300 " +
+    "after:absolute after:left-0 after:-bottom-0.5 after:w-0 after:h-[2px] after:bg-orange-400 after:transition-all after:duration-300 hover:after:w-full";
+
+  // Button classes (solid neon border, no underline)
+  const neonButtonClasses =
+    "cursor-pointer flex items-center space-x-2 px-4 py-2 text-gray-200 font-semibold border-2 border-orange-400 rounded-full hover:text-orange-400 hover:border-orange-400 transition-all duration-300 ";
+
   return (
-    <nav className="fixed w-full top-0 left-0 z-50 bg-white/20 backdrop-blur-md text-gray-800 shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <nav className="fixed w-full top-0 left-0 z-50 bg-black/40 backdrop-blur-md text-gray-200 shadow-md">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img src={Logo} alt="CampusFind Logo" className="h-10 w-auto" />
-            <span className="text-xl font-bold text-orange-500">
-              CampusFind
-            </span>
+            <span className="text-xl font-bold text-orange-400">CampusFind</span>
           </Link>
 
           {/* Desktop Menu */}
@@ -105,19 +85,18 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   to={item.to}
-                  className="flex items-center space-x-1 px-3 py-2 rounded-md hover:bg-white/40 transition duration-300 font-medium text-gray-700 hover:text-orange-500"
+                  className={neonLinkClasses}
                   onClick={(e) => {
                     if (
                       role === "admin" &&
-                      (item.name === "Report Lost Item" ||
-                        item.name === "Report Found Item")
+                      (item.name === "Report Lost Item" || item.name === "Report Found Item")
                     ) {
                       e.preventDefault();
                       navigate("/admin-dashboard");
                     }
                   }}
                 >
-                  <span>{item.name}</span>
+                  {item.name}
                 </Link>
               ))}
             </div>
@@ -127,23 +106,21 @@ export default function Navbar() {
                 <div className="relative">
                   <button
                     onClick={() => setUserDropdown(!userDropdown)}
-                    className="cursor-pointer flex items-center space-x-2 px-2 py-1 rounded-full hover:text-orange-500 hover:bg-white/30 transition duration-300 focus:outline-none"
+                    className={neonButtonClasses}
                   >
-                    <FaUserCircle size={28} />
-                    <span className="px-2 py-1 text-md font-semibold bg-orange-100 text-orange-600 rounded-lg transition duration-300">
-                      {role.charAt(0).toUpperCase() + role.slice(1)}
-                    </span>
+                    <FaUserCircle size={24} />
+                    <span>{role.charAt(0).toUpperCase() + role.slice(1)}</span>
                   </button>
 
                   {/* Dropdown */}
                   {userDropdown && (
-                    <div className="absolute left-0 top-full mt-1 w-44 bg-white rounded-md shadow-lg py-2 z-50">
+                    <div className="absolute left-0 top-full mt-1 w-44 bg-black/80 backdrop-blur-md rounded-md shadow-lg py-2 z-50">
                       {userOptions.map((option) =>
                         option.to ? (
                           <Link
                             key={option.name}
                             to={option.to}
-                            className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-orange-50"
+                            className="flex items-center space-x-2 px-4 py-2 text-gray-200 hover:text-orange-400 transition-all duration-300"
                             onClick={() => setUserDropdown(false)}
                           >
                             <span>{option.icon}</span>
@@ -153,7 +130,7 @@ export default function Navbar() {
                           <button
                             key={option.name}
                             onClick={option.action}
-                            className="flex items-center space-x-2 w-full px-4 py-2 text-gray-700 hover:bg-orange-50 cursor-pointer"
+                            className="flex items-center space-x-2 w-full px-4 py-2 text-gray-200 hover:text-orange-400 transition-all duration-300"
                           >
                             <span>{option.icon}</span>
                             <span>{option.name}</span>
@@ -164,18 +141,15 @@ export default function Navbar() {
                   )}
                 </div>
               ) : (
-                <Link
-                  to="/signin"
-                  className="flex items-center space-x-2 bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition duration-300 font-semibold"
-                >
+                <Link to="/signin" className={neonButtonClasses}>
                   <FaUserPlus />
-                  <span className="cursor-pointer">Join Now</span>
+                  <span>Join Now</span>
                 </Link>
               )}
             </div>
           </div>
 
-          {/* Mobile/Tablet Menu Button */}
+          {/* Mobile Menu Button */}
           <div className="flex xl:hidden items-center space-x-2">
             {isLoggedIn && !userDropdown && (
               <button
@@ -183,12 +157,10 @@ export default function Navbar() {
                   setUserDropdown(true);
                   setIsOpen(false);
                 }}
-                className="flex items-center space-x-2 px-2 py-1 rounded-full hover:text-orange-500 hover:bg-white/30 transition duration-300 focus:outline-none"
+                className={neonButtonClasses + " px-2 py-1"}
               >
-                <FaUserCircle size={24} />
-                <span className="px-2 py-1 text-xs font-semibold bg-orange-100 text-orange-600 rounded-full">
-                  {role.charAt(0).toUpperCase() + role.slice(1)}
-                </span>
+                <FaUserCircle size={20} />
+                <span className="text-xs">{role.charAt(0).toUpperCase() + role.slice(1)}</span>
               </button>
             )}
             <button
@@ -196,7 +168,7 @@ export default function Navbar() {
                 setIsOpen(!isOpen);
                 setUserDropdown(false);
               }}
-              className="focus:outline-none"
+              className="focus:outline-none text-gray-200"
             >
               {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
             </button>
@@ -204,15 +176,15 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile/Tablet User Dropdown */}
+      {/* Mobile Dropdown */}
       {isLoggedIn && userDropdown && (
-        <div className="xl:hidden bg-white/90 backdrop-blur-md py-2 flex flex-col items-center">
+        <div className="xl:hidden bg-black/80 backdrop-blur-md py-2 flex flex-col items-center rounded-b-md">
           {userOptions.map((option) =>
             option.to ? (
               <Link
                 key={option.name}
                 to={option.to}
-                className="flex items-center w-40 justify-start space-x-2 px-4 py-3 text-gray-700 hover:bg-orange-50 rounded-md transition duration-300"
+                className="flex items-center w-40 justify-start space-x-2 px-4 py-3 text-gray-200 hover:text-orange-400 transition-all duration-300"
                 onClick={() => setUserDropdown(false)}
               >
                 <span>{option.icon}</span>
@@ -222,7 +194,7 @@ export default function Navbar() {
               <button
                 key={option.name}
                 onClick={option.action}
-                className="flex items-center w-40 justify-start space-x-2 px-4 py-3 text-gray-700 hover:bg-orange-50 rounded-md transition duration-300"
+                className="flex items-center w-40 justify-start space-x-2 px-4 py-3 text-gray-200 hover:text-orange-400 transition-all duration-300"
               >
                 <span>{option.icon}</span>
                 <span>{option.name}</span>
@@ -232,10 +204,10 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* Mobile/Tablet Menu */}
+      {/* Mobile Menu */}
       {!userDropdown && (
         <div
-          className={`xl:hidden bg-white/90 backdrop-blur-md overflow-hidden transition-all duration-500 ${
+          className={`xl:hidden bg-black/80 backdrop-blur-md overflow-hidden transition-all duration-500 ${
             isOpen ? "max-h-[500px]" : "max-h-0"
           }`}
         >
@@ -243,29 +215,21 @@ export default function Navbar() {
             <Link
               key={item.name}
               to={item.to}
-              className="flex items-center space-x-3 px-6 py-4 border-b border-gray-200 hover:bg-orange-50 rounded-md transition duration-300 font-medium"
+              className="flex items-center space-x-3 px-6 py-4 border-b border-gray-800 text-gray-200 hover:text-orange-400 relative after:absolute after:left-0 after:-bottom-0.5 after:w-0 after:h-[2px] after:bg-orange-400 after:transition-all after:duration-300 hover:after:w-full transition-all duration-300"
               onClick={(e) => {
-                if (
-                  role === "admin" &&
-                  (item.name === "Report Lost Item" ||
-                    item.name === "Report Found Item")
-                ) {
+                if (role === "admin" && (item.name === "Report Lost Item" || item.name === "Report Found Item")) {
                   e.preventDefault();
                   navigate("/admin-dashboard");
                 }
                 setIsOpen(false);
               }}
             >
-              <span className="text-lg">{item.icon}</span>
               <span>{item.name}</span>
             </Link>
           ))}
 
           {!isLoggedIn && (
-            <Link
-              to="/signin"
-              className="flex items-center justify-center space-x-2 mx-6 my-3 bg-orange-500 text-white font-semibold px-4 py-3 rounded-lg hover:bg-orange-600 transition duration-300"
-            >
+            <Link to="/signin" className={neonButtonClasses + " mx-6 my-3"}>
               <FaUserPlus />
               <span>Join Now</span>
             </Link>

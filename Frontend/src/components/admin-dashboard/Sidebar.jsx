@@ -41,7 +41,7 @@ const Sidebar = () => {
     },
     { name: "Users", icon: <FaUser />, dropdown: ["Students", "Staff"] },
     { name: "Dashboard", icon: <MdDashboard />, path: "/admin-dashboard" },
-    { name: "Match Items", icon: <GiPuzzle />, path: "/" },
+    { name: "Match Items", icon: <GiPuzzle />, path: "/admin-dashboard/match" },
     { name: "Logout", icon: <FaSignOutAlt />, action: handleLogout },
   ];
 

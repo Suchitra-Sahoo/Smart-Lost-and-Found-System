@@ -12,7 +12,7 @@ import Logo from "/logo.png";
 
 function Footer() {
   return (
-    <footer className="bg-gray-100 backdrop-blur-md text-gray-800 border-t border-white/30">
+    <footer className="bg-black text-gray-300 border-t border-white/20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Logo and About */}
         <div className="text-left">
@@ -23,13 +23,13 @@ function Footer() {
             <img
               src={Logo}
               alt="CampusFind Logo"
-              className="h-10 w-auto group-hover:brightness-110 transition"
+              className="h-10 w-auto group-hover:brightness-125 transition"
             />
-            <span className="text-xl font-bold text-orange-500 transition duration-300">
+            <span className="text-xl font-bold text-orange-400 transition duration-300">
               CampusFind
             </span>
           </Link>
-          <p className="text-gray-700 text-sm leading-relaxed">
+          <p className="text-gray-400 text-sm leading-relaxed">
             CampusFind is a smart lost and found system to recover lost belongings efficiently within
             the campus.
           </p>
@@ -37,50 +37,42 @@ function Footer() {
 
         {/* Quick Links */}
         <div className="text-left">
-          <h3 className="text-lg font-semibold text-orange-500 mb-4">
+          <h3 className="text-lg font-semibold text-orange-400 mb-4">
             Quick Links
           </h3>
           <ul className="space-y-2 text-sm">
-            <li>
-              <Link to="/home" className="hover:text-orange-600 transition">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/report-lost" className="hover:text-orange-600 transition">
-                Report Lost Item
-              </Link>
-            </li>
-            <li>
-              <Link to="/report-found" className="hover:text-orange-600 transition">
-                Report Found Item
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" className="hover:text-orange-600 transition">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact" className="hover:text-orange-600 transition">
-                Contact
-              </Link>
-            </li>
+            {[
+              { name: "Home", to: "/home" },
+              { name: "Report Lost Item", to: "/report-lost" },
+              { name: "Report Found Item", to: "/report-found" },
+              { name: "About", to: "/about" },
+              { name: "Contact", to: "/contact" },
+            ].map((link, idx) => (
+              <li key={idx}>
+                <Link
+                  to={link.to}
+                  className="relative group hover:text-orange-400 transition font-medium"
+                >
+                  {link.name}
+                  <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-orange-400 transition-all group-hover:w-full"></span>
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
         {/* Contact Info */}
         <div className="text-left">
-          <h3 className="text-lg font-semibold text-orange-500 mb-4">
+          <h3 className="text-lg font-semibold text-orange-400 mb-4">
             Contact Us
           </h3>
           <ul className="space-y-3 text-sm">
             <li className="flex items-center space-x-2">
-              <FaEnvelope className="text-orange-500" />
+              <FaEnvelope className="text-orange-400" />
               <span>support@campusfind.in</span>
             </li>
             <li className="flex items-start space-x-2">
-              <FaMapMarkerAlt className="text-orange-500 mt-1" />
+              <FaMapMarkerAlt className="text-orange-400 mt-1" />
               <span>
                 GTBIT Campus, Rajouri Garden,
                 <br /> New Delhi, India
@@ -91,45 +83,30 @@ function Footer() {
 
         {/* Social Media */}
         <div className="text-left">
-          <h3 className="text-lg font-semibold text-orange-500 mb-4">
+          <h3 className="text-lg font-semibold text-orange-400 mb-4">
             Connect With Us
           </h3>
           <div className="flex space-x-4">
-            <a
-              href="#"
-              className="p-2 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition"
-            >
-              <FaFacebook />
-            </a>
-            <a
-              href="#"
-              className="p-2 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition"
-            >
-              <FaInstagram />
-            </a>
-            <a
-              href="#"
-              className="p-2 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition"
-            >
-              <FaTwitter />
-            </a>
-            <a
-              href="#"
-              className="p-2 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition"
-            >
-              <FaLinkedin />
-            </a>
+            {[FaFacebook, FaInstagram, FaTwitter, FaLinkedin].map((Icon, idx) => (
+              <a
+                key={idx}
+                href="#"
+                className="p-2 rounded-full bg-orange-500 text-black hover:bg-orange-400 hover:shadow-[0_0_15px_rgba(255,140,0,0.8)] transition-all"
+              >
+                <Icon />
+              </a>
+            ))}
           </div>
-          <p className="text-sm text-gray-700 mt-4">
+          <p className="text-sm text-gray-400 mt-4">
             Stay updated with our latest features and campus alerts.
           </p>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="bg-white/10 border-t border-white/20 py-4 text-center text-sm text-gray-700">
+      <div className="bg-black/90 border-t border-white/20 py-4 text-center text-sm text-gray-400">
         © 2025{" "}
-        <span className="font-semibold text-orange-500">CampusFind</span>. All
+        <span className="font-semibold text-orange-400">CampusFind</span>. All
         Rights Reserved.
       </div>
     </footer>
