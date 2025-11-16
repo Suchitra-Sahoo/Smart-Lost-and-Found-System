@@ -59,7 +59,7 @@ const ProfileSection = () => {
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
-    <div className="pb-6 bg-gray-50 pt-16 lg:pt-0 md:pt-0">
+    <div className="pb-6 bg-black pt-16 lg:pt-0 md:pt-0">
       {/* Banner + Profile Header */}
       <div className="relative w-full">
         {/* Banner */}

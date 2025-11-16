@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { FaEnvelope, FaArrowLeft } from "react-icons/fa";
 import toast from "react-hot-toast";
-import { forgotPassword } from "../../api/auth"; 
+import { forgotPassword } from "../../api/auth";
+
 function RightSection() {
   const [email, setEmail] = useState("");
 
@@ -17,7 +18,7 @@ function RightSection() {
   };
 
   return (
-    <div className="flex-1 flex flex-col md:justify-center bg-white p-8 md:p-12 text-lg">
+    <div className="flex-1 flex flex-col md:justify-center bg-zinc-900 p-8 md:p-12 text-lg text-gray-100">
       {/* Back to Home */}
       <div className="flex justify-end mb-6 hover:underline text-xl font-semibold">
         <a href="/" className="flex items-center gap-2 text-orange-500">
@@ -27,23 +28,25 @@ function RightSection() {
 
       {/* Heading */}
       <div className="mb-8 flex items-center">
-        <h3 className="text-2xl md:text-3xl font-bold text-orange-600 mr-4">
+        <h3 className="text-2xl md:text-3xl font-bold text-orange-500 mr-4">
           Reset Password
         </h3>
-        <div className="flex-grow h-1 bg-orange-200"></div>
+        <div className="flex-grow h-1 bg-orange-700/40 rounded"></div>
       </div>
 
       <div className="flex-1 flex flex-col items-center justify-center">
         {/* Icon */}
-        <div className="mb-4 p-4 border rounded-full border-gray-300">
-          <FaEnvelope className="text-gray-700 text-xl" />
+        <div className="mb-4 p-4 border rounded-full border-gray-600">
+          <FaEnvelope className="text-gray-400 text-xl" />
         </div>
 
         {/* Heading */}
-        <h1 className="text-3xl font-bold mb-2 text-gray-800">Forgot Password?</h1>
+        <h1 className="text-3xl font-bold mb-2 text-gray-100">
+          Forgot Password?
+        </h1>
 
         {/* Subtext */}
-        <p className="mb-6 text-gray-600 text-center">
+        <p className="mb-6 text-gray-400 text-center">
           Don’t worry, we will send you reset instructions.
         </p>
 
@@ -52,19 +55,19 @@ function RightSection() {
           onSubmit={handleSubmit}
           className="w-full max-w-md flex flex-col gap-4"
         >
-          <label className="text-gray-700">Email</label>
+          <label className="text-gray-300">Email</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter Email Address"
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+            className="w-full p-3 border border-gray-600 rounded-lg bg-zinc-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-500"
             required
           />
 
           <button
             type="submit"
-            className="w-full bg-orange-600 text-white p-3 rounded-lg hover:bg-orange-700 transition-colors"
+            className="w-full bg-orange-500 text-white p-3 rounded-lg hover:bg-orange-600 transition-colors"
           >
             Send Reset Link
           </button>

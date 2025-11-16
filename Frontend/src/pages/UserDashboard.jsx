@@ -11,7 +11,7 @@ function UserDashboard() {
     <div className="flex">
       <Sidebar />
 
-      <div className="flex-1 bg-gray-50 min-h-screen md:ml-64 p-5">
+      <div className="flex-1 bg-black min-h-screen md:ml-64 p-5">
         <Routes>
           <Route
             path="/"
