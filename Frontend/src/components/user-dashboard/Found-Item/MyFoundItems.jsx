@@ -44,7 +44,7 @@ const MyFoundItems = () => {
           <p className="text-lg">You haven’t reported any found items yet.</p>
         </div>
       ) : (
-        <div className="bg-zinc-900 p-6 rounded-xl shadow-sm border border-gray-800">
+        <div className="bg-black p-6 rounded-xl shadow-sm border border-gray-800">
           <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6">
             My Found Items
           </h2>

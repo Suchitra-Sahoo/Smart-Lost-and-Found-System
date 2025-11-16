@@ -85,7 +85,7 @@ const RecentFoundItems = () => {
     <div className="flex flex-col lg:flex-row gap-6 items-stretch w-full overflow-hidden">
 
       {/* LEFT — Found Items Grid */}
-      <div className="bg-zinc-900 rounded-2xl p-5 border border-gray-700
+      <div className="bg-black rounded-2xl p-5 border border-gray-700
                       w-full lg:w-[40%] flex-shrink-0 min-h-[280px] md:min-h-[330px] lg:min-h-[380px] overflow-hidden">
         <h2 className="text-lg sm:text-xl font-semibold text-white mb-4">
           Recently Found Items
@@ -107,7 +107,7 @@ const RecentFoundItems = () => {
       </div>
 
       {/* RIGHT — Found Items Chart */}
-      <div className="bg-zinc-900 rounded-2xl border border-gray-700 p-5 w-full lg:w-[60%] min-w-0">
+      <div className="bg-black rounded-2xl border border-gray-700 p-5 w-full lg:w-[60%] min-w-0">
         <h2 className="text-xl font-semibold text-white mb-4">
           Frequently Found Items of the Month
         </h2>

@@ -37,10 +37,10 @@ const TopSection = () => {
   }, []);
 
   return (
-    <div className="pt-8 px-6 bg-zinc-900 min-h-screen">
+    <div className="pt-8 px-6 bg-black min-h-screen">
       <div className="pt-12 lg:pt-0 md:pt-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Lost Items */}
-        <div className="p-6 rounded-xl shadow-sm bg-zinc-900 border-2 border-orange-400 hover:shadow-md transition-all duration-200">
+        <div className="p-6 rounded-xl shadow-sm bg-black border-2 border-orange-400 hover:shadow-md transition-all duration-200">
           <h2 className="text-md font-semibold text-orange-400">
             Total Lost Items
           </h2>
@@ -48,7 +48,7 @@ const TopSection = () => {
         </div>
 
         {/* Found Items */}
-        <div className="p-6 rounded-xl shadow-sm bg-zinc-900 border-2 border-orange-400 hover:shadow-md transition-all duration-200">
+        <div className="p-6 rounded-xl shadow-sm bg-black border-2 border-orange-400 hover:shadow-md transition-all duration-200">
           <h2 className="text-md font-semibold text-orange-400">
             Total Found Items
           </h2>
@@ -56,13 +56,13 @@ const TopSection = () => {
         </div>
 
         {/* Staff */}
-        <div className="p-6 rounded-xl shadow-sm bg-zinc-900 border-2 border-orange-400 hover:shadow-md transition-all duration-200">
+        <div className="p-6 rounded-xl shadow-sm bg-black border-2 border-orange-400 hover:shadow-md transition-all duration-200">
           <h2 className="text-md font-semibold text-orange-400">Total Staff</h2>
           <p className="text-4xl font-bold mt-3 text-orange-400">{staffCount}</p>
         </div>
 
         {/* Students */}
-        <div className="p-6 rounded-xl shadow-sm bg-zinc-900 border-2 border-orange-400 hover:shadow-md transition-all duration-200">
+        <div className="p-6 rounded-xl shadow-sm bg-black border-2 border-orange-400 hover:shadow-md transition-all duration-200">
           <h2 className="text-md font-semibold text-orange-400">
             Total Students
           </h2>

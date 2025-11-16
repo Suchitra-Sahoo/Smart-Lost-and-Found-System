@@ -125,7 +125,7 @@ const LostFoundChart = () => {
   }, []);
 
   return (
-    <div className="bg-zinc-900 rounded-2xl shadow-lg w-full mt-8 p-5">
+    <div className="bg-black rounded-2xl shadow-lg w-full mt-8 p-5">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold text-gray-200">
           Lost & Found Report

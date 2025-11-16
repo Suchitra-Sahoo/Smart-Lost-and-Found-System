@@ -47,7 +47,7 @@ const MyLostItems = () => {
           <p className="text-lg">You haven’t reported any lost items yet.</p>
         </div>
       ) : (
-        <div className="bg-zinc-900 p-6 rounded-xl shadow-sm border border-gray-800">
+        <div className="bg-black p-6 rounded-xl shadow-sm border border-gray-700">
           <h2 className="text-2xl font-semibold text-white mb-6">
             My Lost Items
           </h2>

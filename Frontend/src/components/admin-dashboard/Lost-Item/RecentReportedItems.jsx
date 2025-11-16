@@ -82,7 +82,7 @@ const RecentReportedItems = () => {
     <div className="flex flex-col lg:flex-row gap-6 items-stretch w-full overflow-hidden">
 
       {/* LEFT SIDE: Recently Reported Items */}
-      <div className="bg-zinc-900 rounded-2xl p-5 border border-gray-700
+      <div className="bg-black rounded-2xl p-5 border border-gray-700
                       w-full lg:w-[40%] flex-shrink min-h-[250px] sm:min-h-[300px] lg:min-h-[380px] overflow-hidden">
         <h2 className="text-lg sm:text-xl font-semibold text-white mb-4">
           Recently Reported Items
@@ -106,7 +106,7 @@ const RecentReportedItems = () => {
       </div>
 
       {/* RIGHT SIDE: Chart */}
-      <div className="bg-zinc-900 rounded-2xl border border-gray-700 p-5 
+      <div className="bg-black rounded-2xl border border-gray-700 p-5 
                       w-full lg:w-[60%] min-w-0">
         <h2 className="text-xl font-semibold text-white mb-4">
           Frequent Lost Items of the Month

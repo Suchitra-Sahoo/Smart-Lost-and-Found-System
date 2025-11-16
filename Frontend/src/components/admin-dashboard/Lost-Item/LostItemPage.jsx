@@ -79,7 +79,7 @@ const LostItemsPage = () => {
   if (error) return <p className="p-4 text-red-500">{error}</p>;
 
   return (
-    <div className="p-4 min-h-screen bg-zinc-900 text-gray-200">
+    <div className="p-4 min-h-screen bg-black text-gray-200">
       <Toaster position="top-right" reverseOrder={false} />
 
       <div className="mb-6 flex justify-center mt-20 lg:mt-4 md:mt-4">
@@ -103,7 +103,7 @@ const LostItemsPage = () => {
         <div className="overflow-x-auto w-full">
           <RecentReportedItems />
 
-          <table className="mt-8 min-w-full divide-y divide-gray-700 bg-zinc-800 shadow rounded-lg">
+          <table className="mt-8 min-w-full divide-y divide-gray-700 bg-black shadow rounded-lg">
             <thead className="bg-zinc-700">
               <tr>
                 <th className="px-4 py-2 text-left text-sm font-medium">Item Name</th>
