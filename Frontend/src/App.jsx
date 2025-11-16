@@ -14,6 +14,8 @@ import LostItemsPage from "./components/admin-dashboard/Lost-Item/LostItemPage";
 import ReportLostItem from "./pages/ReportLostItem";
 import UserDashboard from "./pages/UserDashboard";
 import ReportFoundItem from "./pages/ReportFoundItem";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -42,6 +44,7 @@ const App = () => {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/lost-items" element={<LostItemsPage />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
+        
 
         {/* Protected Admin Dashboard */}
         <Route
@@ -53,7 +56,7 @@ const App = () => {
           }
         />
 
-        <Route
+        {/* <Route
           path="/report-lost-item"
           element={
             <ProtectedRoute tokenKey="token">
@@ -69,7 +72,7 @@ const App = () => {
               <ReportFoundItem />
             </ProtectedRoute>
           }
-        />
+        /> */}
 
         <Route
           path="/user-dashboard/*"
@@ -79,6 +82,20 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/report-found-item" element={<ReportFoundItem />} />
+        <Route path="/report-lost-item" element={<ReportLostItem />} />
+
+        <Route
+          path="/about" 
+          element={<About />}
+        />
+
+        <Route 
+          path="/contact"
+          element={<Contact />}
+        />
+
 
         {/* Redirect unknown routes to landing page */}
         <Route path="*" element={<Navigate to="/" replace />} />
