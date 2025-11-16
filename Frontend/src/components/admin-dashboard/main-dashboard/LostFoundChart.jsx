@@ -17,7 +17,7 @@ const LostFoundChart = () => {
     const data = {
       labels: ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
       datasets: [
-        // ✅ BAR Dataset (Found Items)
+        // BAR Dataset (Found Items)
         {
           label: "Found Items",
           data: [40, 25, 60, 70, 50, 35, 30],
@@ -25,17 +25,12 @@ const LostFoundChart = () => {
           backgroundColor: "#22c55e",
           borderWidth: 0,
           borderRadius: 6,
-
-          // ✅ BAR height animation
           animations: {
-            y: {
-              duration: 1200,
-              easing: "easeOutQuart",
-            },
+            y: { duration: 1200, easing: "easeOutQuart" },
           },
         },
 
-        // ✅ Line Animations for ALL lines
+        // Line for Lost Items
         {
           label: "Lost Items",
           data: [60, 45, 80, 90, 75, 55, 40],
@@ -44,17 +39,13 @@ const LostFoundChart = () => {
           borderWidth: 2,
           tension: 0.4,
           fill: true,
-          backgroundColor: "rgba(59, 130, 246, 0.1)",
+          backgroundColor: "rgba(59, 130, 246, 0.2)",
           animations: {
-            tension: {
-              duration: 1500,
-              easing: "easeInOutQuart",
-              from: 0.1,
-              to: 0.4,
-            },
+            tension: { duration: 1500, easing: "easeInOutQuart", from: 0.1, to: 0.4 },
           },
         },
 
+        // Line for Returned Items
         {
           label: "Returned Items",
           data: [10, 20, 15, 30, 25, 15, 18],
@@ -64,15 +55,11 @@ const LostFoundChart = () => {
           pointBackgroundColor: "#f97316",
           tension: 0.4,
           animations: {
-            tension: {
-              duration: 1500,
-              easing: "easeInOutQuart",
-              from: 0.1,
-              to: 0.4,
-            },
+            tension: { duration: 1500, easing: "easeInOutQuart", from: 0.1, to: 0.4 },
           },
         },
 
+        // Line for Unclaimed
         {
           label: "Unclaimed",
           data: [5, 10, 8, 12, 10, 6, 9],
@@ -82,12 +69,7 @@ const LostFoundChart = () => {
           pointBackgroundColor: "#f43f5e",
           tension: 0.4,
           animations: {
-            tension: {
-              duration: 1500,
-              easing: "easeInOutQuart",
-              from: 0.1,
-              to: 0.4,
-            },
+            tension: { duration: 1500, easing: "easeInOutQuart", from: 0.1, to: 0.4 },
           },
         },
       ],
@@ -99,8 +81,6 @@ const LostFoundChart = () => {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-
-        // ✅ STAGGER ANIMATION (bars appear one after another)
         animation: {
           duration: 1200,
           easing: "easeInOutQuart",
@@ -112,25 +92,30 @@ const LostFoundChart = () => {
             return delay;
           },
         },
-
-        layout: {
-          padding: 0,
-        },
-
+        layout: { padding: 0 },
         plugins: {
           legend: {
             display: true,
             position: "top",
+            labels: { color: "#f4f4f5" }, // legend text color
+          },
+          tooltip: {
+            backgroundColor: "#1f2937", // dark tooltip background
+            titleColor: "#f4f4f5",
+            bodyColor: "#f4f4f5",
+            borderColor: "#f97316",
+            borderWidth: 1,
           },
         },
-
         scales: {
           x: {
             grid: { display: false },
+            ticks: { color: "#f4f4f5" }, // x-axis labels
           },
           y: {
             beginAtZero: true,
-            grid: { drawBorder: false },
+            grid: { color: "rgba(255,255,255,0.1)", drawBorder: false },
+            ticks: { color: "#f4f4f5" }, // y-axis labels
           },
         },
       },
@@ -140,9 +125,9 @@ const LostFoundChart = () => {
   }, []);
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg w-full mt-8 p-5">
+    <div className="bg-black rounded-2xl shadow-lg w-full mt-8 p-5">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold text-gray-800">
+        <h2 className="text-xl font-semibold text-gray-200">
           Lost & Found Report
         </h2>
       </div>
