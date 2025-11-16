@@ -23,8 +23,6 @@ const StudentProfile = () => {
     const fetchStudent = async () => {
       try {
         const token = localStorage.getItem("token");
-
-        // ✅ Fetch full list (same API used in StudentPage)
         const res = await fetch(`${API_BASE_URL}/admin/students-details`, {
           headers: {
             "Content-Type": "application/json",
@@ -40,14 +38,10 @@ const StudentProfile = () => {
           return;
         }
 
-        // ✅ Find user by id
         const targetStudent = data.students.find((s) => s._id === id);
 
-        if (!targetStudent) {
-          setError("Student not found");
-        } else {
-          setStudent(targetStudent);
-        }
+        if (!targetStudent) setError("Student not found");
+        else setStudent(targetStudent);
       } catch (err) {
         console.error("Error loading student:", err);
         setError("Failed to load student details");
@@ -63,58 +57,55 @@ const StudentProfile = () => {
   if (error) return <p className="text-center text-red-500 mt-10">{error}</p>;
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
+    <div className="p-8 bg-black min-h-screen text-white">
       {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
-        className="flex items-center gap-2 text-orange-600 font-medium text-xl hover:underline cursor-pointer"
+        className="flex items-center gap-2 text-orange-500 font-medium text-xl hover:underline cursor-pointer"
       >
         <FaArrowLeft /> Back
       </button>
 
       {/* Banner + Profile Header */}
-      <div className="relative w-full">
-        {/* Banner */}
+      <div className="relative w-full mt-6">
         <div
-          className="w-full h-40 sm:h-48 rounded-t-xl shadow-md mt-6 bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${Banner})`,
-          }}
+          className="w-full h-40 sm:h-48 rounded-t-xl shadow-md bg-cover bg-center"
+          style={{ backgroundImage: `url(${Banner})` }}
         ></div>
 
-        {/* Profile Floating Circle */}
-        <div className="absolute -bottom-10 left-4 sm:left-8 w-24 h-24 sm:w-30 sm:h-30 bg-white rounded-full shadow-lg flex items-center justify-center">
-          <div className="w-20 h-20 sm:w-26 sm:h-26 bg-orange-600 text-white rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold">
+        {/* Floating Profile Circle with Orange Border */}
+        <div className="absolute -bottom-10 left-4 sm:left-8 w-28 h-28 sm:w-32 sm:h-32 rounded-full flex items-center justify-center border-4 border-orange-500 shadow-lg">
+          <div className="w-24 h-24 sm:w-28 sm:h-28 bg-gray-800 text-white rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold">
             {student.fullName.charAt(0).toUpperCase()}
           </div>
         </div>
       </div>
 
       {/* Profile Info Card */}
-      <div className="bg-white shadow-md p-4 sm:p-6 pt-14 sm:pt-16 mt-0 border border-gray-200 rounded-b-xl">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
+      <div className="bg-zinc-900 shadow-md p-4 sm:p-6 pt-16 sm:pt-20 mt-0 border border-gray-700 rounded-b-xl">
+        <h1 className="text-2xl sm:text-3xl font-bold text-white">
           {student.fullName}
         </h1>
 
         <div className="mt-3 space-y-2">
-          <p className="text-gray-700 flex items-center gap-2">
-            <FaEnvelope className="text-orange-500" /> {student.email}
+          <p className="flex items-center gap-2 text-white">
+            <FaEnvelope className="text-orange-400" /> {student.email}
           </p>
 
-          <p className="text-gray-700 flex items-center gap-2">
-            <FaUniversity className="text-orange-500" />
+          <p className="flex items-center gap-2 text-white">
+            <FaUniversity className="text-orange-400" />
             {student.department} | Year {student.year} | Sem {student.semester}
           </p>
 
-          <p className="text-gray-700 flex items-center gap-2">
-            <FaPhoneAlt className="text-orange-500" /> {student.contactNumber}
+          <p className="flex items-center gap-2 text-white">
+            <FaPhoneAlt className="text-orange-400" /> {student.contactNumber}
           </p>
         </div>
       </div>
 
       {/* Lost Items */}
-      <div className="bg-white shadow-md rounded-xl p-6 mt-6 border border-gray-200">
-        <h2 className="text-xl font-semibold text-gray-800 mb-3">
+      <div className="bg-zinc-900 shadow-md rounded-xl p-6 mt-6 border border-gray-700">
+        <h2 className="text-xl font-semibold text-orange-400 mb-3">
           Reported Lost Items
         </h2>
 
@@ -123,39 +114,36 @@ const StudentProfile = () => {
             {student.lostItems.map((item) => (
               <li
                 key={item._id}
-                className="p-4 bg-gray-50 rounded-lg border border-gray-200"
+                className="p-4 bg-black rounded-lg border border-gray-700"
               >
-                <p className="font-medium text-gray-900">{item.itemName}</p>
-                <div className="mt-1 text-gray-700 flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                <p className="font-medium text-white">{item.itemName}</p>
+                <div className="mt-1 flex flex-col sm:flex-row sm:items-center sm:gap-2 text-white">
                   <span className="flex items-center gap-2">
-                    <MdLocationOn className="text-orange-500" /> {item.location}
+                    <MdLocationOn className="text-orange-400" /> {item.location}
                   </span>
-
                   <span className="hidden sm:block">|</span>
-
                   <span className="flex items-center gap-2">
-                    <MdAccessTime className="text-orange-500" />{" "}
-                    {item.timeRange}
+                    <MdAccessTime className="text-orange-400" /> {item.timeRange}
                   </span>
                 </div>
 
-                <p className="text-gray-700 mt-1">
+                <p className="mt-1 text-white">
                   Description: {item.itemDescription}
                 </p>
-                <p className="text-gray-700 mt-1">
+                <p className="mt-1 text-white">
                   Identification Mark: {item.identificationMark}
                 </p>
               </li>
             ))}
           </ul>
         ) : (
-          <p className="text-gray-500">No lost items reported</p>
+          <p className="text-white">No lost items reported</p>
         )}
       </div>
 
       {/* Found Items */}
-      <div className="bg-white shadow-md rounded-xl p-6 mt-6 border border-gray-200 mb-10">
-        <h2 className="text-xl font-semibold text-gray-800 mb-3">
+      <div className="bg-zinc-900 shadow-md rounded-xl p-6 mt-6 border border-gray-700 mb-10">
+        <h2 className="text-xl font-semibold text-orange-400 mb-3">
           Reported Found Items
         </h2>
 
@@ -164,23 +152,20 @@ const StudentProfile = () => {
             {student.foundItems.map((item) => (
               <li
                 key={item._id}
-                className="p-4 bg-gray-50 rounded-lg border border-gray-200"
+                className="p-4 bg-black rounded-lg border border-gray-700"
               >
-                <p className="font-medium text-gray-900">{item.itemName}</p>
-                <div className="mt-1 text-gray-700 flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                <p className="font-medium text-white">{item.itemName}</p>
+                <div className="mt-1 flex flex-col sm:flex-row sm:items-center sm:gap-2 text-white">
                   <span className="flex items-center gap-2">
-                    <MdLocationOn className="text-green-600" />{" "}
-                    {item.placeFound}
+                    <MdLocationOn className="text-green-500" /> {item.placeFound}
                   </span>
-
                   <span className="hidden sm:block">|</span>
-
                   <span className="flex items-center gap-2">
-                    <MdAccessTime className="text-green-600" /> {item.timeFound}
+                    <MdAccessTime className="text-green-500" /> {item.timeFound}
                   </span>
                 </div>
 
-                <p className="text-gray-700 mt-1">
+                <p className="mt-1 text-white">
                   Description: {item.itemDescription}
                 </p>
                 {item.image && (
@@ -194,7 +179,7 @@ const StudentProfile = () => {
             ))}
           </ul>
         ) : (
-          <p className="text-gray-500">No found items reported</p>
+          <p className="text-white">No found items reported</p>
         )}
       </div>
     </div>

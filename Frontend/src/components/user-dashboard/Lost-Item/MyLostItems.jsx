@@ -37,27 +37,25 @@ const MyLostItems = () => {
     return new Date(dateString).toLocaleDateString("en-GB", options);
   };
 
-  if (loading) {
-    return <Loader />;
-  }
+  if (loading) return <Loader />;
 
   return (
-    <div className="p-4 md:p-6 mt-10 md:mt-0">
+    <div className="p-4 md:p-6 mt-10 md:mt-0 bg-black text-white min-h-screen">
       {items.length === 0 ? (
-        <div className="flex flex-col justify-center items-center h-[60vh] text-gray-600">
+        <div className="flex flex-col justify-center items-center h-[60vh] text-gray-400">
           <img src={noitems} alt="No items" className="w-58 mb-4 opacity-80" />
           <p className="text-lg">You haven’t reported any lost items yet.</p>
         </div>
       ) : (
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+        <div className="bg-zinc-900 p-6 rounded-xl shadow-sm border border-gray-800">
+          <h2 className="text-2xl font-semibold text-white mb-6">
             My Lost Items
           </h2>
 
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-gray-100 text-left text-gray-700 uppercase text-sm">
+                <tr className="bg-gray-800 text-left text-gray-300 uppercase text-sm">
                   <th className="py-3 px-4">Item</th>
                   <th className="py-3 px-4">Category</th>
                   <th className="py-3 px-4">Description</th>
@@ -73,36 +71,34 @@ const MyLostItems = () => {
                   <tr
                     key={item._id}
                     className={`${
-                      index % 2 === 0 ? "bg-white" : "bg-gray-50"
-                    } hover:bg-orange-50 transition`}
+                      index % 2 === 0 ? "bg-zinc-900" : "bg-zinc-900"
+                    }`} // ✅ same dark background, no cyan
                   >
-                    <td className="py-3 px-4 font-medium text-gray-800">
+                    <td className="py-3 px-4 font-medium text-white">
                       {item.itemName || "Unnamed Item"}
                     </td>
 
                     <td className="py-3 px-4">
-                      <span className="bg-orange-100 text-orange-700 text-sm px-3 py-1 rounded-full">
+                      <span className="bg-gray-800 text-gray-300 text-sm px-3 py-1 rounded-full">
                         {item.itemCategory || "General"}
                       </span>
                     </td>
 
-                    <td className="py-3 px-4 text-gray-700 max-w-xs break-words">
+                    <td className="py-3 px-4 text-gray-300 max-w-xs break-words">
                       {item.itemDescription || "No description"}
                     </td>
 
-                    <td className="py-3 px-4 text-gray-700">
+                    <td className="py-3 px-4 text-gray-300">
                       {formatDate(item.dateLost)}
                     </td>
 
-                    <td className="py-3 px-4 text-gray-700">
-                      {item.timeRange}
-                    </td>
+                    <td className="py-3 px-4 text-gray-300">{item.timeRange}</td>
 
-                    <td className="py-3 px-4 text-gray-700">
+                    <td className="py-3 px-4 text-gray-300">
                       {item.location || "Not specified"}
                     </td>
 
-                    <td className="py-3 px-4 text-gray-700">
+                    <td className="py-3 px-4 text-gray-300">
                       {item.identificationMark || "None"}
                     </td>
                   </tr>

@@ -8,20 +8,15 @@ const MyFoundItems = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // ✅ Stores the image to show in modal
-  const [selectedImage, setSelectedImage] = useState(null);
-
   useEffect(() => {
     const fetchFoundItems = async () => {
       try {
         const token = localStorage.getItem("token");
         const config = { headers: { Authorization: `Bearer ${token}` } };
-
         const res = await axios.get(
           `${API_BASE_URL}/items/my-found-items`,
           config
         );
-
         setItems(res.data.items || []);
       } catch (err) {
         console.error("Error fetching found items:", err);
@@ -42,24 +37,22 @@ const MyFoundItems = () => {
   if (loading) return <Loader />;
 
   return (
-    <div className="p-4 md:p-6 mt-10 md:mt-0">
-      {/* ✅ NO ITEMS */}
+    <div className="p-4 md:p-6 mt-10 md:mt-0 bg-black text-white min-h-screen">
       {items.length === 0 ? (
-        <div className="flex flex-col justify-center items-center h-[60vh] text-gray-600 text-center">
+        <div className="flex flex-col justify-center items-center h-[60vh] text-gray-400 text-center">
           <img src={noitems} alt="No items" className="w-52 mb-4 opacity-80" />
           <p className="text-lg">You haven’t reported any found items yet.</p>
         </div>
       ) : (
-        /* ✅ DASHBOARD TABLE (NO IMAGE COLUMN) */
-        <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-200">
-          <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-6">
+        <div className="bg-zinc-900 p-6 rounded-xl shadow-sm border border-gray-800">
+          <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6">
             My Found Items
           </h2>
 
           <div className="overflow-x-auto">
             <table className="w-full border-collapse min-w-[850px]">
               <thead>
-                <tr className="bg-gray-100 text-left text-gray-700 uppercase text-sm">
+                <tr className="bg-gray-800 text-left text-gray-300 uppercase text-sm">
                   <th className="py-3 px-4">Item</th>
                   <th className="py-3 px-4">Category</th>
                   <th className="py-3 px-4">Description</th>
@@ -74,50 +67,41 @@ const MyFoundItems = () => {
                 {items.map((item, index) => (
                   <tr
                     key={item._id}
-                    className={`${
-                      index % 2 === 0 ? "bg-white" : "bg-gray-50"
-                    } hover:bg-orange-50 transition`}
+                    className="bg-zinc-900"
                   >
-                    {/* ✅ ITEM NAME */}
-                    <td className="py-3 px-4 font-medium text-gray-800 break-words">
+                    <td className="py-3 px-4 font-medium text-white break-words">
                       {item.itemName || "Unnamed Item"}
                     </td>
 
-                    {/* ✅ CATEGORY */}
-                     <td className="py-3 px-4">
-                      <span className="bg-orange-100 text-orange-700 text-sm px-3 py-1 rounded-full">
+                    <td className="py-3 px-4">
+                      <span className="bg-gray-800 text-gray-300 text-sm px-3 py-1 rounded-full">
                         {item.category || "General"}
                       </span>
                     </td>
 
-                    {/* ✅ DESCRIPTION */}
-                    <td className="py-3 px-4 text-gray-700 max-w-xs break-words">
+                    <td className="py-3 px-4 text-gray-300 max-w-xs break-words">
                       {item.itemDescription || "No description"}
                     </td>
 
-                    {/* ✅ DATE */}
-                    <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
+                    <td className="py-3 px-4 text-gray-300 whitespace-nowrap">
                       {formatDate(item.dateFound)}
                     </td>
 
-                    {/* ✅ TIME */}
-                    <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
+                    <td className="py-3 px-4 text-gray-300 whitespace-nowrap">
                       {item.timeFound || "Not specified"}
                     </td>
 
-                    {/* ✅ LOCATION */}
-                    <td className="py-3 px-4 text-gray-700 break-words">
+                    <td className="py-3 px-4 text-gray-300 break-words">
                       {item.placeFound || "Not specified"}
                     </td>
 
-                    {/* ✅ VIEW BUTTON → OPEN IMAGE MODAL */}
                     <td className="py-3 px-4">
                       <a
                         href={item.image}
                         download
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="cursor-pointer px-4 py-1.5 bg-orange-600 text-white text-sm rounded-lg hover:bg-orange-700 transition"
+                        className="cursor-pointer px-4 py-1.5 bg-gray-700 text-white text-sm rounded-lg transition"
                       >
                         View
                       </a>

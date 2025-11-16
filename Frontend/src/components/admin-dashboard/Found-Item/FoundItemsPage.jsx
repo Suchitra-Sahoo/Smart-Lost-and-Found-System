@@ -73,44 +73,41 @@ const FoundItemsPage = () => {
   if (error) return <p className="p-4 text-red-500">{error}</p>;
 
   return (
-    
-    <div className="p-4 min-h-screen">
+    <div className="p-4 min-h-screen bg-zinc-900 text-gray-200">
       <Toaster position="top-right" reverseOrder={false} />
-      <div className="mb-6">
-      
-       <div className="flex justify-center mt-20 lg:mt-4 md:mt-4">
-          <SearchBar
-            searchTerm={search}
-            setSearchTerm={setSearch}
-            placeholder="Search found items here..."
-          />
-        </div>
+      <div className="mb-6 flex justify-center mt-20 lg:mt-4 md:mt-4">
+        <SearchBar
+          searchTerm={search}
+          setSearchTerm={setSearch}
+          placeholder="Search found items here..."
+        />
       </div>
 
       {filteredItems.length === 0 ? (
         <div className="flex flex-col items-center justify-center mt-16">
           <img src={noitems} alt="No items" className="w-64 h-64 object-contain mb-4" />
-          <p className="text-gray-500 text-lg font-medium">No items found</p>
+          <p className="text-gray-400 text-lg font-medium">No items found</p>
         </div>
       ) : (
         <div className="overflow-x-auto w-full">
           <RecentFoundItems />
-          <table className="mt-8 min-w-full divide-y divide-gray-200 bg-white shadow rounded-lg">
-            <thead className="bg-orange-50">
+
+          <table className="mt-8 min-w-full divide-y divide-gray-700 bg-zinc-800 shadow rounded-lg">
+            <thead className="bg-zinc-700">
               <tr>
-                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">Item Name</th>
-                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">Category</th>
-                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700 hidden sm:table-cell">Date Found</th>
-                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700 hidden md:table-cell">Time</th>
-                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700 hidden md:table-cell">Place</th>
-                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">View</th>
-                <th className="px-4 py-2 text-center text-sm font-medium text-gray-700">Delete</th>
+                <th className="px-4 py-2 text-left text-sm font-medium">Item Name</th>
+                <th className="px-4 py-2 text-left text-sm font-medium">Category</th>
+                <th className="px-4 py-2 text-left text-sm font-medium hidden sm:table-cell">Date Found</th>
+                <th className="px-4 py-2 text-left text-sm font-medium hidden md:table-cell">Time</th>
+                <th className="px-4 py-2 text-left text-sm font-medium hidden md:table-cell">Place</th>
+                <th className="px-4 py-2 text-left text-sm font-medium">View</th>
+                <th className="px-4 py-2 text-center text-sm font-medium">Delete</th>
               </tr>
             </thead>
 
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-gray-700">
               {filteredItems.map((item) => (
-                <tr key={item._id}>
+                <tr key={item._id} className="hover:bg-zinc-800 transition">
                   <td className="px-4 py-2">{item.itemName}</td>
                   <td className="px-4 py-2">{item.category}</td>
                   <td className="px-4 py-2 hidden sm:table-cell">
@@ -131,13 +128,13 @@ const FoundItemsPage = () => {
                       <div className="flex items-center justify-center gap-2">
                         <button
                           onClick={() => handleDelete(item._id)}
-                          className="px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700 text-sm cursor-pointer"
+                          className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 text-sm cursor-pointer"
                         >
                           Delete
                         </button>
                         <button
                           onClick={() => setConfirmDeleteId(null)}
-                          className="px-2 py-1 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 text-sm cursor-pointer"
+                          className="px-3 py-1 bg-gray-700 text-gray-200 rounded hover:bg-gray-600 text-sm cursor-pointer"
                         >
                           Cancel
                         </button>
@@ -145,7 +142,7 @@ const FoundItemsPage = () => {
                     ) : (
                       <button
                         onClick={() => setConfirmDeleteId(item._id)}
-                        className="text-red-600 hover:text-red-800 transition cursor-pointer"
+                        className="flex items-center justify-center text-red-600 hover:text-red-800 transition w-full h-full"
                       >
                         <FaTrash size={18} />
                       </button>

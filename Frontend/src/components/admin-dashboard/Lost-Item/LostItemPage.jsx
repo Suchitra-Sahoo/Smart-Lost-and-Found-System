@@ -71,7 +71,7 @@ const LostItemsPage = () => {
       );
       toast.error("Failed to delete item");
     } finally {
-      setConfirmDeleteId(null); // remove inline confirm
+      setConfirmDeleteId(null);
     }
   };
 
@@ -79,16 +79,15 @@ const LostItemsPage = () => {
   if (error) return <p className="p-4 text-red-500">{error}</p>;
 
   return (
-    <div className="p-4 min-h-screen">
+    <div className="p-4 min-h-screen bg-zinc-900 text-gray-200">
       <Toaster position="top-right" reverseOrder={false} />
-      <div className="mb-6">
-        <div className="flex justify-center mt-20 lg:mt-4 md:mt-4">
-          <SearchBar
-            searchTerm={search}
-            setSearchTerm={setSearch}
-            placeholder="Search lost items here..."
-          />
-        </div>
+
+      <div className="mb-6 flex justify-center mt-20 lg:mt-4 md:mt-4">
+        <SearchBar
+          searchTerm={search}
+          setSearchTerm={setSearch}
+          placeholder="Search lost items here..."
+        />
       </div>
 
       {filteredItems.length === 0 ? (
@@ -98,38 +97,27 @@ const LostItemsPage = () => {
             alt="No items"
             className="w-64 h-64 object-contain mb-4"
           />
-          <p className="text-gray-500 text-lg font-medium">No items found</p>
+          <p className="text-gray-400 text-lg font-medium">No items found</p>
         </div>
       ) : (
         <div className="overflow-x-auto w-full">
           <RecentReportedItems />
-          <table className="mt-8 min-w-full divide-y divide-gray-200 bg-white shadow rounded-lg">
-            <thead className="bg-orange-50">
+
+          <table className="mt-8 min-w-full divide-y divide-gray-700 bg-zinc-800 shadow rounded-lg">
+            <thead className="bg-zinc-700">
               <tr>
-                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                  Item Name
-                </th>
-                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                  Date Lost
-                </th>
-                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                  Time
-                </th>
-                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                  Reported By
-                </th>
-                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                  View
-                </th>
-                <th className="px-4 py-2 text-center text-sm font-medium text-gray-700">
-                  Delete
-                </th>
+                <th className="px-4 py-2 text-left text-sm font-medium">Item Name</th>
+                <th className="px-4 py-2 text-left text-sm font-medium">Date Lost</th>
+                <th className="px-4 py-2 text-left text-sm font-medium">Time</th>
+                <th className="px-4 py-2 text-left text-sm font-medium">Reported By</th>
+                <th className="px-4 py-2 text-left text-sm font-medium">View</th>
+                <th className="px-4 py-2 text-center text-sm font-medium">Delete</th>
               </tr>
             </thead>
 
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-gray-700">
               {filteredItems.map((item) => (
-                <tr key={item._id}>
+                <tr key={item._id} className="hover:bg-zinc-800 transition">
                   <td className="px-4 py-2">{item.itemName}</td>
                   <td className="px-4 py-2">
                     {new Date(item.dateLost).toLocaleDateString("en-GB", {
@@ -139,7 +127,7 @@ const LostItemsPage = () => {
                     })}
                   </td>
                   <td className="px-4 py-2">{item.timeRange}</td>
-                  <td className="px-4 py-2 text-sm text-gray-600">
+                  <td className="px-4 py-2 text-sm text-gray-400">
                     {item.userName}
                     <br />
                     <span className="text-xs">{item.userEmail}</span>
@@ -157,13 +145,13 @@ const LostItemsPage = () => {
                       <div className="flex items-center justify-center gap-2">
                         <button
                           onClick={() => handleDelete(item._id)}
-                          className="cursor-pointer px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700 text-sm"
+                          className="cursor-pointer px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 text-sm"
                         >
                           Delete
                         </button>
                         <button
                           onClick={() => setConfirmDeleteId(null)}
-                          className="cursor-pointer px-2 py-1 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 text-sm"
+                          className="cursor-pointer px-3 py-1 bg-gray-700 text-white rounded hover:bg-gray-600 text-sm"
                         >
                           Cancel
                         </button>
@@ -171,9 +159,9 @@ const LostItemsPage = () => {
                     ) : (
                       <button
                         onClick={() => setConfirmDeleteId(item._id)}
-                        className="text-red-600 hover:text-red-800 transition cursor-pointer"
+                        className="flex items-center justify-center text-red-500 hover:text-red-600 transition w-full h-full"
                       >
-                        <FaTrash size={18} />
+                        <FaTrash size={20} />
                       </button>
                     )}
                   </td>
@@ -184,10 +172,7 @@ const LostItemsPage = () => {
         </div>
       )}
 
-      <LostItemModal
-        item={selectedItem}
-        onClose={() => setSelectedItem(null)}
-      />
+      <LostItemModal item={selectedItem} onClose={() => setSelectedItem(null)} />
     </div>
   );
 };

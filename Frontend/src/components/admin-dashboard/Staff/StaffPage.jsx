@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import API_BASE_URL from "../../../config";
 import { FaUserTie, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import { MdArrowForward } from "react-icons/md";
-import noperson from "../../../assets/admin-dashboard/noperson.png";
 import Loader from "../../common/Loader/Loader";
 import SearchBar from "../../common/SearchBar";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
+import noperson from "../../../assets/admin-dashboard/noperson.png";
 
 const StaffPage = () => {
   const [staff, setStaff] = useState([]);
@@ -67,24 +67,22 @@ const StaffPage = () => {
     );
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
-    
-
-      {/* ✅ Search Bar */}
+    <div className="p-8 bg-black min-h-screen text-white">
+      {/* Search Bar */}
       <div className="flex justify-center mt-20 lg:mt-4 md:mt-4">
         <SearchBar
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
-          placeholder="Search students here..."
+          placeholder="Search staff here..."
         />
       </div>
 
-      {/* ✅ Staff Cards Grid */}
+      {/* Staff Cards Grid */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 w-full mt-6">
         {filteredStaff.length === 0 ? (
           <div className="flex flex-col items-center justify-center col-span-full mt-20">
             <img src={noperson} alt="No staff" className="w-82" />
-            <p className="text-gray-600 mt-4 text-lg">
+            <p className="text-white mt-4 text-lg">
               No staff found matching your search
             </p>
           </div>
@@ -92,7 +90,7 @@ const StaffPage = () => {
           filteredStaff.map((member) => (
             <div
               key={member._id}
-              className="relative bg-white shadow-md rounded-xl border border-gray-200 p-5 hover:shadow-lg transition-all duration-200"
+              className="relative bg-zinc-900 shadow-md rounded-xl border border-gray-700 p-5 hover:shadow-lg transition-all duration-200"
             >
               {/* Desktop View Profile Button */}
               <button
@@ -117,7 +115,7 @@ const StaffPage = () => {
                 }
                 className="
                   cursor-pointer absolute top-4 right-4 
-                  text-orange-600 
+                  text-orange-500 
                   sm:hidden
                   text-2xl
                 "
@@ -140,21 +138,22 @@ const StaffPage = () => {
                 </div>
 
                 <div className="flex flex-col justify-between gap-1 flex-1 min-w-0">
-                  <h2 className="text-lg md:text-xl font-semibold">
+                  <h2 className="text-lg md:text-xl font-semibold text-white">
                     {member.fullName}
                   </h2>
 
-                  <p className="text-gray-700 text-sm flex items-center gap-2 break-all">
+                  <p className="flex items-center gap-2 text-white text-sm break-all">
                     <FaEnvelope className="text-orange-400" /> {member.email}
                   </p>
 
                   {member.contactNumber && (
-                    <p className="text-gray-700 text-sm flex items-center gap-2 break-all">
+                    <p className="flex items-center gap-2 text-white text-sm break-all">
                       <FaPhoneAlt className="text-orange-400" />
                       {member.contactNumber}
                     </p>
                   )}
-                  <p className="text-gray-700 text-sm flex items-center gap-2 break-all">
+
+                  <p className="flex items-center gap-2 text-white text-sm break-all">
                     <HiOutlineOfficeBuilding className="text-orange-400 text-xl" />
                     Department: {member.department}
                   </p>
