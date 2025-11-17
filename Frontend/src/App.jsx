@@ -14,6 +14,7 @@ import LostItemsPage from "./components/admin-dashboard/Lost-Item/LostItemPage";
 import ReportLostItem from "./pages/ReportLostItem";
 import UserDashboard from "./pages/UserDashboard";
 import ReportFoundItem from "./pages/ReportFoundItem";
+import MatchItemPage from "./components/admin-dashboard/Match-Items/MatchItemPage";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -79,6 +80,16 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/match-item/*"
+          element={
+            <ProtectedRoute tokenKey="token">
+              <MatchItemPage />
+            </ProtectedRoute>
+          }
+        />
+
 
         {/* Redirect unknown routes to landing page */}
         <Route path="*" element={<Navigate to="/" replace />} />
