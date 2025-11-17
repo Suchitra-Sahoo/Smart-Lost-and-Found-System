@@ -106,12 +106,24 @@ const LostItemsPage = () => {
           <table className="mt-8 min-w-full divide-y divide-gray-700 bg-black shadow rounded-lg">
             <thead className="bg-zinc-700">
               <tr>
-                <th className="px-4 py-2 text-left text-sm font-medium">Item Name</th>
-                <th className="px-4 py-2 text-left text-sm font-medium">Date Lost</th>
-                <th className="px-4 py-2 text-left text-sm font-medium">Time</th>
-                <th className="px-4 py-2 text-left text-sm font-medium">Reported By</th>
-                <th className="px-4 py-2 text-left text-sm font-medium">View</th>
-                <th className="px-4 py-2 text-center text-sm font-medium">Delete</th>
+                <th className="px-4 py-2 text-left text-sm font-medium">
+                  Item Name
+                </th>
+                <th className="px-4 py-2 text-left text-sm font-medium">
+                  Date Lost
+                </th>
+                <th className="px-4 py-2 text-left text-sm font-medium">
+                  Time
+                </th>
+                <th className="px-4 py-2 text-left text-sm font-medium">
+                  Reported By
+                </th>
+                <th className="px-4 py-2 text-left text-sm font-medium">
+                  View
+                </th>
+                <th className="px-4 py-2 text-center text-sm font-medium">
+                  Delete
+                </th>
               </tr>
             </thead>
 
@@ -135,7 +147,7 @@ const LostItemsPage = () => {
                   <td className="px-4 py-2">
                     <button
                       onClick={() => setSelectedItem(item)}
-                      className="px-3 py-1 bg-orange-500 text-white rounded hover:bg-orange-600 transition cursor-pointer"
+                      className="px-3 py-1 border border-orange-500 text-orange-400 rounded hover:bg-orange-500/20 transition cursor-pointer"
                     >
                       View
                     </button>
@@ -159,7 +171,7 @@ const LostItemsPage = () => {
                     ) : (
                       <button
                         onClick={() => setConfirmDeleteId(item._id)}
-                        className="flex items-center justify-center text-red-500 hover:text-red-600 transition w-full h-full"
+                        className="flex items-center justify-center text-orange-400 hover:text-orange-300 transition w-full h-full"
                       >
                         <FaTrash size={20} />
                       </button>
@@ -172,7 +184,10 @@ const LostItemsPage = () => {
         </div>
       )}
 
-      <LostItemModal item={selectedItem} onClose={() => setSelectedItem(null)} />
+      <LostItemModal
+        item={selectedItem}
+        onClose={() => setSelectedItem(null)}
+      />
     </div>
   );
 };

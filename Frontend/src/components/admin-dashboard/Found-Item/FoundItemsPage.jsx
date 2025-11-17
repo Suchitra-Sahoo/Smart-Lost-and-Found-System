@@ -118,7 +118,7 @@ const FoundItemsPage = () => {
                   <td className="px-4 py-2">
                     <button
                       onClick={() => setSelectedItem(item)}
-                      className="px-3 py-1 bg-orange-500 text-white rounded hover:bg-orange-600 transition cursor-pointer"
+                      className="px-3 py-1 border border-orange-500 text-orange-400 rounded hover:bg-orange-500/20 transition cursor-pointer"
                     >
                       View
                     </button>
@@ -142,7 +142,7 @@ const FoundItemsPage = () => {
                     ) : (
                       <button
                         onClick={() => setConfirmDeleteId(item._id)}
-                        className="flex items-center justify-center text-red-600 hover:text-red-800 transition w-full h-full"
+                        className="flex items-center justify-center text-orange-400 hover:text-orange-300 transition w-full h-full"
                       >
                         <FaTrash size={18} />
                       </button>

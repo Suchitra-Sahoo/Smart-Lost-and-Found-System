@@ -43,7 +43,7 @@ export const Hero = () => {
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 drop-shadow-[0_0_10px_rgba(255,140,0,0.8)]">
           CampusFind
           <br />
-          <span className="text-orange-400">Lost and Found Portal</span>
+          <span className="text-orange-400">Smart Lost and Found</span>
         </h1>
         <p className="text-gray-300 text-lg md:text-xl mb-10 mt-4">
           Report lost or found items instantly. Stay connected and help make
