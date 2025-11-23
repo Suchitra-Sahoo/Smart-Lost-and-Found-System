@@ -47,58 +47,67 @@ const MyLostItems = () => {
           <p className="text-lg">You haven’t reported any lost items yet.</p>
         </div>
       ) : (
-        <div className="bg-black p-6 rounded-xl shadow-sm border border-gray-700">
-          <h2 className="text-2xl font-semibold text-white mb-6">
+        <div className="bg-black p-6 rounded-xl border-2 border-orange-500">
+          <h2 className="text-2xl font-bold text-orange-500 mb-6">
             My Lost Items
           </h2>
 
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-gray-800 text-left text-gray-300 uppercase text-sm">
-                  <th className="py-3 px-4">Item</th>
-                  <th className="py-3 px-4">Category</th>
-                  <th className="py-3 px-4">Description</th>
-                  <th className="py-3 px-4">Date Lost</th>
-                  <th className="py-3 px-4">Time</th>
-                  <th className="py-3 px-4">Location</th>
-                  <th className="py-3 px-4">Identification Mark</th>
+                <tr className="bg-black border-b-2 border-orange-500 text-left">
+                  <th className="py-3 px-4 text-orange-500 uppercase text-sm">
+                    Item
+                  </th>
+                  <th className="py-3 px-4 text-orange-500 uppercase text-sm">
+                    Category
+                  </th>
+                  <th className="py-3 px-4 text-orange-500 uppercase text-sm">
+                    Description
+                  </th>
+                  <th className="py-3 px-4 text-orange-500 uppercase text-sm">
+                    Date Lost
+                  </th>
+                  <th className="py-3 px-4 text-orange-500 uppercase text-sm">
+                    Time
+                  </th>
+                  <th className="py-3 px-4 text-orange-500 uppercase text-sm">
+                    Location
+                  </th>
+                  <th className="py-3 px-4 text-orange-500 uppercase text-sm">
+                    Identification Mark
+                  </th>
                 </tr>
               </thead>
 
               <tbody>
-                {items.map((item, index) => (
-                  <tr
-                    key={item._id}
-                    className={`${
-                      index % 2 === 0 ? "bg-zinc-900" : "bg-zinc-900"
-                    }`} // ✅ same dark background, no cyan
-                  >
+                {items.map((item) => (
+                  <tr key={item._id} className="bg-black">
                     <td className="py-3 px-4 font-medium text-white">
                       {item.itemName || "Unnamed Item"}
                     </td>
 
                     <td className="py-3 px-4">
-                      <span className="bg-gray-800 text-gray-300 text-sm px-3 py-1 rounded-full">
+                      <span className="bg-black text-orange-500 border border-orange-500 text-sm px-3 py-1 rounded-full">
                         {item.itemCategory || "General"}
                       </span>
                     </td>
 
-                    <td className="py-3 px-4 text-gray-300 max-w-xs break-words">
+                    <td className="py-3 px-4 text-orange-300 max-w-xs break-words">
                       {item.itemDescription || "No description"}
                     </td>
 
-                    <td className="py-3 px-4 text-gray-300">
+                    <td className="py-3 px-4 text-orange-300">
                       {formatDate(item.dateLost)}
                     </td>
 
-                    <td className="py-3 px-4 text-gray-300">{item.timeRange}</td>
+                    <td className="py-3 px-4 text-orange-300">{item.timeRange}</td>
 
-                    <td className="py-3 px-4 text-gray-300">
+                    <td className="py-3 px-4 text-orange-300">
                       {item.location || "Not specified"}
                     </td>
 
-                    <td className="py-3 px-4 text-gray-300">
+                    <td className="py-3 px-4 text-orange-300">
                       {item.identificationMark || "None"}
                     </td>
                   </tr>

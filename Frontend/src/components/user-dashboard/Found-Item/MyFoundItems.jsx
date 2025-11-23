@@ -44,54 +44,65 @@ const MyFoundItems = () => {
           <p className="text-lg">You haven’t reported any found items yet.</p>
         </div>
       ) : (
-        <div className="bg-black p-6 rounded-xl shadow-sm border border-gray-800">
-          <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6">
+        <div className="bg-black p-6 rounded-xl border-2 border-orange-500">
+          <h2 className="text-xl sm:text-2xl font-bold text-orange-500 mb-6">
             My Found Items
           </h2>
 
           <div className="overflow-x-auto">
             <table className="w-full border-collapse min-w-[850px]">
               <thead>
-                <tr className="bg-gray-800 text-left text-gray-300 uppercase text-sm">
-                  <th className="py-3 px-4">Item</th>
-                  <th className="py-3 px-4">Category</th>
-                  <th className="py-3 px-4">Description</th>
-                  <th className="py-3 px-4">Date Found</th>
-                  <th className="py-3 px-4">Time</th>
-                  <th className="py-3 px-4">Location</th>
-                  <th className="py-3 px-4"></th>
+                <tr className="bg-black border-b-2 border-orange-500 text-left">
+                  <th className="py-3 px-4 text-orange-500 uppercase text-sm">
+                    Item
+                  </th>
+                  <th className="py-3 px-4 text-orange-500 uppercase text-sm">
+                    Category
+                  </th>
+                  <th className="py-3 px-4 text-orange-500 uppercase text-sm">
+                    Description
+                  </th>
+                  <th className="py-3 px-4 text-orange-500 uppercase text-sm">
+                    Date Found
+                  </th>
+                  <th className="py-3 px-4 text-orange-500 uppercase text-sm">
+                    Time
+                  </th>
+                  <th className="py-3 px-4 text-orange-500 uppercase text-sm">
+                    Location
+                  </th>
+                  <th className="py-3 px-4 text-orange-500 uppercase text-sm">
+                    Action
+                  </th>
                 </tr>
               </thead>
 
               <tbody>
-                {items.map((item, index) => (
-                  <tr
-                    key={item._id}
-                    className="bg-zinc-900"
-                  >
+                {items.map((item) => (
+                  <tr key={item._id} className="bg-black">
                     <td className="py-3 px-4 font-medium text-white break-words">
                       {item.itemName || "Unnamed Item"}
                     </td>
 
                     <td className="py-3 px-4">
-                      <span className="bg-gray-800 text-gray-300 text-sm px-3 py-1 rounded-full">
+                      <span className="bg-black text-orange-500 border border-orange-500 text-sm px-3 py-1 rounded-full">
                         {item.category || "General"}
                       </span>
                     </td>
 
-                    <td className="py-3 px-4 text-gray-300 max-w-xs break-words">
+                    <td className="py-3 px-4 text-orange-300 max-w-xs break-words">
                       {item.itemDescription || "No description"}
                     </td>
 
-                    <td className="py-3 px-4 text-gray-300 whitespace-nowrap">
+                    <td className="py-3 px-4 text-orange-300 whitespace-nowrap">
                       {formatDate(item.dateFound)}
                     </td>
 
-                    <td className="py-3 px-4 text-gray-300 whitespace-nowrap">
+                    <td className="py-3 px-4 text-orange-300 whitespace-nowrap">
                       {item.timeFound || "Not specified"}
                     </td>
 
-                    <td className="py-3 px-4 text-gray-300 break-words">
+                    <td className="py-3 px-4 text-orange-300 break-words">
                       {item.placeFound || "Not specified"}
                     </td>
 
@@ -101,7 +112,7 @@ const MyFoundItems = () => {
                         download
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="cursor-pointer px-4 py-1.5 bg-gray-700 text-white text-sm rounded-lg transition"
+                        className="cursor-pointer px-4 py-1.5 bg-black border border-orange-500 text-orange-500 text-sm rounded-lg"
                       >
                         View
                       </a>
