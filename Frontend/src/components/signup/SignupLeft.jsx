@@ -5,7 +5,7 @@ function SignupLeft({ images, currentImage }) {
   return (
     <div className="hidden md:flex md:w-1/2 relative overflow-hidden">
       {/* Blob background */}
-      <div className="container absolute inset-0" />
+      <div className="container1 absolute inset-0" />
     </div>
   );
 }

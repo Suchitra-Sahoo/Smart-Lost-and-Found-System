@@ -48,7 +48,6 @@ export default function Navbar() {
 
   const menuItems = [
     { name: "Home", to: "/home" },
-    { name: "About", to: "/about" },
     { name: "Report Lost Item", to: "/report-lost-item" },
     { name: "Report Found Item", to: "/report-found-item" },
     { name: "Contact", to: "/contact" },
