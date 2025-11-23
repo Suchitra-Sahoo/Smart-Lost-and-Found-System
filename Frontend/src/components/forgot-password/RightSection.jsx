@@ -18,7 +18,7 @@ function RightSection() {
   };
 
   return (
-    <div className="flex-1 flex flex-col md:justify-center bg-zinc-900 p-8 md:p-12 text-lg text-gray-100">
+    <div className="flex-1 flex flex-col md:justify-center bg-black p-8 md:p-12 text-lg text-gray-100">
       {/* Back to Home */}
       <div className="flex justify-end mb-6 hover:underline text-xl font-semibold">
         <a href="/" className="flex items-center gap-2 text-orange-500">

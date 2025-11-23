@@ -51,7 +51,7 @@ function SigninForm({ role, open, setOpen, handleSelect }) {
 
   return (
     <div className="md:w-1/2 w-full flex flex-col md:justify-center 
-      bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-700 
+      bg-black
       p-8 md:p-12 text-lg text-gray-100 shadow-xl">
       
       {/* Back to Home */}
