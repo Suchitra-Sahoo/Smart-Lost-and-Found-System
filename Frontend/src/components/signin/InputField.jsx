@@ -11,7 +11,7 @@ function InputField({ icon: Icon, type, placeholder, value, onChange }) {
         onChange={onChange}      
         className="w-full pl-10 md:pl-12 pr-4 py-2.5 md:py-3 rounded-xl border border-gray-600 
           focus:ring-2 focus:ring-orange-500 outline-none text-gray-100 shadow-sm 
-          text-sm md:text-base bg-zinc-800 hover:bg-zinc-700"
+          text-sm md:text-base bg-black"
       />
     </div>
   );

@@ -61,7 +61,7 @@ function RightSection() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter Email Address"
-            className="w-full p-3 border border-gray-600 rounded-lg bg-zinc-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-500"
+            className="w-full p-3 border border-gray-600 rounded-lg bg-black text-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-500"
             required
           />
 
