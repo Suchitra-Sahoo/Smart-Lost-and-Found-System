@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 const LostItemModal = ({ item, onClose }) => {
-  const [status, setStatus] = useState(item?.status || "Pending");
 
   useEffect(() => {
     if (item) {
@@ -74,9 +73,6 @@ const LostItemModal = ({ item, onClose }) => {
           <p>
             <strong className="text-orange-400">Email:</strong>{" "}
             {item.userEmail}
-          </p>
-          <p>
-            <strong className="text-orange-400">Status:</strong> {status}
           </p>
         </div>
       </div>

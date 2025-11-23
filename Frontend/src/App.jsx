@@ -14,7 +14,6 @@ import LostItemsPage from "./components/admin-dashboard/Lost-Item/LostItemPage";
 import ReportLostItem from "./pages/ReportLostItem";
 import UserDashboard from "./pages/UserDashboard";
 import ReportFoundItem from "./pages/ReportFoundItem";
-import MatchItemPage from "./components/admin-dashboard/Match-Items/MatchItemPage";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -43,6 +42,7 @@ const App = () => {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/lost-items" element={<LostItemsPage />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
+
 
         {/* Protected Admin Dashboard */}
         <Route
@@ -77,15 +77,6 @@ const App = () => {
           element={
             <ProtectedRoute tokenKey="token">
               <UserDashboard />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/match-item/*"
-          element={
-            <ProtectedRoute tokenKey="token">
-              <MatchItemPage />
             </ProtectedRoute>
           }
         />
