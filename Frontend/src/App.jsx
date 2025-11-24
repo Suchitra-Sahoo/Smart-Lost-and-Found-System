@@ -14,6 +14,7 @@ import LostItemsPage from "./components/admin-dashboard/Lost-Item/LostItemPage";
 import ReportLostItem from "./pages/ReportLostItem";
 import UserDashboard from "./pages/UserDashboard";
 import ReportFoundItem from "./pages/ReportFoundItem";
+import ContactPage from "./pages/ContactPage";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -42,6 +43,7 @@ const App = () => {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/lost-items" element={<LostItemsPage />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
+        <Route path="/contact" element={<ContactPage />} />
 
 
         {/* Protected Admin Dashboard */}

@@ -10,6 +10,7 @@ const adminUserRoutes = require("./routes/adminRoutes");
 const matchRoutes = require("./routes/matchRoutes");
 const clipRoutes = require("./routes/clipRoutes");
 const notifyRoutes = require('./routes/notification');
+const contactRoutes = require("./routes/contactRoutes");
 
 dotenv.config();
 connectDB();
@@ -25,7 +26,7 @@ app.use("/api/admin", adminUserRoutes);
 app.use("/api", matchRoutes);
 app.use("/api/clip", clipRoutes);
 app.use('/api/notify', notifyRoutes);
-
+app.use("/api/contact", contactRoutes);
 
 // Routes
 const authRoutes = require("./routes/auth");
