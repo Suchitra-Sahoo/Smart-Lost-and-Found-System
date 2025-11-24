@@ -1,9 +1,9 @@
 import React from 'react'
-import MatchItemPage from '../components/admin-dashboard/Match-Items/MatchItemPage'
+import AdminDashboardPage from '../components/admin-dashboard/Match-Items/AdminDashboardPage'
 
 function MatchPage() {
   return (
-    <MatchItemPage />
+    <AdminDashboardPage />
     
   )
 }

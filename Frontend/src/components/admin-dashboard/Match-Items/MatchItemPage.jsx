@@ -3,25 +3,25 @@ import axios from "axios";
 import { FaBell, FaUser, FaBox, FaCheckCircle } from "react-icons/fa";
 import API_BASE_URL from "../../../config";
 import SearchBar from "../../common/SearchBar";
-import Loader from "../../common/Loader/Loader";
+import Loader from "./AILoader";
 import toast from "react-hot-toast";
 
 const MatchItemPage = () => {
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showLoader, setShowLoader] = useState(true); 
   const [error, setError] = useState("");
   const [filter, setFilter] = useState("");
 
   useEffect(() => {
     const fetchMatches = async () => {
-      setLoading(true);
       try {
         const { data } = await axios.post(`${API_BASE_URL}/clip/match`);
         setMatches(
           data.matches.map((m, index) => ({
             id: index,
-            lostItem: m.lostItem, // full object
-            foundItem: m.foundItem, // full object
+            lostItem: m.lostItem,
+            foundItem: m.foundItem,
             confidence: m.finalScore,
             status:
               m.finalScore > 75
@@ -40,20 +40,18 @@ const MatchItemPage = () => {
     };
 
     fetchMatches();
+
+    // keep loader for at least 5 seconds
+    const timer = setTimeout(() => setShowLoader(false), 10000);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleNotify = async (match) => {
-    // Show loading toast
     const toastId = toast.loading("Sending notification...", {
-      style: {
-        background: "#1F1F1F", // dark background
-        color: "#FFA500", // bright text
-        fontWeight: "bold",
-      },
+      style: { background: "#1F1F1F", color: "#FFA500", fontWeight: "bold" },
     });
 
     try {
-      // Format date
       const formattedDate = match.foundItem.dateFound
         ? new Date(match.foundItem.dateFound).toLocaleDateString("en-GB", {
             day: "numeric",
@@ -62,7 +60,6 @@ const MatchItemPage = () => {
           })
         : "N/A";
 
-      // Send notification
       await axios.post(`${API_BASE_URL}/notify/user`, {
         to: match.lostItem.userEmail,
         lostItem: {
@@ -78,29 +75,16 @@ const MatchItemPage = () => {
         },
       });
 
-      // Success toast 
       toast.success("Notification sent!", {
         id: toastId,
-        style: {
-          background: "#1F1F1F",
-          color: "#00FF00",
-          fontWeight: "bold",
-        },
+        style: { background: "#1F1F1F", color: "#00FF00", fontWeight: "bold" },
       });
     } catch (err) {
       console.error(err);
-      // Error toast 
-      toast.error(
-        err.response?.data?.message || "Failed to send notification",
-        {
-          id: toastId,
-          style: {
-            background: "#1F1F1F",
-            color: "#FF4500",
-            fontWeight: "bold",
-          },
-        }
-      );
+      toast.error(err.response?.data?.message || "Failed to send notification", {
+        id: toastId,
+        style: { background: "#1F1F1F", color: "#FF4500", fontWeight: "bold" },
+      });
     }
   };
 
@@ -112,32 +96,30 @@ const MatchItemPage = () => {
       item.foundItem.userName.toLowerCase().includes(filter.toLowerCase())
   );
 
-  if (loading)
+  // Show loader for at least 5 seconds
+  if (loading || showLoader)
     return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="hidden sm:block text-orange-400 text-xl">
-          <Loader />
-        </div>
+      <div className="flex justify-center items-center min-h-screen bg-black">
+        <Loader />
       </div>
     );
 
   if (error)
     return (
-      <div className="flex justify-center items-center h-screen text-red-500 text-xl">
+      <div className="flex justify-center items-center min-h-screen text-red-500 text-xl bg-black">
         {error}
       </div>
     );
 
   if (!matches.length)
     return (
-      <div className="flex justify-center items-center h-screen text-gray-400 text-xl">
+      <div className="flex justify-center items-center min-h-screen text-gray-400 text-xl bg-black">
         No matches found.
       </div>
     );
 
   return (
     <div className="min-h-screen bg-black p-6">
-      {/* Centered and widened SearchBar */}
       <div className="flex justify-center mb-6">
         <div className="w-full sm:w-3/4 md:w-1/2 lg:w-1/2">
           <SearchBar
@@ -148,7 +130,6 @@ const MatchItemPage = () => {
         </div>
       </div>
 
-      {/* Responsive grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
         {filteredMatches.map((item) => (
           <div
@@ -156,7 +137,6 @@ const MatchItemPage = () => {
             className="bg-black border border-gray-700 rounded-xl p-5 shadow-lg hover:shadow-orange-500/50 transition flex flex-col justify-between"
           >
             <div>
-              {/* Status and Confidence */}
               <div className="flex gap-2 mb-3">
                 <div
                   className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${
@@ -183,12 +163,10 @@ const MatchItemPage = () => {
                   <strong>Description:</strong> {item.lostItem.itemDescription}
                 </p>
                 <p>
-                  <strong>Category:</strong>{" "}
-                  {item.lostItem.itemCategory || "N/A"}
+                  <strong>Category:</strong> {item.lostItem.itemCategory || "N/A"}
                 </p>
                 <p>
-                  <strong>ID Mark:</strong>{" "}
-                  {item.lostItem.identificationMark || "N/A"}
+                  <strong>ID Mark:</strong> {item.lostItem.identificationMark || "N/A"}
                 </p>
               </div>
 
@@ -209,22 +187,18 @@ const MatchItemPage = () => {
               <div className="mt-3 space-y-1">
                 <p className="flex items-center gap-2 text-sm text-gray-300">
                   <FaUser className="text-orange-300" /> Lost By:{" "}
-                  <span className="font-semibold">
-                    {item.lostItem.userName}
-                  </span>
+                  <span className="font-semibold">{item.lostItem.userName}</span>
                 </p>
                 <p className="flex items-center gap-2 text-sm text-gray-300">
                   <FaUser className="text-green-300" /> Found By:{" "}
-                  <span className="font-semibold">
-                    {item.foundItem.userName}
-                  </span>
+                  <span className="font-semibold">{item.foundItem.userName}</span>
                 </p>
               </div>
             </div>
 
-            {/* Notify Button at bottom */}
+            {/* Notify Button */}
             <button
-              onClick={() => handleNotify(item)} 
+              onClick={() => handleNotify(item)}
               className="cursor-pointer mt-5 w-full bg-orange-600 hover:bg-orange-700 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition"
             >
               <FaBell /> Notify User
