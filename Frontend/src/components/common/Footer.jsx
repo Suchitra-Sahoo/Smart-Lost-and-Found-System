@@ -71,13 +71,7 @@ function Footer() {
               <FaEnvelope className="text-orange-400" />
               <span>support@campusfind.in</span>
             </li>
-            <li className="flex items-start space-x-2">
-              <FaMapMarkerAlt className="text-orange-400 mt-1" />
-              <span>
-                GTBIT Campus, Rajouri Garden,
-                <br /> New Delhi, India
-              </span>
-            </li>
+           
           </ul>
         </div>
 

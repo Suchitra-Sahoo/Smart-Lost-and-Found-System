@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import image1 from '../../assets/Landing Page/image1.png'; 
+import image2 from '../../assets/Landing Page/image2.png';
 
 export const Hero = () => {
   const contentVariants = {
@@ -15,6 +17,7 @@ export const Hero = () => {
 
   return (
     <section className="relative flex items-center justify-center text-center overflow-hidden bg-black py-20 sm:py-24 md:py-28 pb-40 sm:pb-32 md:pb-28">
+      
       {/* Subtle Grid Background */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -32,6 +35,36 @@ export const Hero = () => {
       <div className="absolute -top-40 -left-40 w-72 h-72 bg-orange-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
       <div className="absolute -bottom-40 -right-40 w-72 h-72 bg-orange-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
 
+      {/* Left Hero Image (image1) */}
+<motion.img
+  src={image1}
+  alt="Left Illustration"
+  className="hidden xl:block absolute left-20 bottom-10 w-72 sm:w-80 md:w-[450px] object-contain z-0"
+  style={{
+    maskImage: "linear-gradient(to top, transparent 0%, black 50%, black 100%)",
+    WebkitMaskImage: "linear-gradient(to top, transparent 0%, black 50%, black 100%)"
+  }}
+  initial={{ opacity: 0, y: 50 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1.5 }}
+/>
+
+{/* Right Hero Image (image2) */}
+<motion.img
+  src={image2}
+  alt="Hero Illustration"
+  className="hidden xl:block absolute right-0 bottom-10 w-96 sm:w-[28rem] md:w-[600px] object-contain z-0"
+  style={{
+    maskImage: "linear-gradient(to top, transparent 0%, black 50%, black 100%)",
+    WebkitMaskImage: "linear-gradient(to top, transparent 0%, black 50%, black 100%)"
+  }}
+  initial={{ opacity: 0, y: 50 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1.5 }}
+/>
+
+
+
       {/* Content */}
       <motion.div
         className="relative z-10 max-w-3xl px-4 sm:px-6 lg:px-8 flex flex-col items-center mt-10"
@@ -39,13 +72,12 @@ export const Hero = () => {
         animate="visible"
         variants={contentVariants}
       >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-snug mb-4 drop-shadow-[0_0_10px_rgba(255,140,0,0.8)]">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-orange-400 leading-snug mb-4 ">
           CampusFind
           <br />
-          <span className="text-orange-400">Smart Lost and Found</span>
+          <span className="text-white">Smart Lost and Found</span>
         </h1>
 
-        {/* AI Badge */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -55,7 +87,6 @@ export const Hero = () => {
           ⚡ AI-Powered Item Matching System
         </motion.p>
 
-        {/* Tagline */}
         <p className="text-gray-300 text-sm sm:text-lg md:text-xl mb-8 sm:mb-10 mt-2 px-2">
           Report lost or found items instantly. Powered by{" "}
           <span className="text-orange-400 font-semibold">
@@ -64,11 +95,10 @@ export const Hero = () => {
           to help you reconnect with your belongings faster.
         </p>
 
-        {/* Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
           <Link
             to="/signup"
-            className="px-5 py-3 sm:px-6 sm:py-3 bg-orange-600 text-white font-semibold rounded-full shadow-md hover:shadow-[0_0_15px_rgba(255,140,0,0.9)] hover:bg-orange-700 transition-all duration-300"
+            className="px-5 py-3 sm:px-6 sm:py-3 bg-orange-600 text-white font-semibold rounded-full shadow-md "
           >
             Get Started
           </Link>
@@ -80,7 +110,6 @@ export const Hero = () => {
           </a>
         </div>
 
-        {/* Bouncing arrow */}
         <motion.div
           className="mt-10 sm:mt-12 animate-bounce"
           initial="hidden"

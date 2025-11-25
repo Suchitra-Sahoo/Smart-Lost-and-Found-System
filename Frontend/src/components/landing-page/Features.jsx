@@ -57,7 +57,7 @@ export const Features = () => {
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center mb-12">
           <span className="text-orange-400 font-semibold text-lg">WHY CHOOSE US</span>
-          <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-orange-400 drop-shadow-[0_0_10px_rgba(255,140,0,0.8)] neon-text">
+          <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-orange-400">
             Our Key Features
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
