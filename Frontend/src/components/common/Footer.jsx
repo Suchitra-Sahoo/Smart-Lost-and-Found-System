@@ -99,7 +99,6 @@ function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      {/* Bottom Bar */}
       <div className="bg-black/90 border-t border-white/20 py-4 text-center text-sm text-gray-400">
         © {new Date().getFullYear()}{" "}
         <span className="font-semibold text-orange-400">CampusFind</span>. All
