@@ -30,8 +30,8 @@ function Footer() {
             </span>
           </Link>
           <p className="text-gray-400 text-sm leading-relaxed">
-            CampusFind is a smart lost and found system to recover lost belongings efficiently within
-            the campus.
+            CampusFind is a smart lost and found system to recover lost
+            belongings efficiently within the campus.
           </p>
         </div>
 
@@ -71,7 +71,6 @@ function Footer() {
               <FaEnvelope className="text-orange-400" />
               <span>support@campusfind.in</span>
             </li>
-           
           </ul>
         </div>
 
@@ -81,15 +80,17 @@ function Footer() {
             Connect With Us
           </h3>
           <div className="flex space-x-4">
-            {[FaFacebook, FaInstagram, FaTwitter, FaLinkedin].map((Icon, idx) => (
-              <a
-                key={idx}
-                href="#"
-                className="p-2 rounded-full bg-orange-500 text-black hover:bg-orange-400 hover:shadow-[0_0_15px_rgba(255,140,0,0.8)] transition-all"
-              >
-                <Icon />
-              </a>
-            ))}
+            {[FaFacebook, FaInstagram, FaTwitter, FaLinkedin].map(
+              (Icon, idx) => (
+                <a
+                  key={idx}
+                  href="#"
+                  className="p-2 rounded-full bg-orange-500 text-black hover:bg-orange-400 hover:shadow-[0_0_15px_rgba(255,140,0,0.8)] transition-all"
+                >
+                  <Icon />
+                </a>
+              )
+            )}
           </div>
           <p className="text-sm text-gray-400 mt-4">
             Stay updated with our latest features and campus alerts.
@@ -98,8 +99,9 @@ function Footer() {
       </div>
 
       {/* Bottom Bar */}
+      {/* Bottom Bar */}
       <div className="bg-black/90 border-t border-white/20 py-4 text-center text-sm text-gray-400">
-        © 2025{" "}
+        © {new Date().getFullYear()}{" "}
         <span className="font-semibold text-orange-400">CampusFind</span>. All
         Rights Reserved.
       </div>
