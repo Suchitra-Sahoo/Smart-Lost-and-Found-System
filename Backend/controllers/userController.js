@@ -15,7 +15,6 @@ exports.getTotalUsers = async (req, res) => {
   }
 };
 
-// Optional: Get breakdown by role
 exports.getUserStats = async (req, res) => {
   try {
     if (req.user.role !== "admin") {

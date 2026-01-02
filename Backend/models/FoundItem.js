@@ -7,9 +7,9 @@ const FoundItemSchema = new mongoose.Schema({
   timeFound: { type: String, required: true },
   dateFound: { type: Date, required: true },
   category: { type: String, required: true },
-  userName: { type: String, required: true }, // auto from login
+  userName: { type: String, required: true }, 
   userEmail: { type: String, required: true },
-  image: { type: String, required: true }, // auto from login
+  image: { type: String, required: true }, 
 }, { timestamps: true });
 
 module.exports = mongoose.model("FoundItem", FoundItemSchema);
