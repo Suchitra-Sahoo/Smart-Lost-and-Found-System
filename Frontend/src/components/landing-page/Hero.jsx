@@ -100,7 +100,7 @@ export const Hero = () => {
             ⚡ AI-Powered Item Matching System
           </motion.p>
 
-          <p className="text-gray-300 text-sm sm:text-lg md:text-xl mb-8 sm:mb-10 mt-2 px-2">
+          <p className="text-gray-300 text-sm sm:text-lg md:text-lg mb-8 sm:mb-10 mt-2 px-2">
             Powered by{" "}
             <span className="text-orange-400 font-semibold">
               intelligent AI matching
