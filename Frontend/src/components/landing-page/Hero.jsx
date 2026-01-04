@@ -66,7 +66,7 @@ export const Hero = () => {
         <motion.img
           src={image2}
           alt="Hero Illustration"
-          className="hero-image hidden xl:block absolute right-0 bottom-10 w-96 sm:w-[28rem] md:w-[700px] object-contain z-0"
+          className="hero-image hidden xl:block absolute right-0 bottom-10 w-96 sm:w-[28rem] md:w-[680px] object-contain z-0"
           style={{
             maskImage:
               "linear-gradient(to top, transparent 0%, black 50%, black 100%)",
@@ -100,7 +100,7 @@ export const Hero = () => {
             ⚡ AI-Powered Item Matching System
           </motion.p>
 
-          <p className="text-gray-300 text-sm sm:text-lg md:text-lg mb-8 sm:mb-10 mt-2 px-2">
+          <p className="text-gray-300 text-sm sm:text-lg md:text-xl mb-8 sm:mb-10 mt-2 px-2">
             Powered by{" "}
             <span className="text-orange-400 font-semibold">
               intelligent AI matching
